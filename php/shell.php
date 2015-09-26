@@ -11,6 +11,9 @@
  *
  * @author Brody
  */
-
+include_once("php/database.class.php");
+include_once("php/authentication.class.php");
 echo "SMART HOME <b>BALLS</b> DEEP IN";
+
+Database::server();
 

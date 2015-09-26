@@ -12,5 +12,7 @@
  * @author Brody
  */
 class Authentication {
-    //put your code here
+    public static function getForm(){
+        
+    }
 }
