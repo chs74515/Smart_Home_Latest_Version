@@ -11,6 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+            ini_set('display_errors', '1');
             include_once("shell.php");
             Authentication::processLogin();
             echo Authentication::getForm();

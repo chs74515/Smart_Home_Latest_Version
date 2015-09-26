@@ -13,7 +13,8 @@ require_once 'database.class.php';
  */
 class User extends Database{
     private $username;
-    private $id;
+    private $userId;
+    private $passwordHash;
     private $isActivated;
     
     public function __get($name){
@@ -34,9 +35,13 @@ class User extends Database{
         $where = "WHERE id = $id limit 1;";
         $result = mysqli_query($this->connect, $select . $where);
         $row = mysqli_fetch_array($result);
-        foreach($row as $key => $value){
-            //populate properties witth value
-            echo "$key : $value";
+        if($result){
+            $row = mysqli_fetch_assoc($result);
+            foreach($row as $key => $value){
+                $this->$key = $value;
+                //populate properties witth value
+                echo "<br> [$key] => $value ";
+            }
         }
     }
     
@@ -44,16 +49,14 @@ class User extends Database{
         $user = "brody";
         $select = "SELECT * from `smarthome`.`user` ";
         $where = "WHERE username = '$user' limit 1;";
-        $query = mysqli_real_escape_string($select . $where);
         $result = mysqli_query($this->connect, $select . $where);
-        //$this->getSQLError();
-        //echo $select . $where;
-        var_dump($result);
+        //echo($select . $where);
         if($result){
-            $row = mysqli_fetch_array($result);
+            $row = mysqli_fetch_assoc($result);
             foreach($row as $key => $value){
+                $this->$key = $value;
                 //populate properties witth value
-                echo "_ $key : $value";
+                echo "<br> [$key] => $value ";
             }
         }
     }
