@@ -7,11 +7,11 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Smart Home</title>
     </head>
     <body>
         <?php
-        echo "SMART HOME <b>BALLS</b> DEEP IN";
+            include_once("php/shell.php");
         ?>
     </body>
 </html>

@@ -11,6 +11,6 @@
  *
  * @author Brody
  */
-class Shell {
-    //put your code here
-}
+
+echo "SMART HOME <b>BALLS</b> DEEP IN";
+
