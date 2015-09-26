@@ -15,14 +15,11 @@ class Database {
     protected $connect;
     
     public function __construct() {
-        
-    }
-    
-    public static function server(){
-        echo $_SERVER['SERVER_NAME'];
-        foreach($_SERVER as $key => $value){
-            echo $key . " : " . $value . "<br>";
+        $this->connect = mysqli_connect('localhost', 'root', 'balls', 'smarthome');
+        if (mysqli_connect_errno()){
+            echo "<span style = 'background-color:red;'> Failed to connect to MySQL: " . mysqli_connect_error() . "</span>";
         }
         
     }
+    
 }

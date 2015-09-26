@@ -15,5 +15,16 @@ include_once("php/database.class.php");
 include_once("php/authentication.class.php");
 echo "SMART HOME <b>BALLS</b> DEEP IN";
 
-Database::server();
+$db = new Database();
 
+/**
+ * displays info for server
+ */
+function displayServerInfo(){
+    
+        echo $_SERVER['SERVER_NAME'];
+        foreach($_SERVER as $key => $value){
+            echo $key . " : " . $value . "<br>";
+        }
+        
+    }
