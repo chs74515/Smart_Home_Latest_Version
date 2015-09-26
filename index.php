@@ -12,6 +12,7 @@ and open the template in the editor.
     <body>
         <?php
             include_once("shell.php");
+            Authentication::processLogin();
             echo Authentication::getForm();
         ?>
     </body>

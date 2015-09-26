@@ -16,10 +16,14 @@ class Database {
     
     public function __construct() {
         $this->connect = mysqli_connect('localhost', 'root', 'balls', 'smarthome');
+        $this->getSQLError();
+        
+    }
+    
+    protected function getSQLError(){
         if (mysqli_connect_errno()){
             echo "<span style = 'background-color:red;'> Failed to connect to MySQL: " . mysqli_connect_error() . "</span>";
         }
-        
     }
     
 }

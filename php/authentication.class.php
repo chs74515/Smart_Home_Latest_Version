@@ -1,5 +1,5 @@
 <?php
-
+require_once 'user.class.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,10 +40,10 @@ class Authentication {
     
     public static function processLogin(){
         if(isset($_REQUEST['submit'])){
-            $user=new User();
+            $user = new User();
             $username=$_REQUEST['username'];
             $password=$_REQUEST['password'];
-            $user->__set();
+            $user->load_by_username($username);
             
         }
     }
