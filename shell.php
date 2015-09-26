@@ -13,6 +13,7 @@
  */
 include_once("php/database.class.php");
 include_once("php/authentication.class.php");
+echo "<link rel='stylesheet' href='css/index.css' type='text/css'>";
 echo "SMART HOME <b>BALLS</b> DEEP IN";
 
 $db = new Database();

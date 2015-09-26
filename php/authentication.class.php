@@ -17,8 +17,9 @@ class Authentication {
         $password= self::get_password_input();
         $submit= self::get_submit_button();
         $method= "post";
-        $action="";
-        $form="<form method=$method action=$action> $username $password $submit</form>";
+        $action="''";
+        $class="login_form";
+        $form="<form method=$method action=$action class=$class> $username <br> $password <br> $submit</form>";
         return $form;
     }
     

@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-            include_once("php/shell.php");
+            include_once("shell.php");
             echo Authentication::getForm();
         ?>
     </body>
