@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <?php
             include_once("php/shell.php");
-            //echo $_SERVER['SERVER_NAME'];
+            echo Authentication::getForm();
         ?>
     </body>
 </html>
