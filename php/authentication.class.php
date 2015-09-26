@@ -43,7 +43,12 @@ class Authentication {
             $user = new User();
             $username=$_REQUEST['username'];
             $password=$_REQUEST['password'];
-            $user->load_by_username($username);
+            $loaded = $user->load_by_username($username);
+            if($loaded){
+                //continue processing
+            }else{
+                //handling for wrong username, allow registration
+            }
             
         }
     }

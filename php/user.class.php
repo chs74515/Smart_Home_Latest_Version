@@ -46,7 +46,7 @@ class User extends Database{
     }
     
     public function load_by_username($user){
-        $user = "brody";
+        $user = "brody";  //take out
         $select = "SELECT * from `smarthome`.`user` ";
         $where = "WHERE username = '$user' limit 1;";
         $result = mysqli_query($this->connect, $select . $where);
@@ -58,6 +58,14 @@ class User extends Database{
                 //populate properties witth value
                 echo "<br> [$key] => $value ";
             }
+            return true;
+        }else{
+            return false;
         }
+    }
+    
+    public static function decodePassword($password){
+        //do stuff to hash
+        return $password;
     }
 }
