@@ -24,17 +24,27 @@ class Authentication {
     }
     
     private static function get_username_input(){
-        $input="USERNAME: <input type='text' placeholder='username'></input>";
+        $input="USERNAME: <input type='text' placeholder='username' name='username'></input>";
         return $input;
     }
     
     private static function get_password_input(){
-        $input="PASSWORD: <input type='password' placeholder='password'></input>";
+        $input="PASSWORD: <input type='password' placeholder='password' name='password'></input>";
         return $input;
     }
     
     private static function get_submit_button(){
-        $input="<input type='submit' value='Submit'></input>";
+        $input="<input type='submit' value='Submit' name='submit'></input>";
         return $input;
+    }
+    
+    public static function processLogin(){
+        if(isset($_REQUEST['submit'])){
+            $user=new User();
+            $username=$_REQUEST['username'];
+            $password=$_REQUEST['password'];
+            $user->__set();
+            
+        }
     }
 }
