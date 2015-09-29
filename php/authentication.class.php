@@ -59,4 +59,8 @@ class Authentication {
         }
         return $_SESSION['authenticated'];
     }
+    
+    public static function setAuthentication($value){
+        $_SESSION['authenticated'] = $value;
+    }
 }

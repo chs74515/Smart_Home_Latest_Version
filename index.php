@@ -14,7 +14,14 @@ and open the template in the editor.
             ini_set('display_errors', '1');
             include_once("shell.php");
             Authentication::processLogin();
-            echo Authentication::getForm();
+            
+            Authentication::setAuthentication(TRUE);
+            if(Authentication::isAuthenticated()){
+                //echo page
+                echo "SMART HOME <b>BALLS</b> DEEP IN";
+            }else{
+                echo Authentication::getForm();
+            }
         ?>
     </body>
 </html>
