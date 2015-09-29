@@ -5,9 +5,9 @@ class SenseHandler(object):
 		global sense
 		sense = SenseHat()
 
-	def turn_on_light(self, index):
+	def turn_on_light(self, index, color = [255,255,255]):
 		pixels = sense.get_pixels()
-		pixels[index] = [255,255,255]
+		pixels[index] = color
 		sense.set_pixels(pixels)
 
 	def turn_off_light(self, index):
