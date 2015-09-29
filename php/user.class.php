@@ -73,10 +73,4 @@ class User extends Database{
         return $password;
     }
     
-    public static function isAuthenticated(){
-        if(!isset($_SESSION['authenticated'])){
-            $_SESSION['authenticated'] = FALSE;
-        }
-        return $_SESSION['authenticated'];
-    }
 }
