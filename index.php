@@ -7,11 +7,21 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Smart Home</title>
     </head>
     <body>
         <?php
-        echo "SMART HOME <b>BALLS</b> DEEP IN";
+            ini_set('display_errors', '1');
+            include_once("shell.php");
+            Authentication::processLogin();
+            
+            Authentication::setAuthentication(TRUE);
+            if(Authentication::isAuthenticated()){
+                //echo page
+                echo "SMART HOME <b>BALLS</b> DEEP IN";
+            }else{
+                echo Authentication::getForm();
+            }
         ?>
     </body>
 </html>
