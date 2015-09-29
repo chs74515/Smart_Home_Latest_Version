@@ -55,8 +55,7 @@ class User extends Database{
             $row = mysqli_fetch_assoc($result);
             foreach($row as $key => $value){
                 $this->$key = $value;
-                //populate properties witth value
-                echo "<br> [$key] => $value ";
+//               echo "<br> [$key] =>" . $this->$key ;
             }
             return true;
         }else{
@@ -67,5 +66,17 @@ class User extends Database{
     public static function decodePassword($password){
         //do stuff to hash
         return $password;
+    }
+    
+    public static function encodePassword($password){
+        //hash password
+        return $password;
+    }
+    
+    public static function isAuthenticated(){
+        if(!isset($_SESSION['authenticated'])){
+            $_SESSION['authenticated'] = FALSE;
+        }
+        return $_SESSION['authenticated'];
     }
 }
