@@ -34,7 +34,11 @@ class Lightbulb extends Appliance{
     }
     
     private function getButtonDiv(){    
-        $button = "<div class='lightbulb'>Lightbulb</div>";
+        //add image based on status
+        $source = "../images/light_bulb_on";
+        $onclick = "console.log(this); ";
+        $image = "<img src='$source' height = '100' width='100' id='lightbulb_$this->applianceId' onclick='$onclick'>";
+        $button = "<div class='lightbulb'>Lightbulb $image</div>";
         return $button;
     }
 }
