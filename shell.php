@@ -13,7 +13,12 @@
  */
 include_once("php/database.class.php");
 include_once("php/authentication.class.php");
+include_once("php/appliance.class.php");
+include_once("php/lightbulb.class.php");
+include_once("php/user.class.php");
 echo "<link rel='stylesheet' href='css/index.css' type='text/css'>";
+
+ini_set('display_errors', '1');
 
 //$db = new Database();
 
