@@ -8,7 +8,7 @@ class Lights {
 		$html .= "<input type=\"textbox\" name=\"lightid\"></value><br />";
 		$html .= "<input type=\"hidden\" name=\"lights\" value=\"1\"></input>";
 		$html .= "<input type=\"radio\" name=\"status\" value=\"on\">On</input><br />";
-		$html .= "<input type=\"radio\" name=\"status\" value-\"off\">Off</input><br />";
+		$html .= "<input type=\"radio\" name=\"status\" value=\"off\">Off</input><br />";
 		$html .= "<input type=\"submit\" formmethod=\"POST\"></input>";
 		$html .= "</form>";
 		return $html;
