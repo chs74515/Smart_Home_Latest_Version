@@ -36,7 +36,7 @@ class Lightbulb extends Appliance{
     private function getButtonDiv(){    
         //add image based on status
         $source = "../images/light_bulb_on";
-        $onclick = "console.log(this); ";
+        $onclick = "toggleLight(this); ";
         $image = "<img src='$source' height = '100' width='100' id='lightbulb_$this->applianceId' onclick='$onclick'>";
         $button = "<div class='lightbulb'>Lightbulb $image</div>";
         return $button;
