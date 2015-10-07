@@ -35,7 +35,8 @@ class Lightbulb extends Appliance{
             $button = $light->getButtonDiv();    
         $form .= "<div>$button</div>";
         }
-        $form .= "</div>";
+        $party = "<button onclick='commenceParty(); '>Party Button</button>";
+        $form .= "$party</div>";
         return $form;
     }
     

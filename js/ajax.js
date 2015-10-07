@@ -25,3 +25,29 @@ function toggleLight(element, lightID, status, description){
         }
     });
 }
+
+var party = 0;
+
+function commenceParty(){
+    if(this.party === 0){
+        this.party = 1;
+    }else{
+        this.party = 0;
+    }
+    $.ajax({
+        
+        type: "POST",
+        url: "ajax/party_ajax.php",
+        data: { 
+                AJAX : (true),
+                party : (this.party)
+                } ,
+        success: function (data) {
+            console.log("Success! " + data);
+            
+        },
+        error: function(data){
+            console.log("Error" + data);
+        }
+    });
+}
