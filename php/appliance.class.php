@@ -16,6 +16,7 @@ class Appliance extends Database{
     protected $houseId;
     protected $status;
     protected $type;
+    protected $description;
     
     
     public function __construct($id = null) {
@@ -32,19 +33,42 @@ class Appliance extends Database{
     public function __set($name, $value) {
         $this->$name=$value;
     }
-    
+        
     public function load_by_id($id){
         $select = "SELECT * from appliances ";
         $where = "WHERE applianceId = $id limit 1;";
         $result = mysqli_query($this->connect, $select . $where);
-        $row = mysqli_fetch_array($result);
-        if($result){
+        echo $select . $where;
+        if($result->num_rows > 0){
             $row = mysqli_fetch_assoc($result);
             foreach($row as $key => $value){
                 //populate properties witth value
-                echo "<br> [$key] => " . $this->$key;
                 $this->$key = $value;
+//                echo "<br> [$key] => " . $this->$key;                
             }
+        }else{
+            echo "<h3>Appliance does not exist</h3>";
+//            die();
+        }
+    }
+    
+    /**
+     * return an array of applications for given type
+     * @param type $type
+     * @return boolean
+     */
+    public static function get_appliances_by_type($type){
+        $select = "SELECT applianceId from appliances ";
+        $where = "WHERE type = '$type';";
+        $connection = self::getConnect();
+        $result = mysqli_query($connection, $select . $where);
+        if($result){
+            while($row = mysqli_fetch_assoc($result)) {
+                $rows[] = $row;
+            }
+            return $rows;
+        }else{
+            return false;
         }
     }
     
