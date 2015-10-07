@@ -26,4 +26,9 @@ class Database {
         }
     }
     
+    protected static function getConnect(){
+        $connect = new Database();
+        return $connect->connect;
+    }
+    
 }

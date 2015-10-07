@@ -11,24 +11,26 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-            ini_set('display_errors', '1');
             include_once("shell.php");
-			include_once("php/lights.class.php");
+			
             Authentication::processLogin();
             
-            Authentication::setAuthentication(TRUE);
-			
-			if(!empty($_GET['page'])) {
-				echo Lights::getForm();
-			}
-			
-			if(!empty($_POST['lights'])) {
-				echo Lights::processPost();
-			}
-			
+            Authentication::setAuthentication(TRUE); //take out to sue authentication
+            
+            /******TEST CODE*******/
+            if(!empty($_GET['page'])) {
+                    echo Lights::getForm();
+            }
+
+            if(!empty($_POST['lights'])) {
+                    echo Lights::processPost();
+            }
+            /******TEST CODE******/
+            
             if(Authentication::isAuthenticated()){
                 //echo page
                 echo "SMART HOME <b>BALLS</b> DEEP IN";
+                echo Lightbulb::getLightBulbForm();
             }else{
                 echo Authentication::getForm();
             }

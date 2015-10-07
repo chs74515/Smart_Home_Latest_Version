@@ -40,7 +40,7 @@ class User extends Database{
             foreach($row as $key => $value){
                 $this->$key = $value;
                 //populate properties witth value
-                echo "<br> [$key] => $value ";
+                echo "<br> [$key] => " . $this->$key;
             }
         }
     }
