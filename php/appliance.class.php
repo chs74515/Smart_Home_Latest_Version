@@ -38,7 +38,6 @@ class Appliance extends Database{
         $select = "SELECT * from appliances ";
         $where = "WHERE applianceId = $id limit 1;";
         $result = mysqli_query($this->connect, $select . $where);
-        echo $select . $where;
         if($result->num_rows > 0){
             $row = mysqli_fetch_assoc($result);
             foreach($row as $key => $value){
@@ -81,7 +80,14 @@ class Appliance extends Database{
     }
     
     private function update(){
-        
+        $sql = "UPDATE `appliances` "
+            . "SET houseID = $this->houseId,"
+            . " status = $this->status, "
+            . "description = '$this->description', "
+            . "type = '$this->type' "
+            . "WHERE applianceID = $this->applianceId;";
+        $result = mysqli_query($this->connect, $sql);
+        echo "Result: " . $result;
     }
     
     private function insert(){
