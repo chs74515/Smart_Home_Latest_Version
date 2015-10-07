@@ -77,7 +77,7 @@ class Appliance extends Database{
         }else{
             $this->insert();
         }
-    }
+    } 
     
     private function update(){
         $sql = "UPDATE `appliances` "
@@ -87,7 +87,7 @@ class Appliance extends Database{
             . "type = '$this->type' "
             . "WHERE applianceID = $this->applianceId;";
         $result = mysqli_query($this->connect, $sql);
-//        echo "Result: " . $result;
+        
     }
     
     private function insert(){

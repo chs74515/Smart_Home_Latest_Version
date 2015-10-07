@@ -2,9 +2,9 @@ function toggleLight(element, lightID, status, description){
     //load lightbulb
     //turn on/turn off
     //execute python
-    console.log(status);
-    console.log(element.getAttribute('id'));
-    console.log(description);
+    //console.log(status);
+    //console.log(element.getAttribute('id'));
+    //console.log(description);
     var ele_id = element.getAttribute('id');
     $.ajax({
         type: "POST",
@@ -16,6 +16,7 @@ function toggleLight(element, lightID, status, description){
                 } ,
         success: function (data) {
             console.log("Success! " + data);
+            //update button div
             $('#lightbulb_on_'+lightID).toggle();
             $('#lightbulb_off_'+lightID).toggle();
         },
