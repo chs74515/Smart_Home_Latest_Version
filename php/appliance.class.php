@@ -87,7 +87,7 @@ class Appliance extends Database{
             . "type = '$this->type' "
             . "WHERE applianceID = $this->applianceId;";
         $result = mysqli_query($this->connect, $sql);
-        echo "Result: " . $result;
+//        echo "Result: " . $result;
     }
     
     private function insert(){
