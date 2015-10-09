@@ -6,17 +6,17 @@ if(isset($_POST['status'])){
     $light = new Lightbulb();
     $light->load_by_id($id);
     $lightid = 1;
-
-    if($light->status === '0'){
-        $light->status = '1';
-        $lightstatus = 'on';
-    }else{
-        $light->status = '0';
-        $lightstatus = 'off';
-    }
+    $lightstatus = $_POST['status'];
+//    if($light->status === '0'){
+//        $light->status = '1';
+//        $lightstatus = 'on';
+//    }else{
+//        $light->status = '0';
+//        $lightstatus = 'off';
+//    }
     echo "<br>lightstatus: $lightstatus";
     $light->save();
-    $command = escapeshellcmd("python /var/www/python/LightsHandler.py $lightid $lightstatus");
+    $command = escapeshellcmd("python /var/www/python/LightsHandler.py $id $lightstatus");
     echo $command;
     $output = shell_exec($command);
     echo "Output: $output <br>" ;

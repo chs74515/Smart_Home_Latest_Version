@@ -6,6 +6,9 @@ function toggleLight(element, lightID, status, description){
     //console.log(element.getAttribute('id'));
     //console.log(description);
     var ele_id = element.getAttribute('id');
+    var status = element.dataset.status;
+    var lightID = element.dataset.id;
+    console.log(status);
     $.ajax({
         type: "POST",
         url: "ajax/lightbulb_ajax.php",

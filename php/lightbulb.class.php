@@ -53,8 +53,8 @@ class Lightbulb extends Appliance{
         }else{
             $on_style = 'display:none;';
         }
-        $on_image = "<img src='$source' height = '150' width='150' id='lightbulb_on_$this->applianceId' onclick=\"$onclick\" style='$on_style'>";
-        $off_image = "<img src='$off_source' height = '100' width='100' id='lightbulb_off_$this->applianceId' onclick=\"$onclick\" style='$off_style'>";
+        $on_image = "<img src='$source' height = '100' width='100' id='lightbulb_on_$this->applianceId' data-id=$this->applianceId data-status='off' onclick=\"$onclick\" style='$on_style'>";
+        $off_image = "<img src='$off_source' height = '100' width='100' id='lightbulb_off_$this->applianceId' data-id=$this->applianceId data-status='on' onclick=\"$onclick\" style='$off_style'>";
         
         $button = "<div class='lightbulb'>$this->description $on_image $off_image</div>";
         return $button;
