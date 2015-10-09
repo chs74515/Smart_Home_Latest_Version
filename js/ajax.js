@@ -2,7 +2,7 @@
 $(document).ready(function welcomeMsg(){
     $.ajax({
         type: "POST",
-        url: "ajax/lightbulb_ajax.php",
+        url: "ajax/welcome_ajax.php",
         data: { 
                 AJAX : (true)
                 } ,
