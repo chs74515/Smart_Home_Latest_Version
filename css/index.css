@@ -30,7 +30,6 @@ and open the template in the editor.
     border: thin solid black;
     margin: 10px;
     box-shadow: 5px 5px 3px #888888;
-    width:500px;
     position: relative;
     height: 120px;
     border-radius: 5px;
@@ -43,4 +42,9 @@ and open the template in the editor.
     position: absolute;
     top:10px;
     right:0;
+}
+
+body{
+    text-align: center;
+    margin: 10px 50px;
 }
