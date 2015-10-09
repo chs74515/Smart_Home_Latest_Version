@@ -1,5 +1,5 @@
 
-$(document).ready(function welcomeMsg(){
+function welcomeMsg(){
     $.ajax({
         type: "POST",
         url: "ajax/welcome_ajax.php",
@@ -13,7 +13,7 @@ $(document).ready(function welcomeMsg(){
             console.log("Error" + data);
         }
     });
-});
+}
 
 function toggleLight(element, lightID, status, description){
     //load lightbulb

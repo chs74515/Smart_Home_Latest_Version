@@ -12,11 +12,14 @@ and open the template in the editor.
     <body>
         <?php
             include_once("shell.php");
-			
+            session_start();
             Authentication::processLogin();
             
-            Authentication::setAuthentication(TRUE); //take out to sue authentication
-            
+            if(!Authentication::isAuthenticated()){
+                Authentication::setAuthentication(TRUE); //take out to sue authentication
+                echo "<script>welcomeMsg();</script>";
+            }
+
             /******TEST CODE*******/
             if(!empty($_GET['page'])) {
                     echo Lights::getForm();
