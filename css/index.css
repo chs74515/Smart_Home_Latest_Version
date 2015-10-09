@@ -10,6 +10,7 @@ and open the template in the editor.
 
 .login_form{
     display: block;
+    font-size: large;
     width:500px;
     text-align: center;
     background-color: goldenrod;
