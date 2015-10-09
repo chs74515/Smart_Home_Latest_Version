@@ -1,3 +1,20 @@
+
+$(document).ready(function welcomeMsg(){
+    $.ajax({
+        type: "POST",
+        url: "ajax/lightbulb_ajax.php",
+        data: { 
+                AJAX : (true)
+                } ,
+        success: function () {
+            console.log("Success! Welcome Executed");
+        },
+        error: function(data){
+            console.log("Error" + data);
+        }
+    });
+});
+
 function toggleLight(element, lightID, status, description){
     //load lightbulb
     //turn on/turn off
