@@ -34,8 +34,6 @@ and open the template in the editor.
     height: 120px;
     border-radius: 5px;
     line-height: 120px;
-    padding-left: 50px;
-    font-size: x-large;
 }
 
 .lightbulb img{
@@ -47,4 +45,5 @@ and open the template in the editor.
 body{
     text-align: center;
     margin: 10px 50px;
+    font-size: xx-large;
 }
