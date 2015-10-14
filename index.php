@@ -12,11 +12,11 @@ and open the template in the editor.
     <body>
         <?php
             include_once("shell.php");
-            session_start();
-            Authentication::processLogin();
+            session_start();    //start $_SESSION
+            Authentication::processLogin();     //process login form if submitted
             
-            if(!Authentication::isAuthenticated()){
-                Authentication::setAuthentication(TRUE); //take out to sue authentication
+            if(!Authentication::isAuthenticated()){ //if not authenticated
+                Authentication::setAuthentication(TRUE); //take out to use authentication
                 echo "<script>welcomeMsg();</script>";
             }
 

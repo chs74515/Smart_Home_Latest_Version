@@ -38,8 +38,9 @@ class Authentication {
         return $input;
     }
     
+    //process login form
     public static function processLogin(){
-        if(isset($_REQUEST['submit'])){
+        if(isset($_REQUEST['submit'])){     //check for submission
             $user = new User();
             $username=$_REQUEST['username'];
             $password=$_REQUEST['password'];
@@ -53,6 +54,10 @@ class Authentication {
         }
     }
     
+    /**
+     * 
+     * @return boolean true if authenticated flagged in session
+     */
     public static function isAuthenticated(){
         if(!isset($_SESSION['authenticated'])){
             $_SESSION['authenticated'] = FALSE;

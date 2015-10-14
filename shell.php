@@ -1,13 +1,7 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of shell
+ * include php classes, css, js
  *
  * @author Brody
  */
@@ -16,11 +10,13 @@ ini_set('display_errors', '1');
 
 getIncludes();
 
+//dont echo if an ajax call
 if(!isset($_POST['AJAX'])){
     echoJavaScript();
     echoCSS();
 }
 
+//php includes
 function getIncludes(){
     include_once("php/database.class.php");
     include_once("php/authentication.class.php");
@@ -30,10 +26,13 @@ function getIncludes(){
     include_once("php/lights.class.php");  //test class
 }
 
+//echo JS files
 function echoJavaScript(){
     echo "<script src='js/jquery-2.1.4.min.js'></script>";
     echo "<script src='js/ajax.js'></script>";
 }
+
+//echo css files
 function echoCSS(){
     echo "<link rel='stylesheet' href='css/index.css' type='text/css'>";
 }
@@ -45,9 +44,9 @@ function echoCSS(){
  */
 function displayServerInfo(){
     
-        echo $_SERVER['SERVER_NAME'];
-        foreach($_SERVER as $key => $value){
-            echo $key . " : " . $value . "<br>";
-        }
-        
+    echo $_SERVER['SERVER_NAME'];
+    foreach($_SERVER as $key => $value){
+        echo $key . " : " . $value . "<br>";
     }
+
+}

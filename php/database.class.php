@@ -12,7 +12,7 @@
  * @author Brody
  */
 class Database {
-    protected $connect;
+    protected $connect;  //database connection
     
     public function __construct() {
         $this->connect = mysqli_connect('localhost', 'root', 'balls', 'smarthome');

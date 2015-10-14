@@ -25,6 +25,10 @@ class Lightbulb extends Appliance{
         
     }
     
+    /**
+     * gets lightbulb form
+     * @return string HTML div
+     */
     public static function getLightBulbForm(){
         //get all lightbulbs from db and create button for each
         $lightArray = self::get_appliances_by_type('light');
@@ -40,6 +44,10 @@ class Lightbulb extends Appliance{
         return $form;
     }
     
+    /**
+     * 
+     * @return string HTML Div of button and label
+     */
     private function getButtonDiv(){    
         //add image based on status
         $source = "../images/light_bulb_on.png";

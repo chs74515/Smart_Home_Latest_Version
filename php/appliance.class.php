@@ -8,17 +8,22 @@
 
 /**
  * Description of appliance
- *
+ * database class for appliance table
  * @author Brody
  */
 class Appliance extends Database{
+    
+    //database fields
     protected $applianceId;
     protected $houseId;
     protected $status;
     protected $type;
-    protected $description;
+    protected $description;  //to be replaced by details array
     
-    
+    /**
+     * magic constructor
+     * @param type $id
+     */
     public function __construct($id = null) {
         parent::__construct();
         if($id){
@@ -33,7 +38,11 @@ class Appliance extends Database{
     public function __set($name, $value) {
         $this->$name=$value;
     }
-        
+    
+    /**
+     * load object from database
+     * @param type $id
+     */
     public function load_by_id($id){
         $select = "SELECT * from appliances ";
         $where = "WHERE applianceId = $id limit 1;";
