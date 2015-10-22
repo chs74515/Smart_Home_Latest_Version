@@ -46,9 +46,15 @@ class Authentication {
             $password=$_REQUEST['password'];
             $loaded = $user->load_by_username($username);
             if($loaded){
+                if($user->verify_password($password)) {
+                    setAuthentication(True);
+                } else {
+                    echo("Invalid password");
+                }
                 //continue processing
             }else{
                 //handling for wrong username, allow registration
+                echo("Invalid username");
             }
             
         }

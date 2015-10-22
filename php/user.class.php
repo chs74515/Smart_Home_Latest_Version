@@ -63,6 +63,16 @@ class User extends Database{
         }
     }
     
+    public function verify_password($password) {
+        if(password_verify($password, $passwordHash)) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    // TODO: Discuss removal with team
     public static function decodePassword($password){
         //do stuff to hash
         return $password;
@@ -70,6 +80,7 @@ class User extends Database{
     
     public static function encodePassword($password){
         //hash password
+        $password = password_hash($password);
         return $password;
     }
     
