@@ -15,11 +15,6 @@ and open the template in the editor.
             session_start();    //start $_SESSION
             Authentication::processLogin();     //process login form if submitted
             
-            if(!Authentication::isAuthenticated()){ //if not authenticated
-                Authentication::setAuthentication(TRUE); //take out to use authentication
-                echo "<script>welcomeMsg();</script>";
-            }
-
             /******TEST CODE*******/
             if(!empty($_GET['page'])) {
                     echo Lights::getForm();
@@ -31,6 +26,8 @@ and open the template in the editor.
             /******TEST CODE******/
             
             if(Authentication::isAuthenticated()){
+                //display welcome
+                echo "<script>welcomeMsg();</script>";
                 //echo page
                 echo "SMART HOME <b>BALLS</b> DEEP IN";
                 echo Lightbulb::getLightBulbForm();

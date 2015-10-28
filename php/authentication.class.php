@@ -47,7 +47,7 @@ class Authentication {
             $loaded = $user->load_by_username($username);
             if($loaded){
                 if($user->verify_password($password)) {
-                    setAuthentication(True);
+                    Authentication::setAuthentication(True);
                 } else {
                     echo("Invalid password");
                 }

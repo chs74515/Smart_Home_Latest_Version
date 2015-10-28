@@ -40,13 +40,12 @@ class User extends Database{
             foreach($row as $key => $value){
                 $this->$key = $value;
                 //populate properties witth value
-                echo "<br> [$key] => " . $this->$key;
+//                echo "<br> [$key] => " . $this->$key;
             }
         }
     }
     
     public function load_by_username($user){
-        $user = "brody";  //take out
         $select = "SELECT * from `smarthome`.`user` ";
         $where = "WHERE username = '$user' limit 1;";
         $result = mysqli_query($this->connect, $select . $where);
@@ -64,24 +63,55 @@ class User extends Database{
     }
     
     public function verify_password($password) {
-        if(password_verify($password, $passwordHash)) {
+        if(password_verify($password, $this->passwordHash)) {
             return true;
         } else {
             return false;
         }
         
     }
-    
-    // TODO: Discuss removal with team
-    public static function decodePassword($password){
-        //do stuff to hash
+        
+    public static function encodePassword($password){
+        //hash password
+        $password = password_hash($password, PASSWORD_DEFAULT);
         return $password;
     }
     
-    public static function encodePassword($password){
-        //hash password
-        $password = password_hash($password);
-        return $password;
+    /**
+     * insert if not exist in db, update if id set
+     */
+    public function save(){
+        if($this->userId){
+            $this->update();
+        }else{
+            //$this->insert(); only insert from registration
+        }
+    }
+    
+    /**
+     * update current record
+     */
+    private function update(){
+        $sql = "UPDATE `user` SET "
+            . "username = '$this->username', "
+            . "passwordHash = '$this->passwordHash', "
+            . "isActivated = $this->isActivated "
+            . "WHERE userID = $this->userId; ";
+        $result = mysqli_query($this->connect, $sql);
+    }
+    
+    /**
+     * insert record into DB
+     */
+    private function insert(){
+        $user = mysqli_real_escape_string($this->connect, $this->username);
+        $pass = self::encodePassword($this->passwordHash);
+        $sql = "INSERT into user (username, passwordHash) "
+            . "VALUES ('$user', '$pass'); ";
+        $result = mysqli_query($this->connect, $sql);
+        if($result){
+            $this->userId = mysqli_insert_id($this->connect);
+        }
     }
     
 }
