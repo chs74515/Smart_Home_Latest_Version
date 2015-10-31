@@ -26,8 +26,6 @@ and open the template in the editor.
             /******TEST CODE******/
             
             if(Authentication::isAuthenticated()){
-                //display welcome
-                echo "<script>welcomeMsg();</script>";
                 //echo page
                 echo "SMART HOME <b>BALLS</b> DEEP IN";
                 echo Lightbulb::getLightBulbForm();

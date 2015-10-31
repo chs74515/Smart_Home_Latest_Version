@@ -58,13 +58,15 @@ class Lightbulb extends Appliance{
         
         if($this->status === '1'){
             $off_style = 'display:none;';
+            $status = "off";
         }else{
             $on_style = 'display:none;';
+            $status = "on";
         }
-        $on_image = "<img src='$source' height = '100' width='100' id='lightbulb_on_$this->applianceId' data-id=$this->applianceId data-status='off' onclick=\"$onclick\" style='$on_style'>";
-        $off_image = "<img src='$off_source' height = '100' width='100' id='lightbulb_off_$this->applianceId' data-id=$this->applianceId data-status='on' onclick=\"$onclick\" style='$off_style'>";
+        $on_image = "<img src='$source' height = '100' width='100' id='lightbulb_on_$this->applianceId' style='$on_style'>";
+        $off_image = "<img src='$off_source' height = '100' width='100' id='lightbulb_off_$this->applianceId' style='$off_style'>";
         
-        $button = "<div class='lightbulb'>$this->description $on_image $off_image</div>";
+        $button = "<div class='lightbulb' onclick = \"$onclick\" data-id=$this->applianceId data-status='$status'>$this->description $on_image $off_image</div>";
         return $button;
     }
 }

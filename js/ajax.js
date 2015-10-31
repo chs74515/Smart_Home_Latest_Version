@@ -15,14 +15,13 @@ function welcomeMsg(){
     });
 }
 
-function toggleLight(element, lightID, status, description){
+function toggleLight(element){
     //load lightbulb
     //turn on/turn off
     //execute python
     //console.log(status);
     //console.log(element.getAttribute('id'));
     //console.log(description);
-    var ele_id = element.getAttribute('id');
     var status = element.dataset.status;
     var lightID = element.dataset.id;
     console.log(status);
@@ -39,6 +38,11 @@ function toggleLight(element, lightID, status, description){
             //update button div
             $('#lightbulb_on_'+lightID).toggle();
             $('#lightbulb_off_'+lightID).toggle();
+            if(status === "on"){
+                element.dataset.status = "off";
+            }else{
+                element.dataset.status = "on";
+            }
         },
         error: function(data){
             console.log("Error" + data);

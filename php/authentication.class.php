@@ -48,6 +48,8 @@ class Authentication {
             if($loaded){
                 if($user->verify_password($password)) {
                     Authentication::setAuthentication(True);
+                    //display welcome
+                    echo "<script>welcomeMsg();</script>";
                 } else {
                     echo("<h4 style='color:red;'>Invalid password</h4>");
                 }

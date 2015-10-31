@@ -37,6 +37,7 @@ and open the template in the editor.
     line-height: 120px;
     padding-left: 40px;
     text-align: left;
+    cursor: pointer;
 }
 
 .lightbulb img{
