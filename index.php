@@ -14,6 +14,8 @@ and open the template in the editor.
             include_once("shell.php");
             session_start();    //start $_SESSION
             Authentication::processLogin();     //process login form if submitted
+            $nav = new Navigation_Menu();
+            $nav->processControlMenu(); //process nav if submitted
             
             /******TEST CODE*******/
             if(!empty($_GET['page'])) {
@@ -28,7 +30,8 @@ and open the template in the editor.
             if(Authentication::isAuthenticated()){
                 //echo page
                 echo "SMART HOME <b>BALLS</b> DEEP IN";
-                echo Lightbulb::getLightBulbForm();
+                $nav->displayMenu();
+                
             }else{
                 echo Authentication::getForm();
             }

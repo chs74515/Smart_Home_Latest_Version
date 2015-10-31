@@ -37,7 +37,7 @@ class Lightbulb extends Appliance{
             $light = new Lightbulb();
             $light->load_by_id($lightID['applianceId']);
             $button = $light->getButtonDiv();    
-        $form .= "<div>$button</div>";
+            $form .= "<div>$button</div>";
         }
         $party = "<button onclick='commenceParty(); '>Party Button</button>";
         $form .= "$party</div>";

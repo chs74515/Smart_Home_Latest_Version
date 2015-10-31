@@ -24,6 +24,7 @@ function getIncludes(){
     include_once("php/lightbulb.class.php");
     include_once("php/user.class.php");
     include_once("php/lights.class.php");  //test class
+    include_once("php/navigation_menu.class.php");
 }
 
 //echo JS files
