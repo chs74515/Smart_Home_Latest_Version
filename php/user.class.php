@@ -50,7 +50,7 @@ class User extends Database{
         $where = "WHERE username = '$user' limit 1;";
         $result = mysqli_query($this->connect, $select . $where);
         //echo($select . $where);
-        if($result){
+        if(mysqli_num_rows($result) > 0){
             $row = mysqli_fetch_assoc($result);
             foreach($row as $key => $value){
                 $this->$key = $value;

@@ -49,12 +49,12 @@ class Authentication {
                 if($user->verify_password($password)) {
                     Authentication::setAuthentication(True);
                 } else {
-                    echo("Invalid password");
+                    echo("<h4 style='color:red;'>Invalid password</h4>");
                 }
                 //continue processing
             }else{
                 //handling for wrong username, allow registration
-                echo("Invalid username");
+                echo("<h4 style='color:red;'>Invalid username</h4>");
             }
             
         }
