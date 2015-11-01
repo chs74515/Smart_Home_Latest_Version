@@ -51,3 +51,47 @@ body{
     margin: 10px 50px;
     font-size: xx-large;
 }
+
+.header{
+    background-color: lightgrey
+}
+
+.header h3{
+    display: inline-block;
+}
+.header sup{
+    font-size: medium;
+}
+
+.header img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left:10px;
+    border: solid medium black;
+}
+
+.nav_menu{
+    margin: 10px 0px;
+    background: deepskyblue;
+    border-radius: 10px;
+    width: 80%;
+    position: relative;
+    padding: 10px;
+    /*height: 600px;*/
+}
+
+.nav_button{
+    background: white;
+    border-radius: 10px;
+    border: black solid thin;
+    width: 60%;
+    /*height: 100px;*/
+    padding: 10px;
+    margin: 10px 0px;
+    font-size: large;
+    position: relative;
+    left: 24%;
+    cursor: pointer;
+    text-align: right;
+}

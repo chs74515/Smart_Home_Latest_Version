@@ -41,7 +41,7 @@ class Navigation_Menu {
     }
     
     public static function getNavButton($tab_name, $title){
-        $button = "<button type='submit' form='nav' name='main_tab' value='$tab_name'>$title</button>";
+        $button = "<button type='submit' form='nav' name='main_tab' value='$tab_name' class='nav_button'>$title</button>";
         return $button;
     }
     

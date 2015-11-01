@@ -14,6 +14,7 @@ getIncludes();
 if(!isset($_POST['AJAX'])){
     echoJavaScript();
     echoCSS();
+    displayHeader();
 }
 
 //php includes
@@ -50,4 +51,11 @@ function displayServerInfo(){
         echo $key . " : " . $value . "<br>";
     }
 
+}
+
+function displayHeader(){
+    $img = "<img src='images/home.png'>";
+    $class = 'header';
+    $div = "<div class=$class>$img<h3>DeepIn SmartHome<sup>&copy</sup></h3></div>";
+    echo $div;
 }

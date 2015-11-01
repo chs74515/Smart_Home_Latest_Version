@@ -29,7 +29,6 @@ and open the template in the editor.
             
             if(Authentication::isAuthenticated()){
                 //echo page
-                echo "SMART HOME <b>BALLS</b> DEEP IN";
                 $nav->displayMenu();
                 
             }else{
