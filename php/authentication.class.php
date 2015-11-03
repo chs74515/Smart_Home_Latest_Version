@@ -63,6 +63,8 @@ class Authentication {
     }
     
     public static function createNewUser(){
+        echo "Creating new user account for ". $_GET['username'] .
+            "<br>You will need to contact your system admin to activate this account";
         if(isset($_GET['username']) && isset($_GET['password'])){
             $user = new User();
             $user->userID = $_GET['username'];
