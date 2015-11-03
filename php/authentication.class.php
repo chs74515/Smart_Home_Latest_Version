@@ -51,7 +51,16 @@ class Authentication {
                     //display welcome
                     echo "<script>welcomeMsg();</script>";
                 } else {
-                    echo("<h4 style='color:red;'>Invalid password</h4>");
+                    //password may not have been hashed yet
+                    if($user->verify_password(User::encodePassword($password))){
+                        $user->passwordHash = User::encodePassword($password);
+                        $user->save();
+                        Authentication::setAuthentication(TRUE);
+                        echo "<script>welcomeMsg();</script>";
+                    }else{
+                        //if here, password is wrong
+                        echo("<h4 style='color:red;'>Invalid password</h4>");
+                    }
                 }
                 //continue processing
             }else{
