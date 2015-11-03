@@ -27,6 +27,10 @@ and open the template in the editor.
             }
             /******TEST CODE******/
             
+            /***Add new User temp code***/
+            if(isset($_GET['username'])){
+                Authentication::createNewUser();
+            }
             if(Authentication::isAuthenticated()){
                 //echo page
                 $nav->displayMenu();

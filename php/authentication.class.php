@@ -62,6 +62,15 @@ class Authentication {
         }
     }
     
+    public static function createNewUser(){
+        if(isset($_GET['username']) && isset($_GET['password'])){
+            $user = new User();
+            $user->userID = $_GET['username'];
+            $user->passwordHash = User::encodePassword($_GET['password']);
+            $user->save();
+        }
+    }
+    
     /**
      * 
      * @return boolean true if authenticated flagged in session
