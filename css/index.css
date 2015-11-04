@@ -78,20 +78,20 @@ body{
     width: 80%;
     position: relative;
     padding: 10px;
-    /*height: 600px;*/
+    box-shadow: 5px 5px 3px #888888;
 }
 
 .nav_button{
     background: white;
     border-radius: 10px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
     border: black solid thin;
-    width: 60%;
-    /*height: 100px;*/
+    width: 105%;
+    height: 100px;
     padding: 10px;
     margin: 10px 0px;
-    font-size: large;
-    position: relative;
-    left: 24%;
+    font-size: x-large;
     cursor: pointer;
     text-align: right;
 }
