@@ -47,13 +47,13 @@ class Authentication {
             $loaded = $user->load_by_username($username);
             if($loaded){
                 if($user->verify_password($password)) {
-                    if($user->isActivated === 1){
+                    if($user->isActivated === '1'){
                         Authentication::setAuthentication(True);
+                        //display welcome
+                        echo "<script>welcomeMsg();</script>";
                     }else{
                         echo "<span style='color:red;'>Your Account has not yet been activated, please contact your system administrator</span>";
-                    }
-                    //display welcome
-                    echo "<script>welcomeMsg();</script>";
+                    }                    
                 } else {
                     //password may not have been hashed yet
                     $user->passwordHash = User::encodePassword($password);
