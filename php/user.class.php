@@ -84,7 +84,7 @@ class User extends Database{
         if($this->userId){
             $this->update();
         }else{
-            //$this->insert(); only insert from registration
+            $this->insert(); //only insert from registration
         }
     }
     

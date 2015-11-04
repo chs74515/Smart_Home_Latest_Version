@@ -47,13 +47,17 @@ class Authentication {
             $loaded = $user->load_by_username($username);
             if($loaded){
                 if($user->verify_password($password)) {
-                    Authentication::setAuthentication(True);
+                    if($user->isActivated === 1){
+                        Authentication::setAuthentication(True);
+                    }else{
+                        echo "<span style='color:red;'>Your Account has not yet been activated, please contact your system administrator</span>";
+                    }
                     //display welcome
                     echo "<script>welcomeMsg();</script>";
                 } else {
                     //password may not have been hashed yet
-                    if($user->verify_password(User::encodePassword($password))){
-                        $user->passwordHash = User::encodePassword($password);
+                    $user->passwordHash = User::encodePassword($password);
+                    if($user->verify_password($password)){                        
                         $user->save();
                         Authentication::setAuthentication(TRUE);
                         echo "<script>welcomeMsg();</script>";
@@ -76,8 +80,8 @@ class Authentication {
             "<br>You will need to contact your system admin to activate this account";
         if(isset($_GET['username']) && isset($_GET['password'])){
             $user = new User();
-            $user->userID = $_GET['username'];
-            $user->passwordHash = User::encodePassword($_GET['password']);
+            $user->username = $_GET['username'];
+            $user->passwordHash = ($_GET['password']);
             $user->save();
         }
     }
