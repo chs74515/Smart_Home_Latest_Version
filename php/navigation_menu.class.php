@@ -51,7 +51,7 @@ class Navigation_Menu {
             if($option === 'lights'){
                 echo Lightbulb::getLightBulbForm();
             }elseif($option === 'locks'){
-                
+                echo Lock::getLockForm();
             }elseif($option === 'thermostat'){
                 
             }else{

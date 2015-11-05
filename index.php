@@ -14,29 +14,31 @@ and open the template in the editor.
             include_once("shell.php");
             session_start();    //start $_SESSION
             Authentication::processLogin();     //process login form if submitted
-            $nav = new Navigation_Menu();
-            $nav->processControlMenu(); //process nav if submitted
-            
-            /******TEST CODE*******/
-            if(!empty($_GET['page'])) {
-                    echo Lights::getForm();
-            }
-
-            if(!empty($_POST['lights'])) {
-                    echo Lights::processPost();
-            }
-            /******TEST CODE******/
-            
-            /***Add new User temp code***/
-            if(isset($_GET['username'])){
-                Authentication::createNewUser();
-            }
             if(Authentication::isAuthenticated()){
-                //echo page
-                $nav->displayMenu();
-                
+                $nav = new Navigation_Menu();
+                $nav->processControlMenu(); //process nav if submitted
+
+                /******TEST CODE*******/
+                if(!empty($_GET['page'])) {
+                        echo Lights::getForm();
+                }
+
+                if(!empty($_POST['lights'])) {
+                        echo Lights::processPost();
+                }
+                /******TEST CODE******/
+
+                /***Add new User temp code***/
+                if(isset($_GET['username'])){
+                    Authentication::createNewUser();
+                }
+
+                    //echo page
+                    $nav->displayMenu();
+
             }else{
                 echo Authentication::getForm();
+                die();
             }
         ?>
     </body>

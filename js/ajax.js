@@ -16,12 +16,6 @@ function welcomeMsg(){
 }
 
 function toggleLight(element){
-    //load lightbulb
-    //turn on/turn off
-    //execute python
-    //console.log(status);
-    //console.log(element.getAttribute('id'));
-    //console.log(description);
     var status = element.dataset.status;
     var lightID = element.dataset.id;
     console.log(status);
@@ -74,4 +68,27 @@ function commenceParty(){
             console.log("Error" + data);
         }
     });
+}
+
+function toggleLock(element){
+    var lockId = element.dataset.id;
+    var ajax_handler = element.dataset.handler;
+    $.ajax({
+        type: "POST",
+        url: "ajax/" + ajax_handler,
+        data: {
+            AJAX : (true),
+            ID : (lockId)
+        },
+        success: function(data){
+            console.log("Success! " + data);
+            //update button div
+            $('#locked_'+lockId).toggle();
+            $('#unlocked_'+lockId).toggle();
+        },
+        error: function(data){
+            console.log("Error: " + data);
+        }
+    });
+    
 }

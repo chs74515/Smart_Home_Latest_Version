@@ -18,11 +18,13 @@ class Lightbulb extends Appliance{
     }
     
     public function turnOff(){
-        
+        $this->status = 0;
+        $this->save();
     }
     
     public function turnOn(){
-        
+        $this->status = 1;
+        $this->save();
     }
     
     /**

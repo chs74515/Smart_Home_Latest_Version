@@ -23,6 +23,7 @@ function getIncludes(){
     include_once("php/authentication.class.php");
     include_once("php/appliance.class.php");
     include_once("php/lightbulb.class.php");
+    include_once("php/lock.class.php");
     include_once("php/user.class.php");
     include_once("php/lights.class.php");  //test class
     include_once("php/navigation_menu.class.php");
