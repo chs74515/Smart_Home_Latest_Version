@@ -61,6 +61,11 @@ class Navigation_Menu {
             //thermostat etc.
             
             $this->display = FALSE;
+        }else{
+            $command = escapeshellcmd("python /var/www/python/killall.py");
+            shell_exec($command);
+            $command = escapeshellcmd("python /var/www/python/clear.py");
+            shell_exec($command);
         }
         
 

@@ -27,6 +27,18 @@ class Lightbulb extends Appliance{
         $this->save();
     }
     
+    public function isOn(){
+        return ($this->status === '1');
+    }
+    
+    public function activateLight(){
+        if($this->isOn()){
+            //causes slowdown
+            $command = escapeshellcmd("python /var/www/python/LightsHandler.py $this->applianceId on");
+        shell_exec($command);
+        }        
+    }
+    
     /**
      * gets lightbulb form
      * @return string HTML div
@@ -38,8 +50,9 @@ class Lightbulb extends Appliance{
         foreach($lightArray as $lightID){
             $light = new Lightbulb();
             $light->load_by_id($lightID['applianceId']);
-            $button = $light->getButtonDiv();    
+            $button = $light->getButtonDiv();
             $form .= "<div>$button</div>";
+            $light->activateLight();
         }
         $party = "<button onclick='commenceParty(); '>Party Button</button>";
         $form .= "$party</div>";
