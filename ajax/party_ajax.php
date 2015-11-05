@@ -5,7 +5,9 @@ if(isset($_POST['party'])){
         $command = escapeshellcmd("python /var/www/python/sprinkles.py");
         $output = shell_exec($command);
     }else{
-        $command = escapeshellcmd("sudo kill -9 `pidof python`");
-        $output = shell_exec($command);
+        $command = escapeshellcmd("python /var/www/python/killall.py");
+        shell_exec($command);
+        $command = escapeshellcmd("python /var/www/python/clear.py");
+        shell_exec($command);
     }
 }
