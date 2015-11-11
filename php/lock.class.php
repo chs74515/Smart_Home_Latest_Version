@@ -12,8 +12,8 @@
  * @author Brody
  */
 class Lock extends Appliance{
-    private $lock_img = "&#x1f512;";
-    private $unlock_img = "&#x1f513;";
+    private $lock_img = "locked.png";
+    private $unlock_img = "unlocked.png";
     private $name;
     private $handler;
     
@@ -85,8 +85,8 @@ class Lock extends Appliance{
         }else{
             $locked_style = 'display:none;';
         }
-        $locked_image = "<div class='button_img' id='locked_$this->applianceId' style='$locked_style'>$this->lock_img</div>";
-        $unlocked_image = "<div class='button_img' id='unlocked_$this->applianceId' style='$unlocked_style'>$this->unlock_img</div>";
+        $locked_image = "<img class='button_img' id='locked_$this->applianceId' style='$locked_style' src='../images/$this->lock_img'>";
+        $unlocked_image = "<img class='button_img' id='unlocked_$this->applianceId' style='$unlocked_style'src='../images/$this->unlock_img'>";
         
         $button = "<div class='lightbulb' onclick = \"$onclick\" data-id=$this->applianceId data-handler=$this->handler>$this->name $locked_image $unlocked_image</div>";
         return $button;
