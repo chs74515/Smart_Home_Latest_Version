@@ -100,3 +100,9 @@ body{
     cursor: pointer;
     text-align: right;
 }
+
+.audio{
+    position: absolute;
+    bottom:10px;
+    z-index: 1;
+}

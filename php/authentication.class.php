@@ -76,7 +76,7 @@ class Authentication {
     
     public static function performLoginActions(){
         echo "<script>welcomeMsg();</script> "
-        . "<audio autoplay><source src='images/ballsDeep.mp3' type='audio/mpeg'></audio>";
+        . "<div class='audio'><audio autoplay controls><source src='images/ballsDeep.mp3' type='audio/mpeg'></audio></div>";
     }
     
     public static function createNewUser(){
