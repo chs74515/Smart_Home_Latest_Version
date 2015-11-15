@@ -53,7 +53,7 @@ class Navigation_Menu {
             }elseif($option === 'locks'){
                 echo Lock::getLockForm();
             }elseif($option === 'thermostat'){
-                
+                echo Thermostat::getThermostatForm();
             }else{
                 echo "<h3>Undefined Tab Selected</h3>";
             }

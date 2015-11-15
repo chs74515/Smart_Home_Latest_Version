@@ -27,6 +27,7 @@ function getIncludes(){
     include_once("php/user.class.php");
     include_once("php/lights.class.php");  //test class
     include_once("php/navigation_menu.class.php");
+    include_once("php/thermostat.class.php");
 }
 
 //echo JS files
@@ -38,6 +39,7 @@ function echoJavaScript(){
 //echo css files
 function echoCSS(){
     echo "<link rel='stylesheet' href='css/index.css' type='text/css'>";
+    echo "<link rel='stylesheet' href='css/thermostat.css' type='text/css'>";
 }
 
 //$db = new Database();

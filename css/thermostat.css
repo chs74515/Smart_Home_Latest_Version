@@ -1,0 +1,20 @@
+.bulb{
+    padding: 20px;
+    border: thin solid black;
+    display: inline-block;
+}
+
+.mercury{
+    padding: 5px;
+    background: red;
+}
+
+.bar{
+    padding: 10px;
+    border: thin solid black;
+    display: inline-block;
+}
+
+.thermometer_container{
+    
+}
