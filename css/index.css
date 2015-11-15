@@ -76,6 +76,7 @@ body{
     position: absolute;
     left:10px;
     border: solid medium black;
+    cursor: pointer;
 }
 
 .nav_menu{

@@ -57,6 +57,7 @@ function displayServerInfo(){
 function displayHeader(){
     $img = "<img src='images/home.png'>";
     $class = 'header';
-    $div = "<div class=$class>$img<h3>DeepIn SmartHome<sup>&copy</sup></h3></div>";
+    $onclick = "window.location.href=\"/\";";
+    $div = "<div class=$class onclick='$onclick'>$img<h3>DeepIn SmartHome<sup>&copy</sup></h3></div>";
     echo $div;
 }
