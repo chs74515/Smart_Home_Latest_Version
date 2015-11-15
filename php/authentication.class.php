@@ -55,7 +55,7 @@ class Authentication {
                     }                    
                 } else {
                     //password may not have been hashed yet
-                    $user->passwordHash = User::encodePassword($password);
+                    $user->passwordHash = User::encodePassword($user->passwordHash);
                     if($user->verify_password($password)){                        
                         $user->save();
                         Authentication::setAuthentication(TRUE);

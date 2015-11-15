@@ -70,7 +70,7 @@ class User extends Database{
         }
         
     }
-        
+    
     public static function encodePassword($password){
         //hash password
         $password = password_hash($password, PASSWORD_DEFAULT);
