@@ -12,12 +12,15 @@
  * @author Brody
  */
 class Thermostat {
+    public $temperature;
+    
     public static function getThermostatForm(){
-        
-        return "<h2>Climate Controls</h2>" . self::getThermometer();
+        $thermostat = new Thermostat();
+        $thermostat->updateTemperature();
+        return "<h2>Climate Controls</h2>" . self::getThermometer(trim($thermostat->temperature) . "%")
+            . "<br>Current Temperature: " . round($thermostat->temperature) . "&deg;";
     }
-    public static function getThermometer(){
-        $width = '300px';
+    public static function getThermometer($width){
         $bulb = "<div class='bulb'></div>";
         $bar = "<div class='bar' style='width:$width;'></div>";
         $container = "<div class='thermometer_container'>$bulb $bar<br>"
@@ -26,5 +29,10 @@ class Thermostat {
             . "<span class='therm_label'>60&deg;</span>"
             . "<span class='therm_label'>90&deg;</span></div>";
         return $container;
+    }
+    
+    public function updateTemperature(){
+        $command = escapeshellcmd("sudo python /var/www/python/get_temperature.py");
+        $this->temperature =  shell_exec($command);      
     }
 }

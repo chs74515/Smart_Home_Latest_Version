@@ -11,13 +11,15 @@
     display: inline-block;
     border-radius: 30px;
     background: red;
+    float: left;
 }
 
 .bar{
     position: relative;
     right: 15px;
-    bottom: 8px;
+    top: 10px;
     padding: 5px;
+    float: left;
     display: inline-block;
     border-radius: 20px;
     background: red;
