@@ -7,6 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name=viewport content='width=600'>
         <title>Smart Home</title>
     </head>
     <body>
