@@ -4,6 +4,7 @@
     border: thin solid black;
     box-shadow: 5px 5px 3px #888888;
     border-radius: 10px;
+    margin: 10px;
 }
 
 .bulb{
@@ -28,4 +29,14 @@
 .therm_label{
     font-size: large;
     padding: 0px 25px;
+}
+
+*#temp_slide{
+    width:250px;
+    position: relative;
+    left:15px;
+}
+
+*#display_value{
+    
 }

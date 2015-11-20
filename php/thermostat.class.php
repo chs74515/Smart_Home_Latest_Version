@@ -17,17 +17,19 @@ class Thermostat {
     public static function getThermostatForm(){
         $thermostat = new Thermostat();
         $thermostat->updateTemperature();
-        return "<h2>Climate Controls</h2>" . self::getThermometer(trim($thermostat->temperature) . "%")
-            . "<br>Current Temperature: " . round($thermostat->temperature) . "&deg;";
+        return "<h2>Climate Controls</h2>" . "Current Temperature: " . round($thermostat->temperature)
+            . "&deg;<br>" . self::getThermometer(trim($thermostat->temperature));
     }
     public static function getThermometer($width){
         $bulb = "<div class='bulb'></div>";
-        $bar = "<div class='bar' style='width:$width;'></div>";
+        $bar = "<div class='bar' style='width:$width%;'></div>";
         $container = "<div class='thermometer_container'>$bulb $bar<br>"
             . "<span class='therm_label'>10&deg;</span>"
             . "<span class='therm_label'>30&deg;</span>"
             . "<span class='therm_label'>60&deg;</span>"
-            . "<span class='therm_label'>90&deg;</span></div>";
+            . "<span class='therm_label'>90&deg;</span></div>"
+            . "<br><input type='range' name='temp_slide' id='temp_slide' value='$width' min='0' max='100' onchange='updateThermometer();'>"
+            . "<br><div id='display_value'></div>";
         return $container;
     }
     
