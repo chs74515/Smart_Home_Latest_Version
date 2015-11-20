@@ -49,7 +49,7 @@ class Authentication {
                 if($user->verify_password($password)) {
                     if($user->isActivated === '1'){
                         Authentication::setAuthentication(True);
-                        self::performLoginActions();
+                        self::performLoginActions($user->username);
                     }else{
                         echo "<span style='color:red;'>Your Account has not yet been activated, please contact your system administrator</span>";
                     }                    
@@ -59,7 +59,7 @@ class Authentication {
                     if($user->verify_password($password)){                        
                         $user->save();
                         Authentication::setAuthentication(TRUE);
-                        self::performLoginActions();
+                        self::performLoginActions($user->username);
                     }else{
                         //if here, password is wrong
                         echo("<h4 style='color:red;'>Invalid password</h4>");
@@ -74,9 +74,9 @@ class Authentication {
         }
     }
     
-    public static function performLoginActions(){
-        echo "<script>welcomeMsg();</script> "
-        . "<div class='audio'><audio autoplay controls><source src='images/ballsDeep.mp3' type='audio/mpeg'></audio></div>";
+    public static function performLoginActions($username){
+        echo "<script>welcomeMsg('$username')</script>"
+            . "<div class='audio'><audio autoplay controls><source src='images/ballsDeep.mp3' type='audio/mpeg'></audio></div>";
     }
     
     public static function createNewUser(){

@@ -1,10 +1,11 @@
 
-function welcomeMsg(){
+function welcomeMsg(username){
     $.ajax({
         type: "POST",
         url: "ajax/welcome_ajax.php",
         data: { 
-                AJAX : (true)
+                AJAX : (true),
+                name : (username)
                 } ,
         success: function () {
             console.log("Success! Welcome Executed");
