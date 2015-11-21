@@ -4,4 +4,4 @@ sense = SenseHandler()
 
 temp = sense.get_temperature()
 
-sense.sendMessage(temp)
+sense.send_message(temp)

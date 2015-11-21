@@ -20,6 +20,12 @@ class SenseHandler(object):
 
 	def send_message(self, message, speed = .1):
 		sense.show_message(message, speed)
+        
+        def set_pixels(self, ids):
+            sense.set_pixels(ids)
+        
+        def get_pixels(self):
+            return sense.get_pixels()
 
 	def get_temperature(self):
 		print sense.get_temperature()	
