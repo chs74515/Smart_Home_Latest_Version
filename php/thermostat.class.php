@@ -13,12 +13,15 @@
  */
 class Thermostat {
     public $temperature;
+    public $humidity;
     
     public static function getThermostatForm(){
         $thermostat = new Thermostat();
         $thermostat->updateTemperature();
+        $thermostat->updateHumidity();
         return "<h2>Climate Controls</h2>" . "Current Temperature: " . round($thermostat->temperature)
-            . "&deg;<br>" . self::getThermometer(trim($thermostat->temperature));
+            . "&deg;C<br>" . self::getThermometer(trim($thermostat->temperature)) 
+            . "<br>Current Humidity: $thermostat->humidity%";
     }
     public static function getThermometer($width){
         $bulb = "<div class='bulb'></div>";
@@ -36,5 +39,10 @@ class Thermostat {
     public function updateTemperature(){
         $command = escapeshellcmd("sudo python /var/www/python/get_temperature.py");
         $this->temperature =  shell_exec($command);      
+    }
+    
+    public function updateHumidity(){
+        $command = escapeshellcmd("sudo python /var/www/python/humidity.py");
+        $this->humidity = round(shell_exec($command));
     }
 }
