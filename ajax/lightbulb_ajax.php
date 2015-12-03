@@ -3,8 +3,7 @@ require_once '../shell.php';
 if(isset($_POST['status'])){
     
     $id = $_POST['ID'];
-    $light = new Lightbulb();
-    $light->load_by_id($id);
+    $light = new Lightbulb($id);
     $lightid = 1;
     $lightstatus = $_POST['status'];
     if($light->status === '0'){
@@ -16,7 +15,7 @@ if(isset($_POST['status'])){
     }
     echo "<br>lightstatus: $lightstatus";
     $light->save();
-    $command = escapeshellcmd("python /var/www/python/LightsHandler.py $id $lightstatus");
+    $command = escapeshellcmd("python /var/www/python/LightsHandler.py $light->lightID $lightstatus");
     echo $command;
     $output = shell_exec($command);
     echo "Output: $output <br>" ;

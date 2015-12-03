@@ -13,7 +13,7 @@
  */
 class Navigation_Menu {
     private $display = TRUE;
-    private static $tab_list = ['lights' => 'Lights', 'locks' => 'Locks', 'thermostat' => 'Thermostat'];
+    private static $tab_list = ['lights' => 'Lights', 'locks' => 'Locks', 'thermostat' => 'Thermostat', 'lightGroups' => 'Light Groups'];
     
     public function __set($name, $value) {
         $this->$name = $value;
@@ -54,6 +54,8 @@ class Navigation_Menu {
                 echo Lock::getLockForm();
             }elseif($option === 'thermostat'){
                 echo Thermostat::getThermostatForm();
+            }else if($option == 'lightGroups'){
+                echo LightGroup::getLightGroupForm();
             }else{
                 echo "<h3>Undefined Tab Selected</h3>";
             }

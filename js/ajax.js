@@ -45,6 +45,28 @@ function toggleLight(element){
     });
 }
 
+function toggleLightGroup(element){
+    var id = element.dataset.group_id;
+    console.log(status);
+    $.ajax({
+        type: "POST",
+        url: "ajax/lightgroup.ajax.php",
+        data: { 
+                AJAX : (true),
+                id : (id)
+                } ,
+        success: function (data) {
+            console.log("Success! " + data);
+            //update button div
+            $('#lightbulb_on_'+id).toggle();
+            $('#lightbulb_off_'+id).toggle();
+        },
+        error: function(data){
+            console.log("Error" + data);
+        }
+    });
+}
+
 var party = 0;
 
 function commenceParty(){

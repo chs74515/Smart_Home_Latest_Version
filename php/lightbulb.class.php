@@ -12,6 +12,24 @@
  * @author Brody
  */
 class Lightbulb extends Appliance{
+    protected $name;
+    protected $lightID;
+    
+    public function __construct($id = null) {
+        parent::__construct($id);
+        if(isset($this->description)){
+            $details = explode(",", $this->description);
+            $this->name = $details[0];
+            $this->lightID = $details[1];
+        }
+    }
+    
+    public function load_by_id($id) {
+        parent::load_by_id($id);
+        $details = explode(",", $this->description);
+        $this->name = $details[0];
+        $this->lightID = $details[1];
+    }
     
     public function toggle(){
         
@@ -81,7 +99,7 @@ class Lightbulb extends Appliance{
         $on_image = "<img src='$source' height = '100' width='100' id='lightbulb_on_$this->applianceId' style='$on_style'>";
         $off_image = "<img src='$off_source' height = '100' width='100' id='lightbulb_off_$this->applianceId' style='$off_style'>";
         
-        $button = "<div class='lightbulb' onclick = \"$onclick\" data-id=$this->applianceId data-status='$status'>$this->description $on_image $off_image</div>";
+        $button = "<div class='lightbulb' onclick = \"$onclick\" data-id=$this->applianceId data-status='$status'>$this->name $on_image $off_image</div>";
         return $button;
     }
 }

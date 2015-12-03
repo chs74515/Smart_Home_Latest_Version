@@ -28,6 +28,7 @@ function getIncludes(){
     include_once("php/lights.class.php");  //test class
     include_once("php/navigation_menu.class.php");
     include_once("php/thermostat.class.php");
+    include_once("php/lightGroup.class.php");
 }
 
 //echo JS files
