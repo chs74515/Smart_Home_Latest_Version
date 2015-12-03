@@ -67,7 +67,6 @@ class LightGroup extends Database{
             . " appliance_ids = '$this->appliance_ids', "
             . "status = $this->status "
             . "WHERE id = $this->id;";
-        echo $sql;
         mysqli_query($this->connect, $sql);
         
     }
@@ -87,6 +86,7 @@ class LightGroup extends Database{
      * @return string HTML div
      */
     public static function getLightGroupForm(){
+        self::processAddLight();
         //get all lightbulbs from db and create button for each
         $lightArray = self::getAllGroupIds();
         $form = "<div><h2>Light Groups</h2>";
@@ -96,7 +96,7 @@ class LightGroup extends Database{
             $form .= "<div>$button</div>";
             //$light->activateLight();
         }
-        $form .= "</div>";
+        $form .= "</div>" . self::getAddLightDiv();
         return $form;
     }
     
@@ -126,12 +126,16 @@ class LightGroup extends Database{
         return $button;
     }
     
-    public function activateLight(){
+    public function activateLights(){
         if($this->isOn()){
             //causes slowdown
             $command = escapeshellcmd("python /var/www/python/LightsHandler.py $this->appliance_ids on");
         shell_exec($command);
         }        
+    }
+    
+    public function addIdToApplianceIds($id){
+        $this->appliance_ids .= " " . $id;
     }
     
     /**
@@ -160,5 +164,43 @@ class LightGroup extends Database{
         }
         return $string;
     }
+    
+    public static function getAddLightDiv(){
+        $div = "<div id='add_light' onclick='$(\"#add_form\").toggle();'>+</div>";
+        $form = "<form id='add_form' action='?main_tab=lightGroups' method='post'>"
+            . "<b>Add to Group</b><hr>LightId: "
+            . "<select name='lightID'>";
+        for($i=0; $i<64; $i++){
+            $form .= "<option value=$i>$i</option>";
+        }
+        $form .= "</select>"
+            . "<br>Group Name: "
+            . "<select name='groupID'>";
+        
+        $groups = self::getAllGroupIds();
+        foreach($groups as $groupID){
+            $group = new LightGroup($groupID);
+            $form .= "<option value='$group->id'>$group->name</option>";
+        }
+        $form .= "</select>"
+            . "<br><input type='submit' name='addLight' value='submit'></input>"
+            . "</form>";
+        return $div . $form;
+    }
+    
+    //method to process add light
+    public static function processAddLight(){
+        if(isset($_POST['addLight'])){
+            
+            //get group from passed id
+            $groupID = $_POST['groupID'];
+            $lightID = $_POST['lightID'];
+            $group = new LightGroup($groupID);
+            $group->addIdToApplianceIds($lightID);
+            $group->save();
+            echo Navigation_Menu::getPopup("Your Light has been added!");
+        }
+    }
+    
     
 }

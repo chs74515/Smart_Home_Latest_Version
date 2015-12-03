@@ -73,6 +73,9 @@ class Navigation_Menu {
 
     }
     
-    
+    public static function getPopup($string){
+        $div = "<div class='popup' onclick='$(\".popup\").toggle();'>$string</div>";
+        return $div;
+    }
     
 }

@@ -107,3 +107,40 @@ body{
     bottom:10px;
     z-index: 1;
 }
+
+*#add_light{
+    cursor: pointer;
+    background: skyblue;
+    border: medium solid navy;
+    border-radius: 10px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding:10px 20px;
+    margin-top: 20px;
+    
+}
+
+*#add_form{
+    background: lightpink;
+    border: medium solid crimson;
+    border-radius: 10px;
+    padding:10px 20px;
+    margin: 10px;
+    display: none;
+}
+
+*#add_form hr{
+    border-color: crimson;
+}
+
+.popup{
+    background: lightgreen;
+    border: medium solid darkgreen;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    position: absolute;
+    box-shadow: 5px 5px 3px #888888;
+    cursor: pointer;
+}
