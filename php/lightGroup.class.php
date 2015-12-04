@@ -53,6 +53,20 @@ class LightGroup extends Database{
         }
     }
     
+    public function turnOff(){
+        $this->status = 0;
+        $this->save();
+    }
+    
+    public function turnOn(){
+        $this->status = 1;
+        $this->save();
+    }
+    
+    public function isOn(){
+        return ($this->status === '1');
+    }
+    
     public function save(){
         if($this->id){
             $this->update();
@@ -123,13 +137,14 @@ class LightGroup extends Database{
         $off_image = "<img src='$off_source' height = '100' width='100' id='lightbulb_off_$this->id' style='$off_style'>";
         
         $button = "<div class='lightbulb' onclick = \"$onclick\" data-group_id='$this->id'>$this->name $on_image $off_image</div>";
+        $this->activateLights();
         return $button;
     }
     
     public function activateLights(){
         if($this->isOn()){
             //causes slowdown
-            $command = escapeshellcmd("python /var/www/python/LightsHandler.py $this->appliance_ids on");
+            $command = escapeshellcmd("python /var/www/python/lightGroup.py on $this->appliance_ids ");
         shell_exec($command);
         }        
     }
