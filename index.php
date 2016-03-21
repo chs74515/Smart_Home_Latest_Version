@@ -36,6 +36,7 @@ and open the template in the editor.
 
                     //echo page
                     $nav->displayMenu();
+                    echo "beep boop";
 
             }else{
                 echo Authentication::getForm();
