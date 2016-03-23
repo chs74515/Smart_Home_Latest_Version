@@ -10,7 +10,7 @@ class Lights {
 		$html .= "<input type=\"radio\" name=\"status\" value=\"on\">On</input><br />";
 		$html .= "<input type=\"radio\" name=\"status\" value=\"off\">Off</input><br />";
 		$html .= "<input type=\"submit\" formmethod=\"POST\"></input>";
-		$html .= "</form><br>BEEP BOOP TEST<br>";
+		$html .= "</form>";
 		return $html;
 		
 	}
