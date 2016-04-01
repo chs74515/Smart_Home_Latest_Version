@@ -115,9 +115,4 @@ class User extends Database{
         }
     }
     
-    //should we just return hash, or has salt pair?
-    private function seperateHashSalt($passHash){
-        preg_replace('/^' . preg_quote(self::$salt, '/') . '/', '', $passHash);
-        return $passHash;
-    }
 }
