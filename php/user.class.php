@@ -63,7 +63,7 @@ class User extends Database{
     }
     
     public function verify_password($password) {
-        if(password_verify($password, $this->passwordHash)) {
+        if($this->passwordHash === self::encodePassword($password)) {  //weak to timing attacks
             return true;
         } else {
             return false;
@@ -72,9 +72,10 @@ class User extends Database{
     }
     
     public static function encodePassword($password){
+        $encrypted = crypt($password, '$2y$12$' . sha1($password) . '$');
         //hash password
-        $password = password_hash($password, PASSWORD_DEFAULT);
-        return $password;
+        //$password = password_hash($password, PASSWORD_DEFAULT); not compatible with 5.4
+        return $encrypted; //return just crypted password
     }
     
     /**
@@ -114,4 +115,9 @@ class User extends Database{
         }
     }
     
+    //should we just return hash, or has salt pair?
+    private function seperateHashSalt($passHash){
+        preg_replace('/^' . preg_quote(self::$salt, '/') . '/', '', $passHash);
+        return $passHash;
+    }
 }
