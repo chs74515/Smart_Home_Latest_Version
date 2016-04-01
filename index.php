@@ -34,12 +34,8 @@ and open the template in the editor.
                     Authentication::createNewUser();
                 }
 
-                //echo page
-                $nav->displayMenu();
-
-                //var_dump(DeCONZ_API::findGateway());
-                var_dump(DeCONZ_API::aquireAPIKey());
-                //var_dump(Touchlink::scanForDevices());
+                    //echo page
+                    $nav->displayMenu();
 
             }else{
                 echo Authentication::getForm();
