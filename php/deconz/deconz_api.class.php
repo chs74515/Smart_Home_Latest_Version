@@ -9,8 +9,8 @@ class DeCONZ_API {
     
     //<editor-fold desc="Public Static Methods" defaultstate="collapsed">
     public static function getAPIIncludes(){
-        include_once("php/deconz/touchlink.class.php");
-        include_once("php/deconz/deconz_lights.class.php");
+        include_once("php/deconz/touchlink_request.class.php");
+        include_once("php/deconz/lights_request.class.php");
     }
     //</editor-fold>
     

@@ -42,7 +42,7 @@ and open the template in the editor.
                 //var_dump(Touchlink::scanForDevices());
                 
                 //var_dump(Touchlink::getScanResults());
-                var_dump((new Lights_Request())->getAllLights());
+                //var_dump((new Lights_Request())->getAllLights());
                 var_dump((new Lights_Request)->turnOffLight(1));
             }else{
                 echo Authentication::getForm();

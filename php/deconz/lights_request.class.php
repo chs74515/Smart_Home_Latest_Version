@@ -45,4 +45,8 @@ class Lights_Request extends DeCONZ_API{
     public function turnOffLight($lightId){
         return $this->curlRequest("PUT", "/$lightId/state", ['on' => false]);
     }
+    
+    public function turnOnLight($lightId){
+        return $this->curlRequest("PUT", "/$lightId/state", ['on' => true]);
+    }
 }
