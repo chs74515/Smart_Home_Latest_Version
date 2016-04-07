@@ -1,27 +1,58 @@
 <?php
+DeCONZ_API::getAPIIncludes();
 
 class DeCONZ_API {
-    protected static $address = "192.168.1.131:8080";
-    protected static $key = "";
+    protected $address = "192.168.1.131:8080";
+    protected $key = "/B22BF6B6E7";
+    protected $reAuthorize = FALSE;
+    protected $endpoint = "";
     
-    public static function findGateway(){
+    //<editor-fold desc="Public Static Methods" defaultstate="collapsed">
+    public static function getAPIIncludes(){
+        include_once("php/deconz/touchlink.class.php");
+        include_once("php/deconz/deconz_lights.class.php");
+    }
+    //</editor-fold>
+    
+    //<editor-fold desc="Public General API Methods" defaultstate="collapsed">
+    public function shouldAuthorize($choice = false){
+        $this->reAuthorize = $choice;
+    }
+    
+    public function findGateway(){
         $curl = curl_init("https://dresden-light.appspot.com/discover");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         return curl_exec($curl);
     }
     
-    public static function aquireAPIKey(){
-        $credentials = base64_encode("delight:chisom");
-        $request_body = json_encode(['devicetype' => 'smart_home_client']);
-        $ch = curl_init(self::$address . "/api");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('authentication: basic '.$credentials, 'content-type: application/xml'));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $request_body);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        var_dump(curl_getinfo($ch));
-        return curl_exec($ch);
+    public function aquireAPIKey(){
+        $credentials = "ZGVsaWdodDpjaGlzb20="; //base64_encode("delight:chisom");
+        $result = $this->curlRequest("POST", "",
+            ['devicetype' => 'smart_home_client'],
+            ["Authorization: Basic $credentials"]);
+        var_dump($result);
+        if(isset($result['username'])){
+            $this->key = $result['username'];
+        }
+        echo $this->key;
     }
-        
+    //</editor-fold>
+    
+    //<editor-fold desc="Curl Methods" defaultstate="collapsed">
+    public function curlRequest($method, $url_addons = "", $request_body = [], $additionalHeaders = []){
+        $url = $this->address . "/api". $this->key. $this->endpoint . $url_addons;
+        $ch = curl_init($url);
+        if(!empty($request_body)){
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($request_body));
+        }
+        if(!empty($additionalHeaders)){
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $additionalHeaders);
+        }
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        return json_decode(curl_exec($ch));
+    }
+    //</editor-fold>  
 }

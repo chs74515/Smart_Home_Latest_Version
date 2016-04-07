@@ -38,9 +38,12 @@ and open the template in the editor.
                 $nav->displayMenu();
 
                 //var_dump(DeCONZ_API::findGateway());
-                var_dump(DeCONZ_API::aquireAPIKey());
+                //var_dump(DeCONZ_API::aquireAPIKey());
                 //var_dump(Touchlink::scanForDevices());
-
+                
+                //var_dump(Touchlink::getScanResults());
+                var_dump((new Lights_Request())->getAllLights());
+                var_dump((new Lights_Request)->turnOffLight(1));
             }else{
                 echo Authentication::getForm();
                 die();
