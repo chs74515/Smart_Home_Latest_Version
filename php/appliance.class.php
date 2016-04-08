@@ -88,7 +88,7 @@ class Appliance extends Database{
         }
     } 
     
-    private function update(){
+    protected function update(){
         $sql = "UPDATE `appliances` "
             . "SET houseID = $this->houseId,"
             . " status = $this->status, "
@@ -99,7 +99,7 @@ class Appliance extends Database{
         
     }
     
-    private function insert(){
+    protected function insert(){
         $sql = "INSERT into `appliances` (`houseID`, `status`, `type`) "
             . "VALUES ($this->houseId, $this->status, $this->type); ";
         $result = mysqli_query($this->connect, $sql);

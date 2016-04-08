@@ -13,7 +13,7 @@
  */
 class LightGroup extends Database{
     
-    private $id;
+    protected $id;
     private $name;
     private $appliance_ids;  //light ids on sense hat
     private $lightIds = array();
@@ -75,7 +75,7 @@ class LightGroup extends Database{
         }
     } 
     
-    private function update(){
+    protected function update(){
         $sql = "UPDATE `light_group` "
             . "SET name = '$this->name',"
             . " appliance_ids = '$this->appliance_ids', "
@@ -85,7 +85,7 @@ class LightGroup extends Database{
         
     }
     
-    private function insert(){
+    protected function insert(){
         $sql = "INSERT into `light_group` (`name`, `appliance_ids`, `status`) "
             . "VALUES ($this->name, $this->appliance_ids, $this->status); ";
         $result = mysqli_query($this->connect, $sql);
