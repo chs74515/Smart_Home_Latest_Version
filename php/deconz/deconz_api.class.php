@@ -11,6 +11,7 @@ class DeCONZ_API {
     public static function getAPIIncludes(){
         include_once("php/deconz/touchlink_request.class.php");
         include_once("php/deconz/lights_request.class.php");
+        include_once("php/deconz/schedules_request.class.php");
     }
     //</editor-fold>
     
