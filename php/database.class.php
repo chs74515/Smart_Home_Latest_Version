@@ -149,17 +149,15 @@ class Database {
     }
     
     public function getAllRecords(){
-        $rows = [];
+        $rows = array();
         $select = "SELECT * from $this->tableName ";
         $result = mysqli_query($this->connect, $select);
         if($result){
             while($row = mysqli_fetch_assoc($result)) {
                 array_push($rows, $row);
             }
-            return $rows;
-        }else{
-            return false;
         }
+        return $rows;
     }
     
     public function fetchFieldTypes(){

@@ -49,7 +49,7 @@ class Navigation_Menu {
         if(isset($_REQUEST['main_tab'])){
             $option = $_REQUEST['main_tab'];
             if($option === 'lights'){
-                echo Lights::getLightBulbForm();//need to be lightgroup form
+                echo LightGroup::getLightBulbForm();//need to be lightgroup form
             }else if($option == 'lightGroups'){
                 echo LightGroup::getLightGroupForm();
             }else{
