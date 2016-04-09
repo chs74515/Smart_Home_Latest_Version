@@ -18,14 +18,14 @@
 class Database {
     //$connect variable to make connection to database
     protected $connect;
-    protected $tableName; //to be overwritten
+    protected $tableName = "smarthome"; //to be overwritten
     protected $id;  //assuming everything should have an id
     protected $fields = array();
     /**
      * construct to initialize connect
      */
     public function __construct() {
-        $this->connect = mysqli_connect('localhost', 'root', 'greenman', $this->tableName);
+        $this->connect = mysqli_connect('localhost', 'root', 'balls', $this->tableName);
         $this->getSQLError();        
     }
     
