@@ -18,14 +18,15 @@
 class Database {
     //$connect variable to make connection to database
     protected $connect;
-    protected $tableName = "smarthome"; //to be overwritten
+    protected $db_name = "smarthome";
+    protected $tableName; //to be overwritten
     protected $id;  //assuming everything should have an id
     protected $fields = array();
     /**
      * construct to initialize connect
      */
     public function __construct() {
-        $this->connect = mysqli_connect('localhost', 'root', 'balls', $this->tableName);
+        $this->connect = mysqli_connect('localhost', 'root', 'balls', $this->db_name);
         $this->getSQLError();        
     }
     
@@ -44,13 +45,28 @@ class Database {
      */
     protected static function getConnect(){
         /*Enter Your connection credentials on line 43 mysqli_connect($host, $user, $password, $database, $port, $socket)*/
-        $connect = mysqli_connect('localhost', 'root', 'greenman', 'gift_matcher');
+        $database = new self();
+        $connect = mysqli_connect('localhost', 'root', 'balls', $database->db_name);
         return $connect;
     }
     
     public function load_by_id($id){
         $select = "SELECT * from $this->tableName ";
         $where = "WHERE id = $id limit 1;";
+        $result = mysqli_query($this->connect, $select . $where);
+        if($result){
+            $row = mysqli_fetch_assoc($result);
+            foreach($row as $key => $value){
+                $this->$key = $value;
+                //populate properties witth value
+//                echo "<br> [$key] => " . $this->$key;
+            }
+        }
+    }
+    
+    public function load_by_field($field, $value, $operator = '='){
+        $select = "SELECT * from $this->tableName ";
+        $where = "WHERE $field $operator $value limit 1;";
         $result = mysqli_query($this->connect, $select . $where);
         if($result){
             $row = mysqli_fetch_assoc($result);
@@ -93,6 +109,20 @@ class Database {
         if($result){
             $this->id = mysqli_insert_id($this->connect);
             $this->fields['id'] = $this->id;
+        }
+    }
+    
+    public function getAllRecords(){
+        $rows = [];
+        $select = "SELECT * from $this->tableName ";
+        $result = mysqli_query($this->connect, $select);
+        if($result){
+            while($row = mysqli_fetch_assoc($result)) {
+                array_push($rows, $row);
+            }
+            return $rows;
+        }else{
+            return false;
         }
     }
 }

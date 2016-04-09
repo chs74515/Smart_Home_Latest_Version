@@ -13,7 +13,7 @@
  */
 class Navigation_Menu {
     private $display = TRUE;
-    private static $tab_list = ['lights' => 'Lights', 'locks' => 'Locks', 'thermostat' => 'Thermostat', 'lightGroups' => 'Light Groups'];
+    private static $tab_list = ['lights' => 'Lights',];
     
     public function __set($name, $value) {
         $this->$name = $value;
@@ -49,11 +49,7 @@ class Navigation_Menu {
         if(isset($_REQUEST['main_tab'])){
             $option = $_REQUEST['main_tab'];
             if($option === 'lights'){
-                echo Lightbulb::getLightBulbForm();
-            }elseif($option === 'locks'){
-                echo Lock::getLockForm();
-            }elseif($option === 'thermostat'){
-                echo Thermostat::getThermostatForm();
+                echo Lights::getLightBulbForm();//need to be lightgroup form
             }else if($option == 'lightGroups'){
                 echo LightGroup::getLightGroupForm();
             }else{
