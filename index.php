@@ -19,15 +19,6 @@ and open the template in the editor.
                 $nav = new Navigation_Menu();
                 $nav->processControlMenu(); //process nav if submitted
 
-                /******TEST CODE*******/
-                if(!empty($_GET['page'])) {
-                        echo Lights::getForm();
-                }
-
-                if(!empty($_POST['lights'])) {
-                        echo Lights::processPost();
-                }
-                /******TEST CODE******/
 
                 /***Add new User temp code***/
                 if(isset($_GET['username'])){
@@ -36,14 +27,6 @@ and open the template in the editor.
 
                 //echo page
                 $nav->displayMenu();
-
-                //var_dump(DeCONZ_API::findGateway());
-                //var_dump(DeCONZ_API::aquireAPIKey());
-                //var_dump(Touchlink::scanForDevices());
-                
-                //var_dump(Touchlink::getScanResults());
-                //var_dump((new Lights_Request())->getAllLights());
-                var_dump((new Lights_Request)->turnOffLight(1));
             }else{
                 echo Authentication::getForm();
                 die();

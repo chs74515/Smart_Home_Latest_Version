@@ -30,6 +30,14 @@ class Database {
         $this->getSQLError();        
     }
     
+    public function __set($name, $value) {
+        $this->$name = $value;
+    }
+
+    public function __get($name) {
+        return $this->$name;
+    }
+    
     /**
      * gets the most recent myslq error and echos it
      */
@@ -83,28 +91,56 @@ class Database {
      */
     public function save(){
         if($this->id){
-            $this->update();
+            if($this->idExistsInTable()){
+                $this->update();
+            }else{
+                $this->insert();
+            }
         }else{
             $this->insert(); //only insert from registration
         }
     }
-        
+      
+    protected function idExistsInTable(){
+        $select = "SELECT * from $this->tableName ";
+        $result = mysqli_query($this->connect, $select);
+        if($result){
+            return ($result->num_rows > 0);
+        } //what if error?
+    }
+    
     /**
      * update current record
      */
     protected function update(){
         $sql = "UPDATE `$this->tableName` SET ";
-        foreach($this->fields as $field){
-            $sql .= " $field = $this->$field ";
+        $fieldTypes = $this->fetchFieldTypes();
+        $values = [];
+        foreach ($this->fields as $field) {
+            if($fieldTypes[$field] >= 252 && $fieldTypes[$field] <= 254){
+                $value = "'".$this->$field."'";
+            }else{
+                $value = $this->$field;
+            }
+            array_push($values, " $field = $value ");
         }
+        $sql .= " " . implode(", ", $values) . ";";
         $result = mysqli_query($this->connect, $sql);
     }
     
     protected function insert(){
         $sql = "INSERT into $this->tableName SET ";
+        $fieldTypes = $this->fetchFieldTypes();
+        $values = [];
         foreach ($this->fields as $field) {
-            $sql .= " $field = $this->$field ";
+            if($fieldTypes[$field] >= 252 && $fieldTypes[$field] <= 254){
+                $value = "'".$this->$field."'";
+            }else{
+                $value = $this->$field;
+            }
+            array_push($values, " $field = $value ");
         }
+        $sql .= " " . implode(", ", $values) . ";";
         $result = mysqli_query($this->connect, $sql);
         if($result){
             $this->id = mysqli_insert_id($this->connect);
@@ -125,4 +161,17 @@ class Database {
             return false;
         }
     }
+    
+    public function fetchFieldTypes(){
+        $select = "SELECT * from $this->tableName LIMIT 1;";
+        $result = mysqli_query($this->connect, $select);
+        $fieldInfo = mysqli_fetch_fields($result);
+        $fieldTypes = [];
+        foreach($fieldInfo as $field){
+            $fieldTypes["$field->name"] = $field->type;
+        }
+        //return array fieldname => type
+        return $fieldTypes;
+    }
+    
 }
