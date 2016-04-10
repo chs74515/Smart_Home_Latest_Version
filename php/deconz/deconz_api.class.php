@@ -1,5 +1,4 @@
 <?php
-DeCONZ_API::getAPIIncludes();
 
 class DeCONZ_API {
     protected $address = "192.168.1.131:8080";
@@ -7,13 +6,6 @@ class DeCONZ_API {
     protected $reAuthorize = FALSE;
     protected $endpoint = "";
     
-    //<editor-fold desc="Public Static Methods" defaultstate="collapsed">
-    public static function getAPIIncludes(){
-        include_once("php/deconz/touchlink_request.class.php");
-        include_once("php/deconz/lights_request.class.php");
-        include_once("php/deconz/groups_request.class.php");
-    }
-    //</editor-fold>
     
     //<editor-fold desc="Public General API Methods" defaultstate="collapsed">
     public function shouldAuthorize($choice = false){
@@ -53,6 +45,7 @@ class DeCONZ_API {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        echo json_encode($request_body);
         return json_decode(curl_exec($ch));
     }
     //</editor-fold>  

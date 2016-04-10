@@ -24,13 +24,41 @@ class LightGroup extends Database{
     protected $xy;
     protected $effect;
     protected $fields = ['id','name','on','bri','hue','sat','ct','xy','effect'];
-            
+       
+    public static function verifyGroups(){
+        $response = (new Groups_Request())->getGroups();
+        foreach($response as $id => $det){
+            self::verifySingleGroup($id);
+        }
+    }
+    
+    public static function verifySingleGroup($id){
+        $details = (new Groups_Request())->getGroupAttributes($id);
+        $group = new LightGroup();
+        $group->id = $details->id;
+        $group->name = $details->name;
+        foreach($details->action as $action => $value){
+            if(is_array($value)){
+                $group->$action = json_encode($value);
+            }else{
+                $group->$action = $value;
+            }
+            if($group->on){
+                $group->on = 1;
+            }else{
+                $group->on = 0;
+            }
+        }
+        $group->save();        
+    }
+    
     /**
      * gets lightbulb form
      * @return string HTML div
      */
     public static function getLightBulbForm(){
         Lights::verifyLights();
+        LightGroup::verifyGroups();
         //get all lightbulbs from db and create button for each
         $lightArray = (new self())->getAllRecords();
         $form = "<div><h2>Lights</h2>";
@@ -53,7 +81,7 @@ class LightGroup extends Database{
         //add image based on status
         $source = "../images/light_bulb_on.png";
         $off_source = "../images/light_bulb_off.png";
-        $onclick = "";
+        $onclick = "toggleLight(this); ";
         $on_style = 'display:block;';
         $off_style = 'display:block;';
         
@@ -96,6 +124,7 @@ class LightGroup extends Database{
     }
     
     //method to process add light
+    //need to convert this to use api
     public static function processAddLight(){
         if(isset($_POST['addLight'])){
             

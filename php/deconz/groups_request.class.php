@@ -55,17 +55,17 @@ class Groups_Request extends DeCONZ_API{
                 $request_body[$property] = $value;
             }
         }
-        return $this->curlRequest("PUT", "/$id", $request_body);
+        return $this->curlRequest("PUT", "/$id/action", $request_body);
     }
     
     public function turnOnGroup($id){
         $request_body = ['on' => true];
-        return $this->curlRequest("PUT", "/$id", $request_body);
+        return $this->curlRequest("PUT", "/$id/action", $request_body);
     }
     
     public function turnOffGroup($id){
         $request_body = ['on' => false];
-        return $this->curlRequest("PUT", "/$id", $request_body);
+        return $this->curlRequest("PUT", "/$id/action", $request_body);
     }
     
     public function deleteGroup($id){

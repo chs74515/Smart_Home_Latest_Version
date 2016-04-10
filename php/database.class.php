@@ -122,7 +122,7 @@ class Database {
             }else{
                 $value = $this->$field;
             }
-            array_push($values, " $field = $value ");
+            array_push($values, " `$field` = $value ");
         }
         $sql .= " " . implode(", ", $values) . ";";
         $result = mysqli_query($this->connect, $sql);
@@ -138,7 +138,7 @@ class Database {
             }else{
                 $value = $this->$field;
             }
-            array_push($values, " $field = $value ");
+            array_push($values, " `$field` = $value ");
         }
         $sql .= " " . implode(", ", $values) . ";";
         $result = mysqli_query($this->connect, $sql);
