@@ -24,7 +24,7 @@ and open the template in the editor.
                 if(isset($_GET['username'])){
                     Authentication::createNewUser();
                 }
-
+                //var_dump((new Groups_Request())->setGroupLights(1, ["1"]));
                 //echo page
                 $nav->displayMenu();
             }else{

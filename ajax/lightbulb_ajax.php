@@ -6,16 +6,16 @@ if(isset($_POST['status'])){
     $light = new LightGroup();
     $light->load_by_id($id);
     $lightstatus = $_POST['status'];
-    if($light->on === false){
+    if($light->on == 0){
         $light->on = 1;
-        var_dump(new Groups_Request())->turnOnGroup($light->id);
+        var_dump((new Groups_Request())->turnOnGroup($light->id));
 //        $lightstatus = 'on';
     }else{
         $light->on = 0;
         var_dump((new Groups_Request())->turnOffGroup($light->id));
 //        $lightstatus = 'off';
     }
-    
+    $light->save();//save or verify lights?
     echo "<br>lightstatus: $lightstatus";
         
 }
