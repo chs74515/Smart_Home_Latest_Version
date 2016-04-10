@@ -45,7 +45,6 @@ class DeCONZ_API {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-        echo json_encode($request_body);
         return json_decode(curl_exec($ch));
     }
     //</editor-fold>  
