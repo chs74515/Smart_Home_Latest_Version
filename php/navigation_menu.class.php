@@ -56,9 +56,17 @@ class Navigation_Menu {
         return $button;
     }
     
+    public static function getLogoImage(){
+        $img = "<img src='images/logo.png'>";
+        $class = 'logo';
+        $onclick = "window.location.href=\"/\";";
+        $div = "<div class=$class onclick='$onclick'>$img</div>";
+        return $div;
+    }
+    
     public function getMobileNav(){
         $class = 'mobile_nav_bar';
-        $nav = "<div class=$class>".$this->getCloseButton().$this->displayMenu().$this->getManageMenu()."</div>";
+        $nav = "<div class=$class>".$this->getCloseButton().$this->getLogoImage().$this->displayMenu().$this->getManageMenu()."</div>";
         return $nav;
     }
     
