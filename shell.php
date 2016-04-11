@@ -14,7 +14,7 @@ getIncludes();
 if(!isset($_POST['AJAX'])){
     echoJavaScript();
     echoCSS();
-    displayHeader();
+    //displayHeader();
 }
 
 //php includes
@@ -39,13 +39,15 @@ function getIncludes(){
 function echoJavaScript(){
     echo "<script src='js/jquery-2.1.4.min.js'></script>";
     echo "<script src='js/ajax.js'></script>";
-    echo "<script src='js/thermostat.js'></script>";
+    echo "<script src='js/mobile.js'></script>";
 }
 
 //echo css files
 function echoCSS(){
     echo "<link rel='stylesheet' href='css/index.css' type='text/css'>";
     echo "<link rel='stylesheet' href='css/thermostat.css' type='text/css'>";
+    echo "<link rel='stylesheet' href='css/homePage.css' type='text/css'>";
+    echo "<link rel='stylesheet' href='css/navBar.css' type='text/css'>";
 }
 
 //$db = new Database();

@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <meta name=viewport content='width=600'>
-        <title>Smart Home</title>
+        <title>Smartable Smart Home</title>
     </head>
     <body>
         <?php
@@ -26,7 +26,7 @@ and open the template in the editor.
                 }
                 //var_dump((new Groups_Request())->setGroupLights(1, ["1"]));
                 //echo page
-                $nav->displayMenu();
+                //$nav->displayMenu();
             }else{
                 echo Authentication::getForm();
                 die();

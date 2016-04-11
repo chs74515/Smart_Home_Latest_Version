@@ -1,0 +1,46 @@
+.homepage .nav_menu{
+    width: 20vw;
+    height: 100vh;
+    position: fixed;
+    left:0;
+    top:0;
+    background-color: orangered;
+}
+
+.nav_button{
+    cursor: pointer;
+    width: 100%;
+    padding: 20px 0px;
+    font-size: x-large;
+    background-color: inherit;
+    border: none; /*clear previous*/
+    border-bottom: solid thick white;
+    color: white;
+}
+
+.homepage .manage_menu{
+    width: 20vw;
+    height: 100vh;
+    position: fixed;
+    right:0;
+    top:0;
+    background-color: orangered;
+}
+
+.center{
+    position: fixed;
+    left:20vw;
+    top:0;  
+    width:60vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.center img{
+/*    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);*/
+    width:40vw;
+    height:40vw;
+}

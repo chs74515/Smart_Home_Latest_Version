@@ -12,7 +12,7 @@
  * @author Brody
  */
 class Navigation_Menu {
-    private $display = TRUE;
+    //private $display = TRUE;
     private static $tab_list = ['lights' => 'Lights',];
     
     public function __set($name, $value) {
@@ -26,18 +26,26 @@ class Navigation_Menu {
     }
     
     public function displayMenu(){
-        if($this->display){
-            $tabs = "";
-            foreach(self::$tab_list as $tab => $name){
-                $tabs .= self::getNavButton($tab, $name) . "<br>";
-            }
-            $method= "get";
-            $action="''";
-            $class="nav_menu";
-            $id = "nav";
-            $form="<form id=$id method=$method action=$action class=$class>$tabs</form>";
-            echo $form;
+        $tabs = "";
+        foreach(self::$tab_list as $tab => $name){
+            $tabs .= self::getNavButton($tab, $name) . "<br>";
         }
+        $method= "get";
+        $action="''";
+        $class="nav_menu";
+        $id = "nav";
+        $form="<form id=$id class=$class method=$method action=$action>$tabs</form>";
+        return $form;
+    }
+    
+    public function getManageMenu(){
+        $tabs = "";
+        $method= "get";
+        $action="''";
+        $class="manage_menu";
+        $id = "nav";
+        $form="<form id=$id class=$class method=$method action=$action>$tabs</form>";
+        return $form;
     }
     
     public static function getNavButton($tab_name, $title){
@@ -45,8 +53,20 @@ class Navigation_Menu {
         return $button;
     }
     
+    public function getMobileNav(){
+        $class = 'mobile_nav_bar';
+        $nav = "<div class=$class>".$this->getCloseButton().$this->displayMenu().$this->getManageMenu()."</div>";
+        return $nav;
+    }
+    
+    public function getCloseButton(){
+        return "<div class='close_mobile_nav'>CLOSE</div>";
+    }
+    
     public function processControlMenu(){
         if(isset($_REQUEST['main_tab'])){
+            echo $this->getMobileLink();
+            echo $this->getMobileNav();
             $option = $_REQUEST['main_tab'];
             if($option === 'lights'){
                 echo LightGroup::getLightBulbForm();//need to be lightgroup form
@@ -55,18 +75,25 @@ class Navigation_Menu {
             }else{
                 echo "<h3>Undefined Tab Selected</h3>";
             }
-            //continue with locks
-            //thermostat etc.
             
-            $this->display = FALSE;
         }else{
-            $command = escapeshellcmd("python /var/www/python/killall.py");
-            shell_exec($command);
-            $command = escapeshellcmd("python /var/www/python/clear.py");
-            shell_exec($command);
+            //display center iwth side tabs
+            echo "<div class='homepage'>";
+            echo $this->displayMenu();
+            echo self::getCenterImage();
+            echo $this->getManageMenu();
+            echo "</div>";
         }
         
 
+    }
+    
+    public static function getCenterImage(){
+        $img = "<img src='images/home.png'>";
+        $class = 'center';
+        $onclick = "window.location.href=\"/\";";
+        $div = "<div class=$class onclick='$onclick'>$img</div>";
+        return $div;
     }
     
     public static function getPopup($string){
@@ -74,4 +101,7 @@ class Navigation_Menu {
         return $div;
     }
     
+    public static function getMobileLink(){
+        return "<div class='mobileLink' id='mobileLink'><img class='menuIcon' src='../images/menu_icon.png'></div>";
+    }
 }

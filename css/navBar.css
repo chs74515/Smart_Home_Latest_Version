@@ -1,0 +1,39 @@
+.mobileLink{
+    position: absolute;
+    background: lightgray;
+    top: 0px;
+    left: 0px;
+    padding: 5px;
+    width:100%;
+    /*display: none;*/
+}
+
+.mobileLink img{
+    width: 32px;
+    height: 32px;
+    float:left;
+}
+
+.mobile_nav_bar .close_mobile_nav{
+    background: #CE272D;
+    color: white;
+    
+    padding: 10px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.mobile_nav_bar{
+    position: fixed;
+    width: 20vw;
+    background-color: #EBEBEB;
+    top:0;
+    height: 100vh;
+    z-index: 1;
+    box-shadow: 1px 0px 10px 5px;
+}
+
+.mobile_nav_bar .nav_button{
+    border-bottom: solid thin darkgrey;
+    color: darkslategray;
+}
