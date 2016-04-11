@@ -40,6 +40,9 @@ class Navigation_Menu {
     
     public function getManageMenu(){
         $tabs = "";
+        $tabs .= self::getNavButton("management", "Home Management");
+        $tabs .= self::getNavButton("view_all", "View All Devices");
+        $tabs .= self::getNavButton("add_user", "Add a User");
         $method= "get";
         $action="''";
         $class="manage_menu";
