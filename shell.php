@@ -48,6 +48,7 @@ function echoCSS(){
     echo "<link rel='stylesheet' href='css/thermostat.css' type='text/css'>";
     echo "<link rel='stylesheet' href='css/homePage.css' type='text/css'>";
     echo "<link rel='stylesheet' href='css/navBar.css' type='text/css'>";
+    echo "<link href='https://fonts.googleapis.com/css?family=Fredericka the Great' rel='stylesheet' type='text/css'>";
 }
 
 //$db = new Database();

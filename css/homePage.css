@@ -16,6 +16,7 @@
     border: none; /*clear previous*/
     border-bottom: solid thick white;
     color: white;
+    font-family: Fredericka the Great;
 }
 
 .homepage .manage_menu{
