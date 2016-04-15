@@ -5,8 +5,13 @@ and open the template in the editor.
 */
 /* 
     Created on : Sep 26, 2015, 12:04:46 PM
-    Author     : owner
+    Author     : Brody
 */
+
+/*Font*/
+.login_form, .nav_menu{
+    font-family: Fredericka the Great;
+}
 
 .login_form{
     display: block;

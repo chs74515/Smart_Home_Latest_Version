@@ -30,22 +30,12 @@ class Navigation_Menu {
         foreach(self::$tab_list as $tab => $name){
             $tabs .= self::getNavButton($tab, $name) . "<br>";
         }
-        $method= "get";
-        $action="''";
-        $class="nav_menu";
-        $id = "nav";
-        $form="<form id=$id class=$class method=$method action=$action>$tabs</form>";
-        return $form;
-    }
-    
-    public function getManageMenu(){
-        $tabs = "";
         $tabs .= self::getNavButton("management", "Home Management");
         $tabs .= self::getNavButton("view_all", "View All Devices");
         $tabs .= self::getNavButton("add_user", "Add a User");
         $method= "get";
         $action="''";
-        $class="manage_menu";
+        $class="nav_menu";
         $id = "nav";
         $form="<form id=$id class=$class method=$method action=$action>$tabs</form>";
         return $form;
@@ -66,7 +56,7 @@ class Navigation_Menu {
     
     public function getMobileNav(){
         $class = 'mobile_nav_bar';
-        $nav = "<div class=$class>".$this->getCloseButton().$this->getLogoImage().$this->displayMenu().$this->getManageMenu()."</div>";
+        $nav = "<div class=$class>".$this->getCloseButton().$this->getLogoImage().$this->displayMenu()."</div>";
         return $nav;
     }
     
@@ -79,6 +69,7 @@ class Navigation_Menu {
             echo $this->getMobileLink();
             echo $this->getMobileNav();
             $option = $_REQUEST['main_tab'];
+            echo "<div class='content'>";
             if($option === 'lights'){
                 echo LightGroup::getLightBulbForm();//need to be lightgroup form
             }else if($option == 'lightGroups'){
@@ -86,13 +77,12 @@ class Navigation_Menu {
             }else{
                 echo "<h3>Undefined Tab Selected</h3>";
             }
-            
+            echo "</div>";
         }else{
             //display center iwth side tabs
             echo "<div class='homepage'>";
-            echo $this->displayMenu();
             echo self::getCenterImage();
-            echo $this->getManageMenu();
+            echo $this->displayMenu();
             echo "</div>";
         }
         
@@ -103,7 +93,8 @@ class Navigation_Menu {
         $img = "<img src='images/home.png'>";
         $class = 'center';
         $onclick = "window.location.href=\"/\";";
-        $div = "<div class=$class onclick='$onclick'>$img</div>";
+        //$div = "<div class=$class onclick='$onclick'>$img</div>";
+        $div = "<div class=$class>$img</div>";
         return $div;
     }
     
@@ -113,6 +104,6 @@ class Navigation_Menu {
     }
     
     public static function getMobileLink(){
-        return "<div class='mobileLink' id='mobileLink'><img class='menuIcon' src='../images/menu_icon.png'></div>";
+        return "<div class='mobileLink' id='mobileLink'><img class='menuIcon' src='../images/white_menu_icon.png'></div>";
     }
 }

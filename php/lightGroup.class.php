@@ -68,9 +68,8 @@ class LightGroup extends Database{
             $button = $light->getButtonDiv();
             $form .= "<div>$button</div>";
         }
-        $party = "<button onclick='commenceParty(); '>Party Button</button>";
-        $form .= "$party</div>";
-        return $form . self::getAddLightDiv();
+        $form .= "</div>";
+        return $form;
     }
     
     /**
@@ -100,7 +99,7 @@ class LightGroup extends Database{
     }
     
     
-    public static function getAddLightDiv(){
+/*    public static function getAddLightDiv(){
         $div = "<div id='add_light' onclick='$(\"#add_form\").toggle();'>+</div>";
         $form = "<form id='add_form' action='?main_tab=lightGroups' method='post'>"
             . "<b>Add to Group</b><hr>LightId: "
@@ -136,7 +135,7 @@ class LightGroup extends Database{
             $group->save();
             echo Navigation_Menu::getPopup("Your Light has been added!");
         }
-    }
+    }*/
     
     
 }

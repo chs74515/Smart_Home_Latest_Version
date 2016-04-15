@@ -1,5 +1,5 @@
 .homepage .nav_menu{
-    width: 20vw;
+    width: 50vw;
     height: 100vh;
     position: fixed;
     left:0;
@@ -19,22 +19,16 @@
     font-family: Fredericka the Great;
 }
 
-.homepage .manage_menu{
-    width: 20vw;
-    height: 100vh;
-    position: fixed;
-    right:0;
-    top:0;
-    background-color: orangered;
-}
-
 .center{
     position: fixed;
-    left:20vw;
+    right:0px;
     top:0;  
-    width:60vw;
+    width:50vw;
     height: 100vh;
     text-align: center;
+    display: flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .center img{

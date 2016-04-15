@@ -40,10 +40,10 @@ class Authentication {
     
     //process login form
     public static function processLogin(){
-        if(isset($_REQUEST['submit'])){     //check for submission
+        if(isset($_POST['submit'])){     //check for submission
             $user = new User();
-            $username=$_REQUEST['username'];
-            $password=$_REQUEST['password'];
+            $username=  filter_input(INPUT_POST, 'username');
+            $password= filter_input(INPUT_POST, 'password');
             $loaded = $user->load_by_username($username);
             if($loaded){
                 if($user->verify_password($password)) {
@@ -75,8 +75,7 @@ class Authentication {
     }
     
     public static function performLoginActions($username){
-        echo "<script>welcomeMsg('$username')</script>"
-            . "<div class='audio'><audio autoplay controls><source src='images/ballsDeep.mp3' type='audio/mpeg'></audio></div>";
+        //echo "<div class='audio'><audio autoplay controls><source src='images/ballsDeep.mp3' type='audio/mpeg'></audio></div>";
     }
     
     public static function createNewUser(){
