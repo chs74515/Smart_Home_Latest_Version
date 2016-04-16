@@ -20,15 +20,16 @@
 }
 
 .center{
+    font-family: Fredericka the Great;
     position: fixed;
     right:0px;
     top:0;  
     width:50vw;
     height: 100vh;
     text-align: center;
-    display: flex;
+/*    display: flex;
     justify-content:center;
-    align-items:center;
+    align-items:center;*/
 }
 
 .center img{

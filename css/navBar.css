@@ -31,8 +31,8 @@
 
 .mobile_nav_bar{
     position: fixed;
-    left: -300px;
-    width: 20vw;
+    left: -60vw;
+    width: 50vw;
     background-color: #EBEBEB;
     top:0;
     height: 100vh;

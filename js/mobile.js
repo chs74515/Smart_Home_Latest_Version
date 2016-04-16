@@ -10,7 +10,7 @@ $(window).load(function(){
 });
 
 function navSwingIn(){
-    $('.mobile_nav_bar').css("left","-300px");
+    $('.mobile_nav_bar').css("left","-60vw");
     $('.mobile_nav_bar').css("display","block");
     $('.mobile_nav_bar').animate({left : "0px"}, "10000", "swing");
     //$('.content').animate({marginLeft : "205px"},"10000","linear");

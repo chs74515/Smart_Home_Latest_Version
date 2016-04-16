@@ -94,7 +94,7 @@ class Navigation_Menu {
         $class = 'center';
         $onclick = "window.location.href=\"/\";";
         //$div = "<div class=$class onclick='$onclick'>$img</div>";
-        $div = "<div class=$class>$img</div>";
+        $div = "<div class=$class>$img<div><h3>Smartable<br>Smart Home</h3></div></div>";
         return $div;
     }
     
