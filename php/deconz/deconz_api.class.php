@@ -1,20 +1,11 @@
 <?php
-DeCONZ_API::getAPIIncludes();
 
 class DeCONZ_API {
     protected $address = "192.168.1.131:8080";
     protected $key = "/B22BF6B6E7";
     protected $reAuthorize = FALSE;
     protected $endpoint = "";
-    
-    //<editor-fold desc="Public Static Methods" defaultstate="collapsed">
-    public static function getAPIIncludes(){
-        include_once("php/deconz/touchlink_request.class.php");
-        include_once("php/deconz/lights_request.class.php");
-        include_once("php/deconz/schedules_request.class.php");
-    }
-    //</editor-fold>
-    
+        
     //<editor-fold desc="Public General API Methods" defaultstate="collapsed">
     public function shouldAuthorize($choice = false){
         $this->reAuthorize = $choice;

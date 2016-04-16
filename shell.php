@@ -14,35 +14,38 @@ getIncludes();
 if(!isset($_POST['AJAX'])){
     echoJavaScript();
     echoCSS();
-    displayHeader();
+    //displayHeader();
 }
 
 //php includes
 function getIncludes(){
     include_once("php/database.class.php");
     include_once("php/authentication.class.php");
-    include_once("php/appliance.class.php");
-    include_once("php/lightbulb.class.php");
-    include_once("php/lock.class.php");
     include_once("php/user.class.php");
     include_once("php/lights.class.php");  //test class
     include_once("php/navigation_menu.class.php");
-    include_once("php/thermostat.class.php");
     include_once("php/lightGroup.class.php");
     include_once("php/deconz/deconz_api.class.php");
+    include_once("php/deconz/touchlink_request.class.php");
+    include_once("php/deconz/lights_request.class.php");
+    include_once("php/deconz/groups_request.class.php");
+    include_once("php/deconz/schedules_request.class.php");
 }
 
 //echo JS files
 function echoJavaScript(){
     echo "<script src='js/jquery-2.1.4.min.js'></script>";
     echo "<script src='js/ajax.js'></script>";
-    echo "<script src='js/thermostat.js'></script>";
+    echo "<script src='js/mobile.js'></script>";
 }
 
 //echo css files
 function echoCSS(){
+    echo "<link href='https://fonts.googleapis.com/css?family=Fredericka the Great' rel='stylesheet' type='text/css'>";
     echo "<link rel='stylesheet' href='css/index.css' type='text/css'>";
     echo "<link rel='stylesheet' href='css/thermostat.css' type='text/css'>";
+    echo "<link rel='stylesheet' href='css/homePage.css' type='text/css'>";
+    echo "<link rel='stylesheet' href='css/navBar.css' type='text/css'>";    
 }
 
 //$db = new Database();

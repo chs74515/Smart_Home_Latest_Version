@@ -5,8 +5,13 @@ and open the template in the editor.
 */
 /* 
     Created on : Sep 26, 2015, 12:04:46 PM
-    Author     : owner
+    Author     : Brody
 */
+
+/*Font*/
+.login_form, .nav_menu{
+    font-family: Fredericka the Great;
+}
 
 .login_form{
     display: block;
@@ -77,29 +82,6 @@ body{
     left:10px;
     border: solid medium black;
     cursor: pointer;
-}
-
-.nav_menu{
-    margin: 10px 0px;
-    background: deepskyblue;
-    border-radius: 10px;
-    width: 95%;
-    position: relative;
-    padding: 10px;
-    box-shadow: 5px 5px 3px #888888;
-}
-
-.nav_button{
-    background: white;
-    border-radius: 20px;
-    border: darkblue groove thick;
-    width: 105%;
-    height: 100px;
-    padding: 10px;
-    margin: 10px 0px;
-    font-size: x-large;
-    cursor: pointer;
-    text-align: right;
 }
 
 .audio{

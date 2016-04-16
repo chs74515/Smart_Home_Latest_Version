@@ -13,104 +13,62 @@
  */
 class LightGroup extends Database{
     
-    private $id;
-    private $name;
-    private $appliance_ids;  //light ids on sense hat
-    private $lightIds = array();
-    private $status;
-    
-    public function __construct($id) {
-        parent::__construct();
-        $this->id = $id;
-        $this->load_by_id($id);
-        $this->lightIds = explode(" ", $this->appliance_ids);
+    protected $tableName = "light_group";
+    protected $id;
+    protected $name;
+    protected $on;
+    protected $bri;
+    protected $hue;
+    protected $sat;
+    protected $ct;
+    protected $xy;
+    protected $effect;
+    protected $fields = ['id','name','on','bri','hue','sat','ct','xy','effect'];
+       
+    public static function verifyGroups(){
+        $response = (new Groups_Request())->getGroups();
+        foreach($response as $id => $det){
+            self::verifySingleGroup($id);
+        }
     }
     
-    
-    public function __get($name){
-        return $this->$name;
-    }
-    
-    public function __set($name, $value) {
-        $this->$name = $value;
-        echo "$name => $value";
-    }
-    
-    public function load_by_id($id){
-        $select = "SELECT * from light_group ";
-        $where = "WHERE id = $id limit 1;";
-        $result = mysqli_query($this->connect, $select . $where);
-        if($result->num_rows > 0){
-            $row = mysqli_fetch_assoc($result);
-            foreach($row as $key => $value){
-                //populate properties witth value
-                $this->$key = $value;
-//                echo "<br> [$key] => " . $this->$key;                
+    public static function verifySingleGroup($id){
+        $details = (new Groups_Request())->getGroupAttributes($id);
+        $group = new LightGroup();
+        $group->id = $details->id;
+        $group->name = $details->name;
+        foreach($details->action as $action => $value){
+            if(is_array($value)){
+                $group->$action = json_encode($value);
+            }else{
+                $group->$action = $value;
             }
-        }else{
-            echo "<h3>Group does not exist</h3>";
-//            die();
+            if($group->on){
+                $group->on = 1;
+            }else{
+                $group->on = 0;
+            }
         }
-    }
-    
-    public function turnOff(){
-        $this->status = 0;
-        $this->save();
-    }
-    
-    public function turnOn(){
-        $this->status = 1;
-        $this->save();
-    }
-    
-    public function isOn(){
-        return ($this->status === '1');
-    }
-    
-    public function save(){
-        if($this->id){
-            $this->update();
-        }else{
-            $this->insert();
-        }
-    } 
-    
-    private function update(){
-        $sql = "UPDATE `light_group` "
-            . "SET name = '$this->name',"
-            . " appliance_ids = '$this->appliance_ids', "
-            . "status = $this->status "
-            . "WHERE id = $this->id;";
-        mysqli_query($this->connect, $sql);
-        
-    }
-    
-    private function insert(){
-        $sql = "INSERT into `light_group` (`name`, `appliance_ids`, `status`) "
-            . "VALUES ($this->name, $this->appliance_ids, $this->status); ";
-        $result = mysqli_query($this->connect, $sql);
-        $row = mysqli_fetch_array($result);
-        foreach($row as $key=>$value){
-            echo "<br>$key => [$value]";
-        }
+        $group->save();        
     }
     
     /**
      * gets lightbulb form
      * @return string HTML div
      */
-    public static function getLightGroupForm(){
-        self::processAddLight();
+    public static function getLightBulbForm(){
+        Lights::verifyLights();
+        LightGroup::verifyGroups();
         //get all lightbulbs from db and create button for each
-        $lightArray = self::getAllGroupIds();
-        $form = "<div><h2>Light Groups</h2>";
-        foreach($lightArray as $groupId){
-            $light = new LightGroup($groupId);
+        $lightArray = (new self())->getAllRecords();
+        $form = "<div><h2>Lights</h2>";
+        foreach($lightArray as $lightRecord){
+            $light = new self();
+            $light->load_by_id($lightRecord['id']);
             $button = $light->getButtonDiv();
             $form .= "<div>$button</div>";
-            //$light->activateLight();
         }
-        $form .= "</div>" . self::getAddLightDiv();
+        $form .= "</div>";
         return $form;
     }
     
@@ -118,15 +76,15 @@ class LightGroup extends Database{
      * 
      * @return string HTML Div of button and label
      */
-    private function getButtonDiv(){  
+    private function getButtonDiv(){    
         //add image based on status
         $source = "../images/light_bulb_on.png";
         $off_source = "../images/light_bulb_off.png";
-        $onclick = "toggleLightGroup(this); ";
+        $onclick = "toggleLight(this); ";
         $on_style = 'display:block;';
         $off_style = 'display:block;';
         
-        if($this->status === '1'){
+        if($this->on === '1'){
             $off_style = 'display:none;';
             $status = "off";
         }else{
@@ -136,51 +94,12 @@ class LightGroup extends Database{
         $on_image = "<img src='$source' height = '100' width='100' id='lightbulb_on_$this->id' style='$on_style'>";
         $off_image = "<img src='$off_source' height = '100' width='100' id='lightbulb_off_$this->id' style='$off_style'>";
         
-        $button = "<div class='lightbulb' onclick = \"$onclick\" data-group_id='$this->id'>$this->name $on_image $off_image</div>";
-        $this->activateLights();
+        $button = "<div class='lightbulb' onclick = \"$onclick\" data-id=$this->id data-status='$status'>$this->name $on_image $off_image</div>";
         return $button;
     }
     
-    public function activateLights(){
-        if($this->isOn()){
-            //causes slowdown
-            $command = escapeshellcmd("python /var/www/python/lightGroup.py on $this->appliance_ids ");
-        shell_exec($command);
-        }        
-    }
     
-    public function addIdToApplianceIds($id){
-        $this->appliance_ids .= " " . $id;
-    }
-    
-    /**
-     * 
-     * @return array of names in db
-     */
-    public static function getAllGroupIds(){
-        $sql = "SELECT id FROM light_group;";
-        $connection = self::getConnect();
-        $result = mysqli_query($connection, $sql);
-        $rows = array();
-        if($result){
-            while($row = mysqli_fetch_assoc($result)) {
-                array_push($rows, $row['id']);
-            }
-            return $rows;
-        }else{
-            return false;
-        }
-    }
-        
-    public function getStringFromIds(){
-        $string = "";
-        foreach($this->lightIds as $id){
-            $string .= " " . $id;
-        }
-        return $string;
-    }
-    
-    public static function getAddLightDiv(){
+/*    public static function getAddLightDiv(){
         $div = "<div id='add_light' onclick='$(\"#add_form\").toggle();'>+</div>";
         $form = "<form id='add_form' action='?main_tab=lightGroups' method='post'>"
             . "<b>Add to Group</b><hr>LightId: "
@@ -192,7 +111,7 @@ class LightGroup extends Database{
             . "<br>Group Name: "
             . "<select name='groupID'>";
         
-        $groups = self::getAllGroupIds();
+        $groups = (new self())->getAllRecords();
         foreach($groups as $groupID){
             $group = new LightGroup($groupID);
             $form .= "<option value='$group->id'>$group->name</option>";
@@ -204,6 +123,7 @@ class LightGroup extends Database{
     }
     
     //method to process add light
+    //need to convert this to use api
     public static function processAddLight(){
         if(isset($_POST['addLight'])){
             
@@ -215,7 +135,7 @@ class LightGroup extends Database{
             $group->save();
             echo Navigation_Menu::getPopup("Your Light has been added!");
         }
-    }
+    }*/
     
     
 }

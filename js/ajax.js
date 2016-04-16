@@ -1,21 +1,3 @@
-
-function welcomeMsg(username){
-    $.ajax({
-        type: "POST",
-        url: "ajax/welcome_ajax.php",
-        data: { 
-                AJAX : (true),
-                name : (username)
-                } ,
-        success: function () {
-            console.log("Success! Welcome Executed");
-        },
-        error: function(data){
-            console.log("Error" + data);
-        }
-    });
-}
-
 function toggleLight(element){
     var status = element.dataset.status;
     var lightID = element.dataset.id;
@@ -45,54 +27,7 @@ function toggleLight(element){
     });
 }
 
-function toggleLightGroup(element){
-    var id = element.dataset.group_id;
-    console.log(status);
-    $.ajax({
-        type: "POST",
-        url: "ajax/lightgroup.ajax.php",
-        data: { 
-                AJAX : (true),
-                id : (id)
-                } ,
-        success: function (data) {
-            console.log("Success! " + data);
-            //update button div
-            $('#lightbulb_on_'+id).toggle();
-            $('#lightbulb_off_'+id).toggle();
-        },
-        error: function(data){
-            console.log("Error" + data);
-        }
-    });
-}
-
-var party = 0;
-
-function commenceParty(){
-    if(this.party === 0){
-        this.party = 1;
-    }else{
-        this.party = 0;
-    }
-    $.ajax({
-        
-        type: "POST",
-        url: "ajax/party_ajax.php",
-        data: { 
-                AJAX : (true),
-                party : (this.party)
-                } ,
-        success: function (data) {
-            console.log("Success! " + data);
-            
-        },
-        error: function(data){
-            console.log("Error" + data);
-        }
-    });
-}
-
+//left this method for now, may prove to be a good generic device method
 function toggleLock(element){
     var lockId = element.dataset.id;
     var ajax_handler = element.dataset.handler;

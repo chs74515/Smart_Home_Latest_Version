@@ -92,7 +92,7 @@ class User extends Database{
     /**
      * update current record
      */
-    private function update(){
+    protected function update(){
         $sql = "UPDATE `user` SET "
             . "username = '$this->username', "
             . "passwordHash = '$this->passwordHash', "
@@ -104,7 +104,7 @@ class User extends Database{
     /**
      * insert record into DB
      */
-    private function insert(){
+    protected function insert(){
         $user = mysqli_real_escape_string($this->connect, $this->username);
         $pass = self::encodePassword($this->passwordHash);
         $sql = "INSERT into user (username, passwordHash) "
