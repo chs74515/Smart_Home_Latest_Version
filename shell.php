@@ -24,6 +24,7 @@ function getIncludes(){
     include_once("php/user.class.php");
     include_once("php/lights.class.php");  //test class
     include_once("php/navigation_menu.class.php");
+    include_once("php/management.class.php");
     include_once("php/lightGroup.class.php");
     include_once("php/deconz/deconz_api.class.php");
     include_once("php/deconz/touchlink_request.class.php");

@@ -74,6 +74,8 @@ class Navigation_Menu {
                 echo LightGroup::getLightBulbForm();//need to be lightgroup form
             }else if($option == 'lightGroups'){
                 echo LightGroup::getLightGroupForm();
+            }else if($option == 'management'){
+                echo Management::getManageMenu();
             }else{
                 echo "<h3>Undefined Tab Selected</h3>";
             }
@@ -90,7 +92,7 @@ class Navigation_Menu {
     }
     
     public static function getCenterImage(){
-        $img = "<img src='images/home.png'>";
+        $img = "<img src='images/home2.png'>";
         $class = 'center';
         $onclick = "window.location.href=\"/\";";
         //$div = "<div class=$class onclick='$onclick'>$img</div>";

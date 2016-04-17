@@ -4,7 +4,7 @@ function toggleLight(element){
     console.log(status);
     $.ajax({
         type: "POST",
-        url: "ajax/lightbulb_ajax.php",
+        url: "ajax/lightbulb.ajax.php",
         data: { 
                 AJAX : (true),
                 status : (status),
@@ -49,4 +49,26 @@ function toggleLock(element){
         }
     });
     
+}
+
+function menuButtonHandler(classname,method){
+    ajax_handler = "menuHandler.ajax.php";
+    $('.content').html('<h3>Loading...</h3>');
+    $.ajax({
+        type: "POST",
+        url: "ajax/" + ajax_handler,
+        data: {
+            AJAX : (true),
+            className : (classname),
+            methodName : (method),
+        },
+        success: function(data){
+            console.log("Success! " + data);
+            $('.content').html(data);
+        },
+        error: function(data){
+            console.log("Error: " + data);
+            $('.content').html("Could not access menu");
+        }
+    });
 }
