@@ -31,7 +31,8 @@
 
 .mobile_nav_bar{
     position: fixed;
-    left: -60vw;
+    /*left: -60vw;*/
+    display: none;
     width: 50vw;
     background-color: #EBEBEB;
     top:0;
@@ -47,4 +48,12 @@
 
 .logo{
    border-bottom: solid thin darkgrey; 
+}
+
+.content .nav_button{
+    color: darkslategray;
+    background-color: aliceblue;
+    border: solid thin darkblue;
+    border-radius: 5px;
+    width: 100%;
 }

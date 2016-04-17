@@ -9,7 +9,7 @@ class Management {
     }
     
     protected static function getButtonDiv($label,$localMethod){
-        return "<button class='lightbulb' onclick=\"menuButtonHandler('" .  get_class() . "','$localMethod')\">$label</button>";
+        return "<button class='nav_button' onclick=\"menuButtonHandler('" .  get_class() . "','$localMethod')\">$label</button>";
     }
     
     public static function getAddDeviceMenu(){
