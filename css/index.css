@@ -9,6 +9,10 @@ and open the template in the editor.
 */
 
 /*Font*/
+body{
+    background-color: beige;
+}
+
 .login_form, .nav_menu{
     font-family: Fredericka the Great;
 }
@@ -48,7 +52,7 @@ and open the template in the editor.
 .lightbulb img{
     position: absolute;
     top:10px;
-    right:0;
+    right:20px;
 }
 
 .button_img{

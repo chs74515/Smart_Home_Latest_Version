@@ -91,8 +91,8 @@ class LightGroup extends Database{
             $on_style = 'display:none;';
             $status = "on";
         }
-        $on_image = "<img src='$source' height = '100' width='100' id='lightbulb_on_$this->id' style='$on_style'>";
-        $off_image = "<img src='$off_source' height = '100' width='100' id='lightbulb_off_$this->id' style='$off_style'>";
+        $on_image = "<img src='$source' height = '100' width='56' id='lightbulb_on_$this->id' style='$on_style'>";
+        $off_image = "<img src='$off_source' height = '100' width='56' id='lightbulb_off_$this->id' style='$off_style'>";
         
         $button = "<div class='lightbulb' onclick = \"$onclick\" data-id=$this->id data-status='$status'>$this->name $on_image $off_image</div>";
         return $button;
