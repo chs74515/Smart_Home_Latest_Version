@@ -3,6 +3,12 @@ $(document).ready(function(){
     $(".dimmer").click(function(e) {
         e.stopPropagation();
    });
+   $(".colorChanger").click(function(e) {
+        e.stopPropagation();
+   });
+   $(".settingsToggle").click(function(e) {
+        e.stopPropagation();
+   });
 });
 
 function toggleLight(element){

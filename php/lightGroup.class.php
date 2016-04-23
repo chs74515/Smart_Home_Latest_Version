@@ -93,8 +93,8 @@ class LightGroup extends Database{
         }
         $on_image = "<img src='$source' height = '100' width='56' id='lightbulb_on_$this->id' style='$on_style'>";
         $off_image = "<img src='$off_source' height = '100' width='56' id='lightbulb_off_$this->id' style='$off_style'>";
-        $dimmer = $this->getDimmingSlider();
-        $button = "<div class='lightbulb' data-id=$this->id data-status='$status'>$this->name $dimmer $on_image $off_image</div>";
+        $settings = $this->getSettingsToggle() . $this->getSettings();
+        $button = "<div class='lightbulb' data-id=$this->id data-status='$status'>$this->name $settings $on_image $off_image</div>";
         return $button;
     }
     
@@ -105,6 +105,25 @@ class LightGroup extends Database{
             . "<input type='range' name='dim_slide' id='dim_slide' value='$dimValue' min='0' max='255' onchange='dimLight($this->id);'>"
             . "</div>";
         return $slider;        
+    }
+    
+    private function getColorSlider(){
+        $colorValue = $this->hue;//get from api
+        $slider = "<div class='colorChanger'>"
+            . "<div><span style='color:red;'>&#x25a0;</span><input type='range' name='red_slide' class='color_slide' value='$colorValue' min='0' max='255'></div>"
+            . "<div><span style='color:green;'>&#x25a0;</span><input type='range' name='green_slide' class='color_slide' value='$colorValue' min='0' max='255'></div>"
+            . "<div><span style='color:blue;'>&#x25a0;</span><input type='range' name='blue_slide' class='color_slide' value='$colorValue' min='0' max='255'></div>"
+            ."<button>Change Color</button>"
+            . "</div>";
+        return $slider;        
+    }
+    
+    private function getSettingsToggle(){
+        return "<img class='settingsToggle' src='../images/gear.png' onclick='$(\"#settings\").toggle();' height='100' width='100'></img>";
+    }
+    
+    private function getSettings(){
+        return "<div id='settings' style='display:none;'>" .$this->getColorSlider() . "<hr>" .$this->getDimmingSlider()."</div>";
     }
     
 /*    public static function getAddLightDiv(){

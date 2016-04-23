@@ -55,6 +55,10 @@ body{
     right:20px;
 }
 
+img.settingsToggle{
+    right:100px;
+}
+
 .button_img{
     position: absolute;
     top:10px;
@@ -62,11 +66,20 @@ body{
     font-size: 100px;
 }
 
+*#settings{
+    position: absolute;
+    z-index: 1;
+    border: thin solid blue;
+    border-radius: 10px;
+    background-color: cornflowerblue;
+    padding: 20px;
+    top: 110%;
+    right: 10px;
+    text-align: center;
+}
+
 .dimmer{
     line-height: normal;
-    position: absolute;
-    top: 10px;
-    right: 100px;
     width:150px;
 }
 
@@ -76,6 +89,14 @@ body{
 
 .dimmer span:nth-of-type(2){
     margin: 0px 20%;
+}
+
+.colorChanger{
+    line-height: normal;
+}
+
+.colorChanger div{
+    display: block;
 }
 
 body{
