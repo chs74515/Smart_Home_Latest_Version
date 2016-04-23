@@ -3,11 +3,11 @@
 class Touchlink_Request extends DeCONZ_API{
     protected $endpoint = "/touchlink";
     
-    public static function scanForDevices() {
+    public function scanForDevices() {
         return $this->curlRequest("POST", "/scan");
     }
     
-    public static function getScanResults(){
+    public function getScanResults(){
         return $this->curlRequest("GET", "/scan");
     }
 }

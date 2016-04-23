@@ -13,7 +13,7 @@
  */
 class Navigation_Menu {
     //private $display = TRUE;
-    private static $tab_list = ['lights' => 'Lights',];
+    private static $tab_list = ['lights' => 'Lights', "management" => "Home Management"];
     
     public function __set($name, $value) {
         $this->$name = $value;
@@ -30,7 +30,6 @@ class Navigation_Menu {
         foreach(self::$tab_list as $tab => $name){
             $tabs .= self::getNavButton($tab, $name) . "<br>";
         }
-        $tabs .= self::getNavButton("management", "Home Management");
         $tabs .= self::getNavButton("view_all", "View All Devices");
         $tabs .= self::getNavButton("add_user", "Add a User");
         $method= "get";

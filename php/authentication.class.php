@@ -63,6 +63,7 @@ class Authentication {
                     }else{
                         //if here, password is wrong
                         echo("<h4 style='color:red;'>Invalid password</h4>");
+                        sleep(.05);  //to partially counter brute force
                     }
                 }
                 //continue processing

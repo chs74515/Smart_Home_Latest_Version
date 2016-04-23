@@ -72,3 +72,42 @@ function menuButtonHandler(classname,method){
         }
     });
 }
+
+function addNewUser(form){
+    var inputs = $(form).find('[type="text"]');
+    for(var i =0; i<3; i++){
+        console.log($(inputs[i]));
+        if($(inputs[i]).val() === ""){
+            $(inputs[i]).css("background-color","salmon");
+            alert("Please fill in the indicated field");
+            return;
+        }
+    }
+    var name = $('[name="username"').val();
+    var password = $('[name="password"').val();
+    var check = $('[name="passwordCheck"').val();
+    console.log(password + " == " + check);
+    if(password !== check){
+        $('[name="passwordCheck"]').css("background-color","salmon");
+        alert('The second password must match the first');
+        return;
+    }
+    $.ajax({
+        type: "POST",
+        url: "ajax/addUser.ajax.php",
+        data: {
+            AJAX : (true),
+            username : (name),
+            password : (password),
+        },
+        success: function(data){
+            console.log("Success! " + data);
+            $('.content').html(data);
+        },
+        error: function(data){
+            console.log("Error: " + data);
+            $('.content').html("Could not add user");
+        }
+    });    
+    
+}
