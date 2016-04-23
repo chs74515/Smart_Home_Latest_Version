@@ -16,6 +16,7 @@ class User extends Database{
     private $userId;
     private $passwordHash;
     private $isActivated;
+    private $role;
     
     public function __get($name){
         return $this->$name;
@@ -96,7 +97,8 @@ class User extends Database{
         $sql = "UPDATE `user` SET "
             . "username = '$this->username', "
             . "passwordHash = '$this->passwordHash', "
-            . "isActivated = $this->isActivated "
+            . "isActivated = $this->isActivated, "
+            . "role = '$this->role'"
             . "WHERE userID = $this->userId; ";
         $result = mysqli_query($this->connect, $sql);
     }
@@ -107,12 +109,16 @@ class User extends Database{
     protected function insert(){
         $user = mysqli_real_escape_string($this->connect, $this->username);
         $pass = self::encodePassword($this->passwordHash);
-        $sql = "INSERT into user (username, passwordHash) "
-            . "VALUES ('$user', '$pass'); ";
+        $sql = "INSERT into user (username, passwordHash, isActivated, role) "
+            . "VALUES ('$user', '$pass',$this->isActivated, '$this->role'); ";
         $result = mysqli_query($this->connect, $sql);
         if($result){
             $this->userId = mysqli_insert_id($this->connect);
         }
+    }
+    
+    public function isRoleMember($role){
+        return stristr($this->role, $role);
     }
     
 }

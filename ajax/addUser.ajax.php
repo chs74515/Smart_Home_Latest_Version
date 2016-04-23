@@ -10,12 +10,16 @@
  * 
  */
 
-if(isset($_POST['username']) && isset($_POST['password'])){
+if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role'])){
     include_once('../shell.php');
     $user = new User();
     $user->username =  filter_input(INPUT_POST, "username");
     $user->passwordHash = filter_input(INPUT_POST, "password");
+    $user->role = filter_input(INPUT_POST, "role");
+    $user->isActivated = 1;
     $user->save();
     echo "<div style='color:green;'>User Added!</div>";
+}else{
+    echo "<div style='color:red;'>User Could Not Be Added!</div>";
 }
 

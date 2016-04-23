@@ -48,7 +48,7 @@ class Authentication {
             if($loaded){
                 if($user->verify_password($password)) {
                     if($user->isActivated === '1'){
-                        Authentication::setAuthentication(True);
+                        Authentication::setAuthentication($user->role);
                         self::performLoginActions($user->username);
                     }else{
                         echo "<span style='color:red;'>Your Account has not yet been activated, please contact your system administrator</span>";
@@ -58,7 +58,7 @@ class Authentication {
                     $user->passwordHash = User::encodePassword($user->passwordHash);
                     if($user->verify_password($password)){                        
                         $user->save();
-                        Authentication::setAuthentication(TRUE);
+                        Authentication::setAuthentication($user->role);
                         self::performLoginActions($user->username);
                     }else{
                         //if here, password is wrong
@@ -103,5 +103,12 @@ class Authentication {
     
     public static function setAuthentication($value){
         $_SESSION['authenticated'] = $value;
+    }
+    
+    public static function isHomeOwner(){
+        if(isset($_SESSION['authenticated'])){
+            $role = $_SESSION['authenticated'];
+            return (stristr('owner', $role));
+        }
     }
 }

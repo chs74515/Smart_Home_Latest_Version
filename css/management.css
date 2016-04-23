@@ -1,0 +1,44 @@
+/**
+ description
+
+ @category css files
+ @author Brody Bruns <brody.bruns@hotmail.com>
+ @copyright (c) 2016, Brody Bruns
+ @version 1.0
+
+*/
+
+*#addUser{
+    font-family: Arial;
+    font-size: smaller;
+}
+
+*#addUser button{
+    display: block;
+    background-color: transparent;
+    border: thick solid cornflowerblue;
+    padding: 10px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: x-large;
+    cursor: pointer;
+    margin: 20px auto;
+}
+
+*#addUser button:focus{
+    outline: none;
+    box-shadow: 0px 0px 5px 4px darkgray;
+}
+
+*#addUser .userInput{
+    margin: 20px auto;
+    width: 300px;
+}
+
+*#addUser label{
+    
+}
+
+*#addUser input{
+    
+}

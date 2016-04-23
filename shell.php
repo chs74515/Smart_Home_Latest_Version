@@ -46,7 +46,8 @@ function echoCSS(){
     echo "<link rel='stylesheet' href='css/index.css' type='text/css'>";
     echo "<link rel='stylesheet' href='css/thermostat.css' type='text/css'>";
     echo "<link rel='stylesheet' href='css/homePage.css' type='text/css'>";
-    echo "<link rel='stylesheet' href='css/navBar.css' type='text/css'>";    
+    echo "<link rel='stylesheet' href='css/navBar.css' type='text/css'>";     
+    echo "<link rel='stylesheet' href='css/management.css' type='text/css'>"; 
 }
 
 //$db = new Database();

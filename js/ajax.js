@@ -83,15 +83,17 @@ function addNewUser(form){
             return;
         }
     }
-    var name = $('[name="username"').val();
-    var password = $('[name="password"').val();
-    var check = $('[name="passwordCheck"').val();
-    console.log(password + " == " + check);
+    var name = $('[name="username"]').val();
+    var password = $('[name="password"]').val();
+    var check = $('[name="passwordCheck"]').val();
+    console.log($('[name="role"]').val());
+    var role = $('[name="role"]').val();
     if(password !== check){
         $('[name="passwordCheck"]').css("background-color","salmon");
         alert('The second password must match the first');
         return;
     }
+    $('.content').html('Working...');
     $.ajax({
         type: "POST",
         url: "ajax/addUser.ajax.php",
@@ -99,6 +101,7 @@ function addNewUser(form){
             AJAX : (true),
             username : (name),
             password : (password),
+            role : (role)
         },
         success: function(data){
             console.log("Success! " + data);

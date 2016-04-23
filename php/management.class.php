@@ -2,10 +2,14 @@
 
 class Management {
     public static function getManageMenu(){
-        $menu = "<div><h2>Smart Home Management</h2>";
-        $menu .= self::getButtonDiv("Add New Devices", "getAddDeviceMenu");
-        $menu .= self::getButtonDiv("Add User", "getAddUserMenu");
-        $menu .= "</div>";
+        if(Authentication::isHomeOwner()){
+            $menu = "<div><h2>Smart Home Management</h2>";
+            $menu .= self::getButtonDiv("Add New Devices", "getAddDeviceMenu");
+            $menu .= self::getButtonDiv("Add User", "getAddUserMenu");
+            $menu .= "</div>";
+        }else{
+            $menu = "<div><h2 style='color:red'>Access Restricted</h2>Only the Home Owner can access this menu</div>";
+        }
         return $menu;
     }
     
@@ -49,11 +53,15 @@ class Management {
     }
     
     public static function getAddUserMenu(){
-        $form = "<form id='addUser' onsubmit='return false;'>";
-        $form .= "Username: <input type='text' name='username'></input><br>";
-        $form .= "Password:<input type='text' name='password'></input><br>";
-        $form .= "Retype Password:<input type='text' name='passwordCheck'></input>";
-        $form .= "<button class='nav_button' onclick=\"addNewUser($(this).parent())\">Add User</button>";
+        $form = "<h3>Add a User</h3><form id='addUser' onsubmit='return false;'>";
+        $form .= "<div class='userInput'><label for='username'>Username: </label><input type='text' name='username'></input></div>";
+        $form .= "<div class='userInput'><label for='password'>Password: </label><input type='text' name='password'></input></div>";
+        $form .= "<div class='userInput'><label for='passwordCheck'>Retype Password: </label><input type='text' name='passwordCheck'></input></div>";
+        $form .= "<div class='userInput'><label for='role'>User Role: </label><select name='role'>"
+            . "<option value='guest' selected>Guest</option>"
+            . "<option value='owner'>Home Owner</option>"
+            . "</select></div>";
+        $form .= "<button onclick=\"addNewUser($(this).parent())\">Add User</button>";
         $form .= "</form>";
         return $form;
     }
