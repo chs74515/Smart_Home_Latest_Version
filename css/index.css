@@ -62,6 +62,22 @@ body{
     font-size: 100px;
 }
 
+.dimmer{
+    line-height: normal;
+    position: absolute;
+    top: 10px;
+    right: 100px;
+    width:150px;
+}
+
+.dimmer label{
+    display: block;
+}
+
+.dimmer span:nth-of-type(2){
+    margin: 0px 20%;
+}
+
 body{
     text-align: center;
     margin: 10px 50px;

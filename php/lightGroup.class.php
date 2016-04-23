@@ -93,11 +93,19 @@ class LightGroup extends Database{
         }
         $on_image = "<img src='$source' height = '100' width='56' id='lightbulb_on_$this->id' style='$on_style'>";
         $off_image = "<img src='$off_source' height = '100' width='56' id='lightbulb_off_$this->id' style='$off_style'>";
-        
-        $button = "<div class='lightbulb' onclick = \"$onclick\" data-id=$this->id data-status='$status'>$this->name $on_image $off_image</div>";
+        $dimmer = $this->getDimmingSlider();
+        $button = "<div class='lightbulb' data-id=$this->id data-status='$status'>$this->name $dimmer $on_image $off_image</div>";
         return $button;
     }
     
+    private function getDimmingSlider(){
+        $dimValue = $this->bri;//get from api
+        $slider = "<div class='dimmer'>"
+            . "<label for='dim_slide'><span>&#x25cf;</span> <span>&#x25d0;</span> <span>&#x25cb;</span></label>"
+            . "<input type='range' name='dim_slide' id='dim_slide' value='$dimValue' min='0' max='255' onchange='dimLight($this->id);'>"
+            . "</div>";
+        return $slider;        
+    }
     
 /*    public static function getAddLightDiv(){
         $div = "<div id='add_light' onclick='$(\"#add_form\").toggle();'>+</div>";
