@@ -31,7 +31,7 @@ class Navigation_Menu {
             $tabs .= self::getNavButton($tab, $name) . "<br>";
         }
         $tabs .= self::getNavButton("view_all", "View All Devices");
-        $tabs .= self::getNavButton("add_user", "Add a User");
+//        $tabs .= self::getNavButton("add_user", "Add a User");
         $method= "get";
         $action="''";
         $class="nav_menu";

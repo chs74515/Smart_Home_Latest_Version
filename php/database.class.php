@@ -86,6 +86,46 @@ class Database {
         }
     }
     
+    public function load_by_fields($fields = [['name'=>'','value'=>'','operator'=>'=']],$limit = 1){
+        $select = "SELECT * from $this->tableName ";
+        $where = "WHERE ";
+        $clause = [];
+        foreach($fields as $field){
+            array_push($clause, $field['name'] ." " . $field['operator'] . " " . $field['value']);
+        }
+        $where .= implode(" and ", $clause);
+        $where .= " limit $limit;";
+        $result = mysqli_query($this->connect, $select . $where);
+        if($result){
+            $row = mysqli_fetch_assoc($result);
+            foreach($row as $key => $values){
+                $this->$key = $values;
+                //populate properties witth value
+//                echo "<br> [$key] => " . $this->$key;
+            }
+        }
+    }
+    
+    public function load_by_all_fields($limit = 1){
+        $select = "SELECT * from $this->tableName ";
+        $where = "WHERE ";
+        $clause = [];
+        foreach($this->fields as $field){
+            array_push($clause, $field ." = " . $this->$field);
+        }
+        $where .= implode(" and ", $clause);
+        $where .= " limit $limit;";
+        $result = mysqli_query($this->connect, $select . $where);
+        if($result){
+            $row = mysqli_fetch_assoc($result);
+            foreach($row as $key => $values){
+                $this->$key = $values;
+                //populate properties witth value
+//                echo "<br> [$key] => " . $this->$key;
+            }
+        }
+    }
+    
     /**
      * insert if not exist in db, update if id set
      */

@@ -49,7 +49,11 @@ class LightGroup extends Database{
                 $group->on = 0;
             }
         }
-        $group->save();        
+        $group->save();
+        foreach($details->lights as $light){
+            $relationship = new Group_Relationships($light, $group->id);
+            $relationship->save();
+        }
     }
     
     /**
@@ -127,6 +131,16 @@ class LightGroup extends Database{
         }else{
             return "";
         }
+    }
+    
+    private function addLightToGroup(){
+        $div="<div>";
+        //get all lights
+        $lights = (new Lights_Request())->getAllLights();
+        //get lights in group
+        
+        //add buttons
+        $div.="</div>";
     }
     
     private function getSettings(){
