@@ -36,6 +36,11 @@ body{
     margin: 5px;
 }
 
+.login_form{
+    float: left;
+    height: 90px;
+}
+
 .lightbulb{
     border: thin solid black;
     margin: 10px;

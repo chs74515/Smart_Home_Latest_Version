@@ -19,7 +19,8 @@ class Authentication {
         $method= "post";
         $action="''";
         $class="login_form"; 
-        $form="<form method=$method action=$action class=$class> $username <br> $password <br> $submit</form>";
+        $img = "<img src='images/logo.png'></img>";
+        $form="<form method=$method action=$action class=$class> $img $username <br> $password <br> $submit</form>";
         return $form;
     }
     
