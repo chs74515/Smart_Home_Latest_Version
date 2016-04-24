@@ -72,9 +72,9 @@ class Database {
         }
     }
     
-    public function load_by_field($field, $value, $operator = '='){
+    public function load_by_field($field, $value, $operator = '=', $limit=1){
         $select = "SELECT * from $this->tableName ";
-        $where = "WHERE $field $operator $value limit 1;";
+        $where = "WHERE $field $operator $value limit $limit;";
         $result = mysqli_query($this->connect, $select . $where);
         if($result){
             $row = mysqli_fetch_assoc($result);
@@ -116,7 +116,7 @@ class Database {
         $where .= implode(" and ", $clause);
         $where .= " limit $limit;";
         $result = mysqli_query($this->connect, $select . $where);
-        if($result){
+        if($result->num_rows > 0){
             $row = mysqli_fetch_assoc($result);
             foreach($row as $key => $values){
                 $this->$key = $values;
@@ -131,7 +131,7 @@ class Database {
      */
     public function save(){
         if($this->id){
-            if($this->idExistsInTable()){
+            if($this->idExistsInTable($this->id)){
                 $this->update();
             }else{
                 $this->insert();
@@ -141,8 +141,8 @@ class Database {
         }
     }
       
-    protected function idExistsInTable(){
-        $select = "SELECT * from $this->tableName ";
+    public function idExistsInTable($id){
+        $select = "SELECT * from $this->tableName where id = $id";
         $result = mysqli_query($this->connect, $select);
         if($result){
             return ($result->num_rows > 0);

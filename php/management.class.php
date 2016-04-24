@@ -4,7 +4,7 @@ class Management {
     public static function getManageMenu(){
         if(Authentication::isHomeOwner()){
             $menu = "<div><h2>Smart Home Management</h2>";
-            $menu .= self::getButtonDiv("Add New Devices", "getAddDeviceMenu");
+            $menu .= self::getButtonDiv("Open Network to New Devices", "scanForNewDevices");
             $menu .= self::getButtonDiv("Add User", "getAddUserMenu");
             $menu .= "</div>";
         }else{
@@ -25,22 +25,34 @@ class Management {
     }
     
     public static function scanForNewDevices(){
-        $result = (new Touchlink_Request())->scanForDevices();
-        $div = "";json_encode($result, TRUE);
-        $status = "scanning";
-        while($status === "scanning"){
-            $devicesFound = (new Touchlink_Request())->getScanResults();
-            $div .= "<br>" . json_encode($devicesFound, TRUE);
-            $status = $devicesFound->scanstate;
-            sleep(3);
+        $seconds = 10;
+        (new Config_Request())->openNetwork($seconds);
+//        $countdown = "Network Open for <div id='countdown'>$seconds</div> seconds";
+        sleep(10);
+        $newLights = self::processNewDevices();
+        $div = "";
+        foreach($newLights as $light){
+            $div .= "<div><h3>Light Added!</h3><b>Light Name:</b>$light</div>";
         }
         return $div;
+    }
+    
+    protected static function processNewDevices(){
+        $newLights = [];
+        $response = (new Lights_Request())->getAllLights();
+        foreach($response as $id => $networkLight){
+            if(!(new Lights())->idExistsInTable($id)){
+                Lights::verifyLights();  //could be expensive
+                array_push($newLights, $networkLight->name);
+                LightGroup::newGroupFromLightResult($id, $networkLight);                
+            }
+        }
+        return $newLights;
     }
     
     public static function getScanResult(){
         $devicesFound = (new Touchlink_Request())->getScanResults();
         $div = "<div>";
-        var_dump($devicesFound);
         if(!isset($devicesFound->result)){
             $div.= "No New Devices Found";
         }else{

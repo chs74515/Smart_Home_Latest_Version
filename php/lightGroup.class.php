@@ -43,17 +43,31 @@ class LightGroup extends Database{
             }else{
                 $group->$action = $value;
             }
-            if($group->on){
-                $group->on = 1;
-            }else{
-                $group->on = 0;
-            }
+        }
+        if($details->action->on){
+            $group->on = 1;
+        }else{
+            $details->action->on = 0;
         }
         $group->save();
         foreach($details->lights as $light){
             $relationship = new Group_Relationships($light, $group->id);
             $relationship->save();
         }
+    }
+    
+    public static function newGroupFromLightResult($lightId, $result){
+        $groupResult = (new Groups_Request())->createGroup($result->name);
+        $id = $groupResult[0]->success->id;
+        $state = [];
+        foreach((new static())->fields as $fieldName){
+            if(isset($result->state->$fieldName)){
+                $state[$fieldName] = $result->state->$fieldName;
+            }
+        }
+        (new Groups_Request())->setGroupLights($id,[$lightId]);
+        (new Groups_Request())->setGroupState($id, $state);
+        self::verifySingleGroup($id);
     }
     
     /**
@@ -134,17 +148,30 @@ class LightGroup extends Database{
     }
     
     private function addLightToGroup(){
-        $div="<div>";
-        //get all lights
-        $lights = (new Lights_Request())->getAllLights();
-        //get lights in group
-        
-        //add buttons
-        $div.="</div>";
+        if(Authentication::isHomeOwner()){
+            $div="<hr><div>";
+            //get all lights
+            $lights = (new Lights_Request())->getAllLights();
+            //get lights in group
+            $relationships = Group_Relationships::getAllRelationships($this->id);
+            //add buttons
+            foreach ($lights as $id => $light){
+                //var_dump($light);
+                if(in_array($id, $relationships)){
+                    $status = "in group";
+                }else{
+                    $status = "not in group";
+                }
+                $div .= "<button data-status='$status' class='lightButton'> $light->name</button>";
+            }
+            $div.="</div>";
+            return $div;
+        }
     }
     
     private function getSettings(){
-        return "<div id='settings' style='display:none;'>" .$this->getColorSlider() . "<hr>" .$this->getDimmingSlider(). $this->getChangeName()."</div>";
+        return "<div id='settings' style='display:none;'>" .$this->getColorSlider()
+            . "<hr>" .$this->getDimmingSlider(). $this->getChangeName().$this->addLightToGroup() . "</div>";
     }
     
 /*    public static function getAddLightDiv(){
