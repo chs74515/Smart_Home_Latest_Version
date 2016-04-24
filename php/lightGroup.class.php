@@ -120,8 +120,17 @@ class LightGroup extends Database{
         return "<img class='settingsToggle' src='../images/gear.png' onclick='$(\"#settings\").toggle();' height='100' width='100'></img>";
     }
     
+    private function getChangeName(){
+        if(Authentication::isHomeOwner()){
+            return "<hr><div class='updateName' id='updateName_$this->id'>New Name:<input name='groupName_$this->id' type='text'></input>"
+            . "<button onclick='updateName($this->id);'>Update Name</button></div>";
+        }else{
+            return "";
+        }
+    }
+    
     private function getSettings(){
-        return "<div id='settings' style='display:none;'>" .$this->getColorSlider() . "<hr>" .$this->getDimmingSlider()."</div>";
+        return "<div id='settings' style='display:none;'>" .$this->getColorSlider() . "<hr>" .$this->getDimmingSlider(). $this->getChangeName()."</div>";
     }
     
 /*    public static function getAddLightDiv(){

@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(".dimmer").click(function(e) {
         e.stopPropagation();
    });
-   $(".colorChanger").click(function(e) {
+   $("#settings").click(function(e) {
         e.stopPropagation();
    });
    $(".settingsToggle").click(function(e) {
@@ -175,7 +175,27 @@ function changeColor(groupId){
             console.log("Error: " + JSON.stringify(data));
         }
     }); 
-    //$('#display_value').html(choice + "&deg;C");
-    //choice = parseInt(choice) * 2.5 + 15;
-    //$(".bar").css({'width' : choice + "px"});
+}
+
+function updateName(groupId){
+    console.log($('#updateName_'+groupId));
+    var name = $('[name="groupName_'+groupId+'"]').val();
+    $('#updateName_'+groupId).html("Working...");
+    $.ajax({
+        type: "POST",
+        url: "ajax/updateName.ajax.php",
+        data: {
+            AJAX : (true),
+            name : (name),
+            groupId : (groupId),
+        },
+        success: function(data){
+            console.log("Success! " + data);            
+            $('#updateName_'+groupId).html("Changed Name to " + name + "!");
+        },
+        error: function(data){
+            console.log("Error: " + JSON.stringify(data));
+            $('#updateName_'+groupId).html("Could not change name!");
+        }
+    }); 
 }

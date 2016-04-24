@@ -76,11 +76,13 @@ img.settingsToggle{
     top: 110%;
     right: 10px;
     text-align: center;
+    line-height: normal;
 }
 
 .dimmer{
     line-height: normal;
     width:150px;
+    margin: auto;
 }
 
 .dimmer label{
