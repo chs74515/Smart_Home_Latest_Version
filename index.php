@@ -18,15 +18,7 @@ and open the template in the editor.
             if(Authentication::isAuthenticated()){
                 $nav = new Navigation_Menu();
                 $nav->processControlMenu(); //process nav if submitted
-
-
-                /***Add new User temp code***/
-                if(isset($_GET['username'])){
-                    Authentication::createNewUser();
-                }
-                //var_dump((new Groups_Request())->setGroupLights(1, ["1"]));
-                //echo page
-                //$nav->displayMenu();
+                //echo json_encode((new Config_Request())->curlRequest('GET')); 
             }else{
                 echo Authentication::getForm();
                 die();
