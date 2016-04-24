@@ -154,3 +154,28 @@ function dimLight(groupId){
     //choice = parseInt(choice) * 2.5 + 15;
     //$(".bar").css({'width' : choice + "px"});
 }
+
+function changeColor(groupId){
+    var color = $('[name="color_'+groupId+'"]').val();
+    console.log('color',color);
+    console.log($('[name="color_'+groupId+'"]'));
+    $.ajax({
+        type: "POST",
+        url: "ajax/changeColor.ajax.php",
+        data: {
+            AJAX : (true),
+            color : (color),
+            groupId : (groupId),
+        },
+        success: function(data){
+            console.log("Success! " + data);            
+            
+        },
+        error: function(data){
+            console.log("Error: " + JSON.stringify(data));
+        }
+    }); 
+    //$('#display_value').html(choice + "&deg;C");
+    //choice = parseInt(choice) * 2.5 + 15;
+    //$(".bar").css({'width' : choice + "px"});
+}

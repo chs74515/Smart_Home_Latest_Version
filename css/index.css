@@ -95,8 +95,9 @@ img.settingsToggle{
     line-height: normal;
 }
 
-.colorChanger div{
+.colorChanger input{
     display: block;
+    margin: auto;
 }
 
 body{

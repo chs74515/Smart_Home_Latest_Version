@@ -108,12 +108,10 @@ class LightGroup extends Database{
     }
     
     private function getColorSlider(){
-        $colorValue = $this->hue;//get from api
+        $colorValue = $this->hue;
         $slider = "<div class='colorChanger'>"
-            . "<div><span style='color:red;'>&#x25a0;</span><input type='range' name='red_slide' class='color_slide' value='$colorValue' min='0' max='255'></div>"
-            . "<div><span style='color:green;'>&#x25a0;</span><input type='range' name='green_slide' class='color_slide' value='$colorValue' min='0' max='255'></div>"
-            . "<div><span style='color:blue;'>&#x25a0;</span><input type='range' name='blue_slide' class='color_slide' value='$colorValue' min='0' max='255'></div>"
-            ."<button>Change Color</button>"
+            . "<input type='color' name='color_$this->id' value=$colorValue></input>"
+            . "<button onclick='changeColor($this->id);'>Change Color</button>"
             . "</div>";
         return $slider;        
     }
