@@ -166,7 +166,7 @@ class Database {
             }
             array_push($values, " `$field` = $value ");
         }
-        $sql .= " " . implode(", ", $values) . ";";
+        $sql .= " " . implode(", ", $values) . "WHERE id = $this->id;";
         $result = mysqli_query($this->connect, $sql);
     }
     

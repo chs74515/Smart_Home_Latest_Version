@@ -98,7 +98,7 @@ class LightGroup extends Database{
         //add image based on status
         $source = "../images/light_bulb_on.png";
         $off_source = "../images/light_bulb_off.png";
-        $onclick = "toggleLight(this); ";
+        //$onclick = "toggleLight(this); ";
         $on_style = 'display:block;';
         $off_style = 'display:block;';
         

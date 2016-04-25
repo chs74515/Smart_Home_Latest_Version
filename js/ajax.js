@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(".dimmer").click(function(e) {
         e.stopPropagation();
    });
-   $("#settings").click(function(e) {
+   $("[id^='settings']").click(function(e) {
         e.stopPropagation();
    });
    $(".settingsToggle").click(function(e) {
@@ -129,7 +129,7 @@ function addNewUser(form){
 }
 
 function dimLight(groupId){
-    console.log("Current Choice: " + $('#dim_slide').val());
+    console.log("Current Choice: " + $('#dim_slide_'+groupId).val());
     var choice = $('#dim_slide_'+groupId).val();
     $.ajax({
         type: "POST",
