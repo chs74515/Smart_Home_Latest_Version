@@ -34,7 +34,6 @@ class LightGroup extends Database{
     
     public static function verifySingleGroup($id){
         $details = (new Groups_Request())->getGroupAttributes($id);
-        echo "<hr>" . json_encode($details);
         $group = new LightGroup();
         $group->id = $details->id;
         $group->name = $details->name;
@@ -45,7 +44,6 @@ class LightGroup extends Database{
                 $group->$action = $value;
             }
         }
-        echo "on:" . $details->action->on;
         if($group->on){ //set to true/false
             $group->on = 1;
         }else{
