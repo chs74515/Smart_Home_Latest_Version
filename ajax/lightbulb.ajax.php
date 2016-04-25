@@ -6,7 +6,7 @@ if(isset($_POST['status'])){
     $light = new LightGroup();
     $light->load_by_id($id);
     $lightstatus = $_POST['status'];
-    if($light->on == 0){
+    if($lightstatus === 'on'){
         $light->on = 1;
         var_dump((new Groups_Request())->turnOnGroup($light->id));
 //        $lightstatus = 'on';
