@@ -111,10 +111,13 @@ class Database {
         $where = "WHERE ";
         $clause = [];
         foreach($this->fields as $field){
-            array_push($clause, $field ." = " . $this->$field);
+            if(isset($this->$field)){
+                array_push($clause, $field ." = " . $this->$field);
+            }
         }
         $where .= implode(" and ", $clause);
         $where .= " limit $limit;";
+        echo "sql: " . $select . $where;
         $result = mysqli_query($this->connect, $select . $where);
         if($result->num_rows > 0){
             $row = mysqli_fetch_assoc($result);

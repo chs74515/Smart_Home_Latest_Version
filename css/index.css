@@ -71,7 +71,7 @@ img.settingsToggle{
     font-size: 100px;
 }
 
-*#settings{
+[id^='settings']{
     position: absolute;
     z-index: 1;
     border: thin solid blue;
@@ -174,4 +174,12 @@ body{
     position: absolute;
     box-shadow: 5px 5px 3px #888888;
     cursor: pointer;
+}
+
+.lightButton[data-status='in group']{
+    background-color: green;
+}
+
+.lightButton[data-status='not in group']{
+    background-color: salmon;
 }

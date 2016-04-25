@@ -122,7 +122,7 @@ class LightGroup extends Database{
         $dimValue = $this->bri;//get from api
         $slider = "<div class='dimmer'>"
             . "<label for='dim_slide'><span>&#x25cf;</span> <span>&#x25d0;</span> <span>&#x25cb;</span></label>"
-            . "<input type='range' name='dim_slide' id='dim_slide' value='$dimValue' min='0' max='255' onchange='dimLight($this->id);'>"
+            . "<input type='range' name='dim_slide' id='dim_slide_$this->id' value='$dimValue' min='0' max='255' onchange='dimLight($this->id);'>"
             . "</div>";
         return $slider;        
     }
@@ -137,7 +137,7 @@ class LightGroup extends Database{
     }
     
     private function getSettingsToggle(){
-        return "<img class='settingsToggle' src='../images/gear.png' onclick='$(\"#settings\").toggle();' height='100' width='100'></img>";
+        return "<img class='settingsToggle' src='../images/gear.png' onclick='$(\"#settings_$this->id\").toggle();' height='100' width='100'></img>";
     }
     
     private function getChangeName(){
@@ -172,7 +172,7 @@ class LightGroup extends Database{
     }
     
     private function getSettings(){
-        return "<div id='settings' style='display:none;'>" .$this->getColorSlider()
+        return "<div id='settings_$this->id' style='display:none;'>" .$this->getColorSlider()
             . "<hr>" .$this->getDimmingSlider(). $this->getChangeName().$this->addLightToGroup() . "</div>";
     }
     

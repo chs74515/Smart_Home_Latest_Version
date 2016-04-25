@@ -130,7 +130,7 @@ function addNewUser(form){
 
 function dimLight(groupId){
     console.log("Current Choice: " + $('#dim_slide').val());
-    var choice = $('#dim_slide').val();
+    var choice = $('#dim_slide_'+groupId).val();
     $.ajax({
         type: "POST",
         url: "ajax/dimLight.ajax.php",
@@ -142,9 +142,9 @@ function dimLight(groupId){
         success: function(data){
             console.log("Success! " + data);            
             console.log($('#lightbulb_on_'+groupId).closest('.lightbulb'));
-            $('#lightbulb_on_'+groupId).show();
-            $('#lightbulb_off_'+groupId).hide();
-            $('#lightbulb_on_'+groupId).closest('.lightbulb').attr('data-status','off');
+            //$('#lightbulb_on_'+groupId).show();
+            //$('#lightbulb_off_'+groupId).hide();
+            //$('#lightbulb_on_'+groupId).closest('.lightbulb').attr('data-status','off');
         },
         error: function(data){
             console.log("Error: " + JSON.stringify(data));
