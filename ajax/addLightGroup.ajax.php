@@ -7,9 +7,9 @@
  */
 if(isset($_POST['name'])){
     include_once('../shell.php');
-    $group = filter_input(INPUT_POST, "name");
-    $result = (new Groups_Request());
-    $result->createGroup($group);
+    $group_name = filter_input(INPUT_POST, "name");
+    $request = new Groups_Request();
+    $request->createGroup($group_name);
     
     echo "<div style='color:green;'>Light Group Added!</div>";
 }else{
