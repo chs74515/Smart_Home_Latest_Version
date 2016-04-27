@@ -24,6 +24,9 @@ class Group_Relationships extends Database{
     }
     
     public static function getAllRelationships($groupId){
+        if(!isset($groupId)){
+            return [];//if array empty, dont go any further
+        }
         $lightIds= [];
         $sql = "SELECT lightId from group_relationships WHERE groupId = $groupId;";
         $result = mysqli_query(Database::getConnect(), $sql);
@@ -32,7 +35,8 @@ class Group_Relationships extends Database{
             foreach ($row as $value) {
                 array_push($lightIds, $value);
             }
-            return $lightIds;
         }
+        
+        return $lightIds;
     }
 }
