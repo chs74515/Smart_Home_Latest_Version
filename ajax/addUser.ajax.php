@@ -23,3 +23,11 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role'
     echo "<div style='color:red;'>User Could Not Be Added!</div>";
 }
 
+if(isset($_POST['group name'])){
+    include_once('../shell.php');
+    
+    echo "<div style='color:green;'>Light Group Added!</div>";
+}else{
+    echo "<div style='color:red;'>Light Group Could Not Be Added!</div>";
+}
+

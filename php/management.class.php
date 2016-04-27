@@ -84,6 +84,7 @@ class Management {
     public static function getAddNewGroup(){
         $form = "<h3>Add a New Group</h3><form id='addGroup' onsubmit='return false;'>";
         $form .= "<div class='userInput'><label for='group name'>Group name: </label><input type='text' name='group name'></input></div>";
+        $form .= "<button onclick=\"addNewGroup($(this).parent())\">Add New Group</button>";
         return $form;
         
     }

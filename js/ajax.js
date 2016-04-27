@@ -128,6 +128,36 @@ function addNewUser(form){
     
 }
 
+function addNewGroup(form){
+    var inputs = $(form).find('[type="text"]');
+        console.log($(inputs));
+        if($(inputs).val() === ""){
+            $(inputs).css("background-color","salmon");
+            alert("Please fill in the indicated field");
+            return;
+        }
+    
+    var name = $('[name="group name"]').val();
+    console.log($('[name="group name"]').val());
+    $('.content').html('Working...');
+    $.ajax({
+        type: "POST",
+        url: "ajax/addUser.ajax.php",
+        data: {
+            AJAX : (true),
+            name : (name)            
+        },
+        success: function(data){
+            console.log("Success! " + data);
+            $('.content').html(data);
+        },
+        error: function(data){
+            console.log("Error: " + data);
+            $('.content').html("Could not add light group");
+        }
+    }); 
+}
+
 function dimLight(groupId){
     console.log("Current Choice: " + $('#dim_slide_'+groupId).val());
     var choice = $('#dim_slide_'+groupId).val();
