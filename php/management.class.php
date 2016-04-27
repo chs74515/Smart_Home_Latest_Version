@@ -30,6 +30,9 @@ class Management {
 //        $countdown = "Network Open for <div id='countdown'>$seconds</div> seconds";
         sleep(10);
         $newLights = self::processNewDevices();
+        if(empty($newLights)){
+            return "<div>Could not find any new lights!</div>";
+        }
         $div = "";
         foreach($newLights as $light){
             $div .= "<div><h3>Light Added!</h3><b>Light Name:</b>$light</div>";
