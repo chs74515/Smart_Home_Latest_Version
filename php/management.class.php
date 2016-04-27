@@ -6,6 +6,7 @@ class Management {
             $menu = "<div><h2>Smart Home Management</h2>";
             $menu .= self::getButtonDiv("Open Network to New Devices", "scanForNewDevices");
             $menu .= self::getButtonDiv("Add User", "getAddUserMenu");
+            $menu .= self::getButtonDiv("Add New Group", "getAddNewGroup");
             $menu .= "</div>";
         }else{
             $menu = "<div><h2 style='color:red'>Access Restricted</h2>Only the Home Owner can access this menu</div>";
@@ -16,6 +17,8 @@ class Management {
     protected static function getButtonDiv($label,$localMethod){
         return "<button class='nav_button' onclick=\"menuButtonHandler('" .  get_class() . "','$localMethod')\">$label</button>";
     }
+    
+    
     
     public static function getAddDeviceMenu(){
         $div = "";
@@ -79,6 +82,14 @@ class Management {
         $form .= "<button onclick=\"addNewUser($(this).parent())\">Add User</button>";
         $form .= "</form>";
         return $form;
+    }
+    
+    public static function getAddNewGroup(){
+        $form = "<h3>Add a New Group</h3><form id='addGroup' onsubmit='return false;'>";
+        $form .= "<div class='userInput'><label for='group_name'>Group name: </label><input type='text' name='group_name'></input></div>";
+        $form .= "<button onclick=\"addNewGroup($(this).parent())\">Add New Group</button>";
+        return $form;
+        
     }
     
 }

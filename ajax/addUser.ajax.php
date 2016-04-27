@@ -23,3 +23,5 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role'
     echo "<div style='color:red;'>User Could Not Be Added!</div>";
 }
 
+
+
