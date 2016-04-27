@@ -18,7 +18,7 @@ and open the template in the editor.
             if(Authentication::isAuthenticated()){
                 $nav = new Navigation_Menu();
                 $nav->processControlMenu(); //process nav if submitted
-                //echo json_encode((new Config_Request())->curlRequest('GET')); 
+                //echo json_encode((new Lights_Request())->getAllLights()); 
             }else{
                 echo Authentication::getForm();
                 die();
