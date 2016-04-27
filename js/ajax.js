@@ -137,12 +137,12 @@ function addNewGroup(form){
             return;
         }
     
-    var name = $('[name="group name"]').val();
-    console.log($('[name="group name"]').val());
+    var name = $('[name="group_name"]').val();
+    console.log($('[name="group_name"]').val());
     $('.content').html('Working...');
     $.ajax({
         type: "POST",
-        url: "ajax/addUser.ajax.php",
+        url: "ajax/addLightGroup.ajax.php",
         data: {
             AJAX : (true),
             name : (name)            
