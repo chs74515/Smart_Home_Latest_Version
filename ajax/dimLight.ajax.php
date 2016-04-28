@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST['groupId'])&&isset($_POST['choice'])){
     require_once('../shell.php');
-    $groupID = filter_input(INPUT_POST, 'groupId');
+    $groupID = filter_input(INPUT_POST, 'groupId', FILTER_SANITIZE_STRING);
     $dimAmount = filter_input(INPUT_POST,'choice');
     $result = (new Groups_Request())->setGroupBrightness($groupID, intval($dimAmount));
     LightGroup::verifySingleGroup($groupID);

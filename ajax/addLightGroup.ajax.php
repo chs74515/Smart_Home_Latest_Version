@@ -7,7 +7,7 @@
  */
 if(isset($_POST['name'])){
     include_once('../shell.php');
-    $group_name = filter_input(INPUT_POST, "name");
+    $group_name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
     $request = new Groups_Request();
     $request->createGroup($group_name);
     

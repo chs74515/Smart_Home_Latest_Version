@@ -43,8 +43,8 @@ class Authentication {
     public static function processLogin(){
         if(isset($_POST['submit'])){     //check for submission
             $user = new User();
-            $username=  filter_input(INPUT_POST, 'username');
-            $password= filter_input(INPUT_POST, 'password');
+            $username=  filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+            $password= filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
             $loaded = $user->load_by_username($username);
             if($loaded){
                 if($user->verify_password($password)) {
