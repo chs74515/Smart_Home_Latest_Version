@@ -27,16 +27,27 @@ class Group_Relationships extends Database{
         if(!isset($groupId)){
             return [];//if array empty, dont go any further
         }
-        $lightIds= [];
         $sql = "SELECT lightId from group_relationships WHERE groupId = $groupId;";
         $result = mysqli_query(Database::getConnect(), $sql);
+        $lightIds = [];
         if($result->num_rows > 0){
-            $row = mysqli_fetch_assoc($result);
-            foreach ($row as $value) {
-                array_push($lightIds, $value);
+            while($row = mysqli_fetch_array($result)){
+                array_push($lightIds, $row['lightId']);
             }
         }
-        
         return $lightIds;
+    }
+    
+    public static function removeRelationship($groupId, $lightId){
+        $sql = "DELETE FROM group_relationships WHERE groupId = $groupId AND lightId = $lightId;";
+        $result = mysqli_query(Database::getConnect(), $sql);
+        return $result;
+    }
+    
+    public static function addRelationship($groupId, $lightId){
+        $relationship = new self($lightId, $groupId);
+        $result = $relationship->save();
+        //var_dump($relationship);
+        return $result;
     }
 }

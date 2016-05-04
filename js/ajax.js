@@ -229,3 +229,33 @@ function updateName(groupId){
         }
     }); 
 }
+
+function addLightToGroup(element, lightId){
+    var status = $(element).data('status');
+    var groupId = $(element).data('groupid');
+    $.ajax({
+        type: "POST",
+        url: "ajax/addLightToGroup.ajax.php",
+        data: {
+            AJAX : (true),
+            status : (status),
+            groupId : (groupId),
+            lightId : (lightId),
+        },
+        success: function(data){
+            console.log("Success! " + data);
+            //change css
+            if(status === "not in group"){ //reverse
+                $(element).css('background-color','green');
+                $(element).data('status','in group');
+            }else{
+                $(element).css('background-color','salmon');
+                $(element).data('status','not in group');
+            }
+            
+        },
+        error: function(data){
+            console.log("Error: " + JSON.stringify(data));
+        }
+    });
+}

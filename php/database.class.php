@@ -175,12 +175,14 @@ class Database {
         $fieldTypes = $this->fetchFieldTypes();
         $values = [];
         foreach ($this->fields as $field) {
-            if($fieldTypes[$field] >= 252 && $fieldTypes[$field] <= 254){
-                $value = "'".$this->$field."'";
-            }else{
-                $value = $this->$field;
+            if(isset($this->$field)){
+                if($fieldTypes[$field] >= 252 && $fieldTypes[$field] <= 254){
+                    $value = "'".$this->$field."'";
+                }else{
+                    $value = $this->$field;
+                }
+                array_push($values, " `$field` = $value ");
             }
-            array_push($values, " `$field` = $value ");
         }
         $sql .= " " . implode(", ", $values) . ";";
         $result = mysqli_query($this->connect, $sql);

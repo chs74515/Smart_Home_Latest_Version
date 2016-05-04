@@ -162,7 +162,7 @@ class LightGroup extends Database{
                 }else{
                     $status = "not in group";
                 }
-                $div .= "<button data-status='$status' class='lightButton'> $light->name</button>";
+                $div .= "<button data-status='$status' data-groupid='$this->id' class='lightButton' onclick='addLightToGroup(this, $id)'> $light->name</button>";
             }
             $div.="</div>";
             return $div;
