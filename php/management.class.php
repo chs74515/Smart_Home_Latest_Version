@@ -7,6 +7,7 @@ class Management {
             $menu .= self::getButtonDiv("Open Network to New Devices", "scanForNewDevices");
             $menu .= self::getButtonDiv("Add User", "getAddUserMenu");
             $menu .= self::getButtonDiv("Add New Group", "getAddNewGroup");
+            $menu .= self::getButtonDiv("Delete Light Group", "deleteLightGroup");
             $menu .= "</div>";
         }else{
             $menu = "<div><h2 style='color:red'>Access Restricted</h2>Only the Home Owner can access this menu</div>";
@@ -88,6 +89,15 @@ class Management {
         $form = "<h3>Add a New Group</h3><form id='addGroup' onsubmit='return false;'>";
         $form .= "<div class='userInput'><label for='group_name'>Group name: </label><input type='text' name='group_name'></input></div>";
         $form .= "<button onclick=\"addNewGroup($(this).parent())\">Add New Group</button>";
+        return $form;
+        
+    }
+    
+    
+    public static function deleteLightGroup(){
+        $form = "<h3>Delete a Light Group</h3><form id='deleteGroup' onsubmit='return false;'>";
+        $form .= "<div class='userInput'><label for='group_name'>Group id: </label><input type='number' name='group_name'></input></div>";
+        $form .= "<button onclick=\"deleteLightGroup($(this).parent())\">Delete Light Group</button>";
         return $form;
         
     }
