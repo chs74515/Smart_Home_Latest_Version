@@ -158,6 +158,37 @@ function addNewGroup(form){
     }); 
 }
 
+function deleteLightGroup(form){
+    var inputs = $(form).find('[type="text"]');
+    console.log($(inputs));
+    if($(inputs).val() === ""){
+        $(inputs).css("background-color","salmon");
+        alert("Please fill in the indicated field");
+        return;
+    }
+    
+    var name = $('[name="group_name"]').val();
+    console.log($('[name="group_name"]').val());
+    $('.content').html('Working...');
+    $.ajax({
+        type: "POST",
+        url: "ajax/deleteLightGroup.ajax.php",
+        data: {
+            AJAX : (true),
+            name : (name)            
+        },
+        success: function(data){
+            console.log("Success! " + data);
+            $('.content').html(data);
+        },
+        error: function(data){
+            console.log("Error: " + data);
+            $('.content').html("Could not Delete light group");
+        }
+    }); 
+}
+
+
 function dimLight(groupId){
     console.log("Current Choice: " + $('#dim_slide_'+groupId).val());
     var choice = $('#dim_slide_'+groupId).val();
