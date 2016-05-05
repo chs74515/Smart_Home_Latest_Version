@@ -196,7 +196,7 @@ class Database {
         $rows = array();
         $select = "SELECT * from $this->tableName ";
         $result = mysqli_query($this->connect, $select);
-        if($result){
+        if($result->num_rows > 0){
             while($row = mysqli_fetch_assoc($result)) {
                 array_push($rows, $row);
             }

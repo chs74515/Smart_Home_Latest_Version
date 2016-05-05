@@ -36,4 +36,18 @@ class Lights extends Database{
             $light->save();
         }
     }
+    
+    public static function getUnreachableNotice(){
+        $light_results = (new self())->getAllRecords();
+        $div_group = "";
+        foreach($light_results as $result){
+            if(!$result['reachable']){
+                $div_group .= "<div id='unreachable_".$result['id']."'>"
+                    . " <h3>" . $result['name'] . " Cannot be reached</h3>It may be turned "
+                    . "off or no longer connected, please turn it back on or remove it using the management tab.<div class='close' "
+                    . "onclick=\"$('#unreachable_".$result['id']."').toggle();\">x</div></div>";
+            }
+        }
+        return $div_group;
+    }
 }

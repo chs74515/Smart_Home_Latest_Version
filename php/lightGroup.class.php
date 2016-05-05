@@ -76,6 +76,7 @@ class LightGroup extends Database{
      */
     public static function getLightBulbForm(){
         Lights::verifyLights();
+        $unreachable = Lights:: getUnreachableNotice();
         LightGroup::verifyGroups();
         //get all lightbulbs from db and create button for each
         $lightArray = (new self())->getAllRecords();
@@ -87,7 +88,7 @@ class LightGroup extends Database{
             $form .= "<div>$button</div>";
         }
         $form .= "</div>";
-        return $form;
+        return $form . $unreachable;
     }
     
     /**
