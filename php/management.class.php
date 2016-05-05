@@ -104,4 +104,40 @@ class Management {
         return $form;        
     }
     
+    public static function getAllDeviceTable(){
+        $state = (new DeCONZ_API())->curlRequest("GET");
+        echo "Work in progress<br><br>";
+        $table = "<h2>Hub State</h2><table>";
+        var_dump($state);
+        foreach($state as $title => $property){
+            var_dump($title);
+            $table .= "<tr><th>$title</th>";
+            $table .= self::getCellsFromObject($property);
+            $table .= "</tr>";
+            
+        }
+        $table .= "</table>";
+        echo $table;
+    }
+    
+    protected static function getCellsFromObject($object){
+        //$cells = "";
+        foreach($object as $name => $value){
+            echo "<br>value:";var_dump($value);
+            if(is_object($value)){
+                return "<td>$name</td>" . self::getCellsFromObject($value);
+            }else{
+                if(is_array($value)){
+                    $cells = "";
+                    foreach($value as $item){
+                        $cells .= $item . "<br>";
+                    }
+                    return "<td>$cells</td>";
+                }else{
+                    return "<td>$name</td><td>$value</td>";
+                }
+            }
+        }
+    }
+    
 }

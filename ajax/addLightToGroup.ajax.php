@@ -22,6 +22,7 @@ if(isset($_POST['groupId']) && isset($_POST['status']) && isset($_POST['lightId'
     }else{ //toggle into group
         array_push($lightIds, $lightId);
         $result = (new Groups_Request())->setGroupLights($groupId, $lightIds);
+        var_dump($result);
         //add light relationship
         Group_Relationships::addRelationship($groupId, $lightId);
     }

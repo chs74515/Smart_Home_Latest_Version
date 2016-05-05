@@ -171,8 +171,8 @@ class LightGroup extends Database{
     }
     
     private function getSettings(){
-        return "<div id='settings_$this->id' style='display:none;'>" .$this->getColorSlider()
-            . "<hr>" .$this->getDimmingSlider(). $this->getChangeName().$this->addLightToGroup() . "</div>";
+        return "<div id='settings_$this->id' style='display:none;'>" /*.$this->getColorSlider()*/
+            /*. "<hr>"*/ .$this->getDimmingSlider(). $this->getChangeName().$this->addLightToGroup() . "</div>";
     }
     
 /*    public static function getAddLightDiv(){
