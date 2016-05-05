@@ -88,7 +88,7 @@ class LightGroup extends Database{
             $form .= "<div>$button</div>";
         }
         $form .= "</div>";
-        return $form . $unreachable;
+        return $form . $unreachable;// . "<script type='text/javascript'>syncLights();</script>";
     }
     
     /**

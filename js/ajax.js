@@ -230,6 +230,29 @@ function updateName(groupId){
     }); 
 }
 
+function deleteLightbulb(element){
+    console.log($('.lightSelect option:selected'));
+    var light_id = $('.lightSelect option:selected').val();
+    var label = $('.lightSelect option:selected').text();
+    $('.content').html("Working...");
+    $.ajax({
+        type: "POST",
+        url: "ajax/deleteLight.ajax.php",
+        data: {
+            AJAX : (true),
+            lightId : (light_id),
+        },
+        success: function(data){
+            console.log("Success! " + data);        
+            $('.content').html("Deleted " + label + "!");
+        },
+        error: function(data){
+            console.log("Error: " + JSON.stringify(data));
+            $('content').html("Could not delete!");
+        }
+    });
+}
+
 function addLightToGroup(element, lightId){
     var status = $(element).data('status');
     var groupId = $(element).data('groupid');
@@ -258,4 +281,26 @@ function addLightToGroup(element, lightId){
             console.log("Error: " + JSON.stringify(data));
         }
     });
+}
+
+function syncLights(){
+    setTimeout(function(){
+        console.log("syncing");
+        $.ajax({
+            type: "POST",
+            url: "ajax/syncLights.ajax.php",
+            data: {
+                AJAX : (true),
+            },
+            success: function(data){
+                //console.log("Success! " + data);
+                //change css
+                $('.content').html(data);
+
+            },
+            error: function(data){
+                console.log("Error: " + JSON.stringify(data));
+            }
+        });
+    }, 20000);    
 }

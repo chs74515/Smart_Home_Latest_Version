@@ -44,6 +44,12 @@ class Group_Relationships extends Database{
         return $result;
     }
     
+    public static function removeLightbulbRelationships($lightId){
+        $sql = "DELETE FROM group_relationships WHERE lightId = $lightId;";
+        $result = mysqli_query(Database::getConnect(), $sql);
+        return $result;
+    }
+    
     public static function addRelationship($groupId, $lightId){
         $relationship = new self($lightId, $groupId);
         $result = $relationship->save();

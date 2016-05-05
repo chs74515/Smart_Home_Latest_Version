@@ -7,6 +7,7 @@ class Management {
             $menu .= self::getButtonDiv("Open Network to New Devices", "scanForNewDevices");
             $menu .= self::getButtonDiv("Add User", "getAddUserMenu");
             $menu .= self::getButtonDiv("Add New Group", "getAddNewGroup");
+            $menu .= self::getButtonDiv("Delete A Light", "getDeleteLightForm");
             $menu .= "</div>";
         }else{
             $menu = "<div><h2 style='color:red'>Access Restricted</h2>Only the Home Owner can access this menu</div>";
@@ -87,9 +88,20 @@ class Management {
     public static function getAddNewGroup(){
         $form = "<h3>Add a New Group</h3><form id='addGroup' onsubmit='return false;'>";
         $form .= "<div class='userInput'><label for='group_name'>Group name: </label><input type='text' name='group_name'></input></div>";
-        $form .= "<button onclick=\"addNewGroup($(this).parent())\">Add New Group</button>";
+        $form .= "<button onclick=\"addNewGroup($(this).parent())\">Add New Group</button></form>";
         return $form;
         
+    }
+    
+    public static function getDeleteLightForm(){
+        $form = "<h3>Delete a Light</h3><form id='deleteLight' onsubmit='return false;'>";
+        $form .= "Select a Light: <select class='lightSelect' name='delete_light'>";
+        $lightbulbs = (new Lights())->getAllRecords();
+        foreach($lightbulbs as $bulb){
+            $form .= "<option value='".$bulb['id']."'>".$bulb['name']."</option>";
+        }
+        $form .= "</select><button onclick=\"deleteLightbulb($(this).parent())\">Delete Light</button></form>";
+        return $form;        
     }
     
 }

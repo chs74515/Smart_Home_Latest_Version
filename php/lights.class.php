@@ -50,4 +50,11 @@ class Lights extends Database{
         }
         return $div_group;
     }
+    
+    public static function deleteLight($lightId){
+         $sql = "DELETE FROM lights WHERE id = $lightId;";
+         echo $sql;
+        $result = mysqli_query(Database::getConnect(), $sql);
+        return $result;
+    }
 }
