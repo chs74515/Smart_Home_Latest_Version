@@ -72,6 +72,7 @@ class Groups_Request extends DeCONZ_API{
         return $this->curlRequest("DELETE", "/$id");
     }
     
+    
     public function setGroupBrightness($id, $bri){
         $request_body = ['bri'=>$bri];
         return $this->curlRequest("PUT", "/$id/action", $request_body);
