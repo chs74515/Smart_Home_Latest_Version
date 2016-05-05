@@ -1,0 +1,724 @@
+e5f7ca4 Wed May 4 17:11:05 2016 -0500 Brody
+add/remove lights from a group
+
+
+
+8d29a9b Thu Apr 28 07:56:32 2016 -0500 Brody
+removed unused css file, protecting against cross side scripting
+
+
+
+b44232e Wed Apr 27 10:07:59 2016 -0500 Brody
+changed naming scheme
+
+
+
+0bf8af4 Wed Apr 27 09:59:06 2016 -0500 Brody
+added reachable and hascolor fields to db, updating with light verify
+
+
+
+8384e8c Wed Apr 27 09:51:51 2016 -0500 Brody
+feddback when no lights are found
+
+
+
+1871289 Wed Apr 27 09:21:58 2016 -0500 Brody
+removed python files
+
+
+
+135b5ac Tue Apr 26 19:36:46 2016 -0700 Caleb
+fixed a bug
+
+
+
+fde40cb Tue Apr 26 19:17:58 2016 -0700 Caleb
+it works yayyyyy!!!!! made a new php file "addLightGroup" in the ajax folder which essentially adds the light group
+
+
+
+cb1da21 Tue Apr 26 18:46:42 2016 -0700 Caleb
+button works now but doesnt do anything yet, made ajax for adding a light group
+
+
+
+5a22ddf Mon Apr 25 09:13:06 2016 -0700 Caleb
+adding a new light group form In Progress, the submit button is not there yet
+
+
+
+bd0e556 Sun Apr 24 19:40:00 2016 -0500 Brody
+wasn't updating
+
+
+
+6f11a47 Sun Apr 24 19:17:09 2016 -0500 Brody
+took out debug echos
+
+
+
+b503274 Sun Apr 24 19:15:55 2016 -0500 Brody
+fixing bugs with multiple groups on page and group relationships
+
+
+
+bb3531a Sun Apr 24 19:01:02 2016 -0500 Brody
+fix to light toggle
+
+
+
+28dfed9 Sun Apr 24 18:40:56 2016 -0500 Brody
+fixed button to open network
+
+
+
+ebe4991 Sun Apr 24 18:39:40 2016 -0500 Brody
+removed insecure temp code
+
+
+
+5dc807c Sun Apr 24 09:54:49 2016 -0500 Brody
+added light group relatioship
+
+
+
+593d31f Sun Apr 24 08:33:50 2016 -0500 Brody
+fix to style
+
+
+
+cdb0c77 Sat Apr 23 22:39:54 2016 -0500 Brody
+added logo to login form
+
+
+
+1a05ea7 Sat Apr 23 22:24:15 2016 -0500 Brody
+added form to change a group name
+
+
+
+94a69d1 Sat Apr 23 20:19:21 2016 -0500 Brody
+using html color input
+
+
+
+75ca6c6 Sat Apr 23 18:57:32 2016 -0500 Brody
+added settings menu that toggles on/off
+
+
+
+62e6288 Sat Apr 23 17:46:37 2016 -0500 Brody
+added dimmer slider, needs to be tested
+
+
+
+9165ab4 Sat Apr 23 08:46:44 2016 -0500 Brody
+changed user form css, added role type to user table and forms
+
+
+
+3b4c004 Fri Apr 22 20:47:20 2016 -0500 Brody
+added form to add user
+
+
+
+72f74bf Fri Apr 22 20:45:45 2016 -0500 Brody
+changed light images and css
+
+
+
+7267c71 Sun Apr 17 09:13:13 2016 -0500 Brody
+side slider menu was miss behaving, using google jquery hosting now. Font takes half a second to load when not from cache, how to improve this?
+
+
+
+55ed593 Sun Apr 17 08:50:43 2016 -0500 Brody
+added menu for management tab, also created ajax method to handle menu buttons, may want to change main menu to use this
+
+
+
+3a6341f Sat Apr 16 11:06:13 2016 -0500 Brody
+tweaks to home page and nav bar
+
+
+
+b8b577a Fri Apr 15 10:17:23 2016 -0500 Brody
+removing unused sense hat code, changed layout to use single nav menu
+
+
+
+7141ee2 Sun Apr 10 21:30:35 2016 -0500 Brody
+added logo to mobile nav bar
+
+
+
+5427792 Sun Apr 10 21:23:43 2016 -0500 Brody
+added empty tabs, will need to create methods for these later
+
+
+
+022d1e6 Sun Apr 10 20:43:32 2016 -0500 Brody
+added logo, but cannot use it, it is too small. added a new font
+
+
+
+7d48bd0 Sun Apr 10 20:28:30 2016 -0500 Brody
+attempting to update look and feel, code seems a little disorganized, need to clean up nav class a little bit
+
+
+
+8d891ab Sun Apr 10 02:21:28 2016 -0500 Brody
+tweaks to fix turning on light, should we save to db or reverify light state?
+
+
+
+946bfdc Sat Apr 9 19:03:47 2016 -0500 Brody
+removing debugging echo
+
+
+
+6a79001 Sat Apr 9 19:01:13 2016 -0500 Brody
+getting light group to turn on and off, have yet to do on site testing
+
+
+
+37cb6aa Sat Apr 9 16:52:26 2016 -0500 Brody
+added light group api class
+
+
+
+4ad29b5 Sat Apr 9 16:14:41 2016 -0500 Brody
+fixes to light form, using lightgroup form now
+
+
+
+3d74a38 Sat Apr 9 15:48:20 2016 -0500 Brody
+updating lights page
+
+
+
+1b50cc8 Sat Apr 9 14:13:18 2016 -0500 Brody
+updating nav menu, fixes to db class
+
+
+
+8310b27 Sat Apr 9 13:22:50 2016 -0500 Brody
+changes to db
+
+
+
+5e4a279 Fri Apr 8 18:08:53 2016 -0500 Brody
+updated database classes to use new and improved database class
+
+
+
+3a32adf Thu Apr 7 13:45:30 2016 -0500 Brody
+fixed file requires, turning lights on and off works!
+
+
+
+cede33a Thu Apr 7 00:42:56 2016 -0500 Brody
+added field properties to lights class
+
+
+
+ccd17f5 Thu Apr 7 00:35:16 2016 -0500 Brody
+restructured deconz api classes to be more organized and object oriented,
+added lights request class,
+issue with unreachable light that will need to be sorted out
+
+
+
+b98cdb4 Thu Mar 31 21:35:50 2016 -0500 Brody
+Revert "Revert "Merge branch 'curl_api' into 'master'""
+
+This reverts commit 88a28e2eb5f9dc3646ab7da1e8a65556998e9e6c.
+
+
+
+7bb4f4a Thu Mar 31 21:30:18 2016 -0500 Brody
+uneeded function
+
+
+
+7a33cfc Thu Mar 31 21:27:56 2016 -0500 Brody
+changes to authentication to make it compatible with php version 5.4
+
+
+
+88a28e2 Fri Apr 1 02:15:01 2016 +0000 Brody
+Revert "Merge branch 'curl_api' into 'master'"
+
+This reverts merge request !2
+
+
+ce1ccdf Thu Mar 31 14:00:20 2016 -0500 caleb
+test code for authentication via curl
+
+
+a17f091 Thu Mar 31 14:00:04 2016 -0500 caleb
+test code for authentication via curl
+
+
+857bd6e Thu Mar 31 13:50:25 2016 -0500 caleb
+test code for authentication via curl
+
+
+11fcc96 Fri Mar 25 09:42:37 2016 -0500 Thomas Murray
+Began to work on the Schedule class.
+
+
+
+44a158f Wed Mar 23 09:02:46 2016 -0500 Thomas Murray
+removing the test code.
+
+
+
+75dedd9 Mon Mar 21 10:01:09 2016 -0500 Thomas Murray
+testing
+
+
+
+3681212 Mon Mar 21 09:57:19 2016 -0500 Thomas Murray
+Test change
+
+
+
+9ed630c Thu Dec 3 19:54:38 2015 -0600 Brody
+lights turn on when page loads
+
+
+
+362a584 Thu Dec 3 00:58:05 2015 -0600 Brody
+added form to add to light groups
+
+
+
+887f57c Wed Dec 2 23:49:20 2015 -0600 Brody
+added light groups, to do: add form to add lights to light groups
+
+
+
+f7edcf0 Wed Dec 2 14:26:19 2015 -0600 Brody
+python code for light group
+
+
+
+9531981 Wed Nov 25 17:38:35 2015 -0600 Brody
+adding climate control info and Celsius C
+
+
+
+1c5b0bd Wed Nov 25 17:08:25 2015 -0600 Brody
+was causing an error
+
+
+
+07e0dad Fri Nov 20 21:01:54 2015 -0600 Brody
+fixes to python files
+
+
+
+b48dfa0 Fri Nov 20 16:15:45 2015 -0600 Brody
+added a dynamic name to login
+
+
+
+bb3ba6a Fri Nov 20 16:15:25 2015 -0600 Brody
+optimized for mobile
+
+
+
+bb5c347 Thu Nov 19 20:57:35 2015 -0600 Brody
+added thermostat control feature
+
+
+
+7d03fd6 Thu Nov 19 19:46:19 2015 -0600 Brody
+Added dynamic temperature for thermometer
+
+
+
+6d899d8 Thu Nov 19 18:47:57 2015 -0600 Brody
+making the thermometer look more like a thermometer
+
+
+
+03069de Sun Nov 15 00:04:46 2015 -0600 Brody
+added thermometer and climate control form
+
+
+
+d606903 Sat Nov 14 22:43:13 2015 -0600 Brody
+adds onclick to home image
+
+
+
+95eb358 Sat Nov 14 22:30:40 2015 -0600 Brody
+fixed authentication bug
+
+
+
+a552410 Tue Nov 10 19:24:12 2015 -0600 Brody
+can now manually play audio on mobile
+
+
+
+91a390e Tue Nov 10 19:23:48 2015 -0600 Brody
+changed lock images from unicode to image
+
+
+
+7b8be58 Wed Nov 4 20:44:03 2015 -0600 Brody
+lights will turn on when user hits light page, potentially slows down page load
+
+
+
+51a3861 Wed Nov 4 20:43:08 2015 -0600 Brody
+Second click of party button will kill party mode
+
+
+
+62ed722 Wed Nov 4 19:50:08 2015 -0600 Brody
+added slight margin
+
+
+
+ab7f3d3 Wed Nov 4 19:44:49 2015 -0600 Brody
+added lock  and night mode feature
+
+
+
+021adcf Wed Nov 4 19:43:51 2015 -0600 Brody
+simplified lightshandler, replaced over 200 lines of code with loops
+
+
+
+54adabd Wed Nov 4 17:36:19 2015 -0600 Brody
+css changes
+
+
+
+89f4017 Tue Nov 3 20:50:26 2015 -0600 Brody
+Revert "making the login in page color blind accessible"
+
+This reverts commit 1bd2569da631637f751c12bd7ecd9f500bf7b805.
+
+
+
+831c4bc Tue Nov 3 20:46:44 2015 -0600 Brody
+some css changes
+
+
+
+1bd2569 Tue Nov 3 18:24:31 2015 -0800 Caleb
+making the login in page color blind accessible
+
+
+
+8e18ca4 Tue Nov 3 20:08:11 2015 -0600 Brody
+Added audio
+
+
+
+99f97d1 Tue Nov 3 19:24:59 2015 -0600 Brody
+authenticated bug
+
+
+
+4b53b50 Wed Nov 4 01:06:41 2015 +0000 Tyler
+stuff
+
+
+
+64b4cff Wed Nov 4 01:03:50 2015 +0000 Tyler
+things
+
+
+
+4d4ef23 Tue Nov 3 18:33:58 2015 -0600 Brody
+slight fixes to most recent changes for user authentication
+
+
+
+a6c3a9d Tue Nov 3 10:48:26 2015 -0600 Brody
+added support for unhashed passwords in db
+
+
+
+dcf4a11 Tue Nov 3 10:39:39 2015 -0600 Brody
+instructions for activating account
+
+
+
+f35b5e7 Tue Nov 3 10:36:18 2015 -0600 Brody
+added feature to add user through url
+
+
+
+05837cf Sun Nov 1 17:04:28 2015 -0600 Brody
+styling changes
+
+
+
+fc15fc9 Sat Oct 31 17:25:19 2015 -0500 Brody
+Added tab list
+
+
+
+cbcb952 Sat Oct 31 15:59:29 2015 -0500 Brody
+making entire div clickable
+
+
+
+0421bc9 Sat Oct 31 15:39:23 2015 -0500 Brody
+final touches on authentication feature
+
+
+
+9c6cbf9 Tue Oct 27 23:49:18 2015 -0500 Brody
+finished implementing the authentication feature, still need to add registering feature for new users
+
+
+
+e9012ba Thu Oct 22 14:50:25 2015 -0500 Ty
+user login
+
+
+
+6b94ab9 Tue Oct 13 23:01:11 2015 -0500 Brody
+added comments
+
+
+
+05dbe0a Thu Oct 8 23:07:33 2015 -0500 Brody
+commented out wrong lines, set css
+
+
+
+524c1cf Thu Oct 8 22:58:55 2015 -0500 Brody
+only executes welcome once per session
+
+
+
+7ad15d6 Thu Oct 8 21:40:32 2015 -0500 Brody
+calling wrong file
+
+
+
+b42871e Thu Oct 8 21:24:15 2015 -0500 Brody
+Welcome message
+
+
+
+14c8025 Thu Oct 8 20:53:05 2015 -0500 Brody
+left aligned
+
+
+
+deb3f8e Thu Oct 8 20:50:17 2015 -0500 Brody
+for light readers
+
+
+
+6b11cef Thu Oct 8 20:45:47 2015 -0500 Brody
+centered everything for mobile friendliness
+
+
+
+a1b05d5 Thu Oct 8 19:00:35 2015 -0500 Brody
+css changes, id as light id
+
+
+
+600dae9 Tue Oct 6 21:38:24 2015 -0500 Brody
+party button
+
+
+
+02867ba Wed Oct 7 02:02:29 2015 +0000 Tyler
+add sprinkles.py
+
+
+
+1d45bf4 Tue Oct 6 20:56:36 2015 -0500 Brody
+it works! bug with comment?
+
+
+
+19cc5bb Tue Oct 6 20:40:22 2015 -0500 Brody
+light on bug
+
+
+
+b3ee14f Tue Oct 6 19:58:24 2015 -0500 Brody
+added update and finished ajax
+
+
+
+ed36cab Tue Oct 6 19:07:15 2015 -0500 Brody
+gets each lightbulb, ajax function for onclick
+
+
+
+96fa275 Tue Oct 6 18:41:55 2015 -0500 Ty
+serf
+
+
+
+56181ff Tue Oct 6 18:27:16 2015 -0500 Brody
+Added static call
+
+
+
+05685e2 Tue Oct 6 18:26:41 2015 -0500 Ty
+more things
+
+
+
+db2e494 Tue Oct 6 18:08:05 2015 -0500 Ty
+call python script from php
+
+
+
+0238873 Tue Oct 6 17:54:59 2015 -0500 Brody
+added image for header
+
+
+
+b732340 Tue Oct 6 17:54:44 2015 -0500 Brody
+adding ajax
+
+
+
+3fe128a Tue Oct 6 17:54:27 2015 -0500 Brody
+check for ajax calls
+
+
+
+787361f Tue Sep 29 20:29:16 2015 -0500 Brody
+added images to light bulb page
+
+
+
+ca2167a Tue Sep 29 20:05:10 2015 -0500 Brody
+added load by and save
+
+
+
+4f9b746 Tue Sep 29 19:09:41 2015 -0500 Brody
+added jquery
+
+
+
+9719a39 Tue Sep 29 19:04:02 2015 -0500 Brody
+added lightbulb div
+
+
+
+0938b08 Tue Sep 29 18:30:09 2015 -0500 Brody
+limits view of website for only authenticated users
+
+
+
+78a0e37 Tue Sep 29 18:24:47 2015 -0500 Brody
+moved isAuthenticated to authentication class
+
+
+
+f8e27ef Tue Sep 29 18:21:26 2015 -0500 Brody
+added isAuthenticated and password encode/ decode empty functions
+
+
+
+b771fba Tue Sep 29 23:11:51 2015 +0000 Tyler
+add LightsHandler.py
+
+
+
+ad59ac9 Sat Sep 26 18:43:39 2015 -0500 Brody
+added boolean to trigger registration prompt/ wrong username popup
+
+
+
+efccbb7 Sat Sep 26 18:39:13 2015 -0500 Brody
+fixed query
+
+
+
+2463c86 Sat Sep 26 18:14:44 2015 -0500 Brody
+work in progress
+
+
+
+88850a4 Sat Sep 26 13:46:58 2015 -0700 Caleb
+work in progress
+
+
+
+f9ef88a Sat Sep 26 12:45:01 2015 -0700 Caleb
+added css
+
+
+
+12c0ce0 Sat Sep 26 11:58:28 2015 -0700 Caleb
+added authentication form
+
+
+
+075fece Sat Sep 26 11:34:39 2015 -0700 Caleb
+added loads by id
+
+
+
+7d7dace Sat Sep 26 13:14:05 2015 -0500 Brody
+added user class
+
+
+
+ab05e15 Sat Sep 26 13:09:56 2015 -0500 Brody
+connected to database, added error message, server info function
+
+
+
+5b70fe5 Sat Sep 26 12:41:38 2015 -0500 Brody
+added new class, echoed out server super global
+
+
+
+2e7a50b Sat Sep 26 12:18:51 2015 -0500 Brody
+added to shell, changed name
+
+
+
+2cff6f3 Sat Sep 26 12:08:54 2015 -0500 Brody
+Added class files
+
+
+
+483680d Fri Sep 25 00:06:35 2015 +0000 Tyler
+rm nbproject
+
+
+
+c1f70dc Thu Sep 24 19:06:09 2015 -0500 Brody
+ignore whole nbproject directory
+
+
+
+42307eb Fri Sep 25 00:05:09 2015 +0000 Tyler
+add SenseHandler.py
+
+
+
+e99fa9b Thu Sep 24 19:01:11 2015 -0500 Brody
+added index page
+
+
+
+a372458 Thu Sep 24 18:29:41 2015 -0500 brd69125
+Initial commit
+
+
+
