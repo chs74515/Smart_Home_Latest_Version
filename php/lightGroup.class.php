@@ -90,6 +90,12 @@ class LightGroup extends Database{
         return $form;
     }
     
+    public static function deleteGroupFromDb($groupId){
+        $sql = "DELETE FROM group_relationships WHERE id = $groupId;";
+        $result = mysqli_query(Database::getConnect(), $sql);
+        return $result;
+    }
+    
     /**
      * 
      * @return string HTML Div of button and label
