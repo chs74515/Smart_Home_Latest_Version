@@ -13,7 +13,7 @@
  */
 class Navigation_Menu {
     //private $display = TRUE;
-    private static $tab_list = ['lights' => 'Lights', "management" => "Home Management", "view_all" => "View All Devices"];
+    private static $tab_list = ['lights' => 'Lights', "management" => "Home Management", "view_all" => "View All Devices", "schedule" => "Scheduling"];
     
     public function __set($name, $value) {
         $this->$name = $value;
@@ -77,6 +77,8 @@ class Navigation_Menu {
                 echo Management::getManageMenu();
             }else if($option == 'view_all'){
                 echo Management::getAllDeviceTable();
+            }else if($option == 'scheduling'){
+                echo Schedule::getSchedulingMenu();
             }else{
                 echo "<h3>Undefined Tab Selected</h3>";
             }

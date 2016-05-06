@@ -335,3 +335,39 @@ function syncLights(){
         });
     }, 20000);    
 }
+
+function addNewSchedule(form){
+    var inputs = $(form).find('[type="text"]');
+    for(var i =0; i<3; i++){
+        console.log($(inputs[i]));
+        if($(inputs[i]).val() === ""){
+            $(inputs[i]).css("background-color","salmon");
+            alert("Please fill in the indicated field");
+            return;
+        }
+    }
+    var schedulename = $('[name="schedulename"]').val();
+    var scheduledescription = $('[name="scheduledescription"]').val();
+    var schedulecommand = $('[name="schedulecommand"]').val();
+    var scheduletime = $('[name="scheduletime"]').val();
+    $('.content').html('Working...');
+    $.ajax({
+        type: "POST",
+        url: "ajax/createSchedule.ajax.php",
+        data: {
+            AJAX : (true),
+            schedulename : (schedulename),
+            scheduledescription : (scheduledescription),
+            schedulecommand : (schedulecommand),
+            scheduletime : (scheduletime)
+        },
+        success: function(data){
+            console.log("Success! " + data);
+            $('.content').html(data);
+        },
+        error: function(data){
+            console.log("Error: " + data);
+            $('.content').html("Could not add schedule!");
+        }
+    });    
+}

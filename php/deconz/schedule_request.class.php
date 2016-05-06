@@ -1,0 +1,46 @@
+<?php
+
+class Schedules_Request extends DeCONZ_API{
+    protected $endpoint = "/schedules";
+    protected $fields = [
+        "name",
+        "description",
+        "command",
+        "time"
+    ];
+    
+    public function createSchedule($name,$description,$command,$time){
+        $fields = ['name' => $name,'description' => $description,'command' => $command,'time' => $time];
+        return $this->curlRequest("POST","",$fields);
+    }
+    
+    public function getAllSchedules(){
+        return $this->curlRequest("GET");
+    }
+    
+    public function getScheduleAttributes($id){
+        return $this->curlRequest("GET", "/$id");
+    }
+    
+    public function setScheduleAttributes($id, $fields){
+        return $this->curlRequest("PUT", "/$id", $fields);
+    }
+    
+    public function deleteSchedule($scheduleId){
+        return $this->curlRequest("DELETE", "/$scheduleId");
+    }
+    
+    public function setScheduleCommand($id, 
+        $request_array = 
+        ['address'=>null,
+            'method'=>null,
+            'body'=>null]){
+        $request_body = [];
+        foreach($request_array as $property => $value){
+            if(isset($request_array[$property])){
+                $request_body[$property] = $value;
+            }
+        }
+        return $this->curlRequest("PUT", "/$id/command", $request_body);
+    }
+}
