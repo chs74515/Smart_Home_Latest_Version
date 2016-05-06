@@ -77,8 +77,8 @@ class Navigation_Menu {
                 echo Management::getManageMenu();
             }else if($option == 'view_all'){
                 echo Management::getAllDeviceTable();
-            }else if($option == 'scheduling'){
-                echo Schedule::getSchedulingMenu();
+            }else if($option == 'schedule'){
+                echo Schedule::getScheduleMenu();
             }else{
                 echo "<h3>Undefined Tab Selected</h3>";
             }

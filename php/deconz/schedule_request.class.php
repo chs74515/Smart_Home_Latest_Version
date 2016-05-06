@@ -1,6 +1,6 @@
 <?php
 
-class Schedules_Request extends DeCONZ_API{
+class Schedule_Request extends DeCONZ_API{
     protected $endpoint = "/schedules";
     protected $fields = [
         "name",
@@ -9,7 +9,15 @@ class Schedules_Request extends DeCONZ_API{
         "time"
     ];
     
-    public function createSchedule($name,$description,$command,$time){
+    public function createSchedule($name,$description,$groupId,$body,$time){
+        $apiKey = $this->key;
+        $groupId = 8;
+        $body = ["on" => true];
+        $command = [
+            "address" => "/api/$apiKey/groups/$groupId/action", 
+            "method" => "PUT",
+            "body" => $body];
+        $time = "2013-07-29T09:30:00";
         $fields = ['name' => $name,'description' => $description,'command' => $command,'time' => $time];
         return $this->curlRequest("POST","",$fields);
     }
