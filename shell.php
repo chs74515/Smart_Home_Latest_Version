@@ -46,7 +46,6 @@ function echoJavaScript(){
 function echoCSS(){
     echo "<link href='https://fonts.googleapis.com/css?family=Fredericka the Great' rel='stylesheet' type='text/css'>";
     echo "<link rel='stylesheet' href='css/index.css' type='text/css'>";
-    echo "<link rel='stylesheet' href='css/thermostat.css' type='text/css'>";
     echo "<link rel='stylesheet' href='css/homePage.css' type='text/css'>";
     echo "<link rel='stylesheet' href='css/navBar.css' type='text/css'>";     
     echo "<link rel='stylesheet' href='css/management.css' type='text/css'>"; 

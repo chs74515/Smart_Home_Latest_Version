@@ -76,6 +76,7 @@ class LightGroup extends Database{
      */
     public static function getLightBulbForm(){
         Lights::verifyLights();
+        $unreachable = Lights:: getUnreachableNotice();
         LightGroup::verifyGroups();
         //get all lightbulbs from db and create button for each
         $lightArray = (new self())->getAllRecords();
@@ -87,7 +88,7 @@ class LightGroup extends Database{
             $form .= "<div>$button</div>";
         }
         $form .= "</div>";
-        return $form;
+        return $form . $unreachable;// . "<script type='text/javascript'>syncLights();</script>";
     }
     
     public static function deleteGroupFromDb($groupId){
@@ -176,8 +177,8 @@ class LightGroup extends Database{
     }
     
     private function getSettings(){
-        return "<div id='settings_$this->id' style='display:none;'>" .$this->getColorSlider()
-            . "<hr>" .$this->getDimmingSlider(). $this->getChangeName().$this->addLightToGroup() . "</div>";
+        return "<div id='settings_$this->id' style='display:none;'>" /*.$this->getColorSlider()*/
+            /*. "<hr>"*/ .$this->getDimmingSlider(). $this->getChangeName().$this->addLightToGroup() . "</div>";
     }
     
 /*    public static function getAddLightDiv(){

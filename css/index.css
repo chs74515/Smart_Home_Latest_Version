@@ -183,3 +183,25 @@ body{
 .lightButton[data-status='not in group']{
     background-color: salmon;
 }
+
+div[id ^= 'unreachable_']{
+    position: fixed;
+    top: 10vh;
+    margin:5vw;
+    background-color: salmon;
+    padding: 30px;
+    border: medium solid darkred;
+    border-radius: 10px;
+}
+
+div[id ^= 'unreachable_'] .close{
+    position: absolute;
+    background: darkred;
+    color: white;
+    padding: 0px 5px;
+    top: 0px;
+    right: 0px;
+    text-align: center;
+    vertical-align: middle;
+    cursor:pointer;
+}

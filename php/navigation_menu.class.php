@@ -13,7 +13,7 @@
  */
 class Navigation_Menu {
     //private $display = TRUE;
-    private static $tab_list = ['lights' => 'Lights', "management" => "Home Management"];
+    private static $tab_list = ['lights' => 'Lights', "management" => "Home Management", "view_all" => "View All Devices"];
     
     public function __set($name, $value) {
         $this->$name = $value;
@@ -30,7 +30,7 @@ class Navigation_Menu {
         foreach(self::$tab_list as $tab => $name){
             $tabs .= self::getNavButton($tab, $name) . "<br>";
         }
-        $tabs .= self::getNavButton("view_all", "View All Devices");
+//        $tabs .= self::getNavButton("view_all", "View All Devices");
 //        $tabs .= self::getNavButton("add_user", "Add a User");
         $method= "get";
         $action="''";
@@ -75,6 +75,8 @@ class Navigation_Menu {
                 echo LightGroup::getLightGroupForm();
             }else if($option == 'management'){
                 echo Management::getManageMenu();
+            }else if($option == 'view_all'){
+                echo Management::getAllDeviceTable();
             }else{
                 echo "<h3>Undefined Tab Selected</h3>";
             }

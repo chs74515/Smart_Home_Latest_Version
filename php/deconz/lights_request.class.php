@@ -37,6 +37,10 @@ class Lights_Request extends DeCONZ_API{
         return $this->curlRequest("GET", "/$lightId");
     }
     
+    public function deleteLight($lightId){
+        return $this->curlRequest("DELETE", "/$lightId");
+    }
+    
     //need to make this method more detailed, maybe use fields array
     public function setLightState($lightId,$request = []){
         return $this->curlRequest("PUT", "/$lightId/state", $request);

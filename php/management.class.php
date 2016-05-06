@@ -8,6 +8,7 @@ class Management {
             $menu .= self::getButtonDiv("Add User", "getAddUserMenu");
             $menu .= self::getButtonDiv("Add New Group", "getAddNewGroup");
             $menu .= self::getButtonDiv("Delete Light Group", "deleteLightGroup");
+            $menu .= self::getButtonDiv("Delete A Light", "getDeleteLightForm");
             $menu .= "</div>";
         }else{
             $menu = "<div><h2 style='color:red'>Access Restricted</h2>Only the Home Owner can access this menu</div>";
@@ -88,7 +89,7 @@ class Management {
     public static function getAddNewGroup(){
         $form = "<h3>Add a New Group</h3><form id='addGroup' onsubmit='return false;'>";
         $form .= "<div class='userInput'><label for='group_name'>Group name: </label><input type='text' name='group_name'></input></div>";
-        $form .= "<button onclick=\"addNewGroup($(this).parent())\">Add New Group</button>";
+        $form .= "<button onclick=\"addNewGroup($(this).parent())\">Add New Group</button></form>";
         return $form;
         
     }
@@ -99,7 +100,53 @@ class Management {
         $form .= "<div class='userInput'><label for='group_name'>Group id: </label><input type='number' name='group_name'></input></div>";
         $form .= "<button onclick=\"deleteLightGroup($(this).parent())\">Delete Light Group</button>";
         return $form;
-        
+    }
+    
+    public static function getDeleteLightForm(){
+        $form = "<h3>Delete a Light</h3><form id='deleteLight' onsubmit='return false;'>";
+        $form .= "Select a Light: <select class='lightSelect' name='delete_light'>";
+        $lightbulbs = (new Lights())->getAllRecords();
+        foreach($lightbulbs as $bulb){
+            $form .= "<option value='".$bulb['id']."'>".$bulb['name']."</option>";
+        }
+        $form .= "</select><button onclick=\"deleteLightbulb($(this).parent())\">Delete Light</button></form>";
+        return $form;        
+    }
+    
+    public static function getAllDeviceTable(){
+        $state = (new DeCONZ_API())->curlRequest("GET");
+        echo "Work in progress<br><br>";
+        $table = "<h2>Hub State</h2><table>";
+        var_dump($state);
+        foreach($state as $title => $property){
+            var_dump($title);
+            $table .= "<tr><th>$title</th>";
+            $table .= self::getCellsFromObject($property);
+            $table .= "</tr>";
+            
+        }
+        $table .= "</table>";
+        echo $table;
+    }
+    
+    protected static function getCellsFromObject($object){
+        //$cells = "";
+        foreach($object as $name => $value){
+            echo "<br>value:";var_dump($value);
+            if(is_object($value)){
+                return "<td>$name</td>" . self::getCellsFromObject($value);
+            }else{
+                if(is_array($value)){
+                    $cells = "";
+                    foreach($value as $item){
+                        $cells .= $item . "<br>";
+                    }
+                    return "<td>$cells</td>";
+                }else{
+                    return "<td>$name</td><td>$value</td>";
+                }
+            }
+        }
     }
     
 }
