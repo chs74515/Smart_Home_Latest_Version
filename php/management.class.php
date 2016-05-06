@@ -113,7 +113,7 @@ class Management {
         foreach($lightbulbs as $bulb){
             $form .= "<option value='".$bulb['id']."'>".$bulb['name']."</option>";
         }
-        $form .= "</select><button onclick=\"deleteLightbulb($(this).parent())\">Delete Light</button></form>";
+        $form .= "</select><br><button onclick=\"deleteLightbulb($(this).parent())\">Delete Light</button></form>";
         return $form;        
     }
     
