@@ -166,16 +166,16 @@ function deleteLightGroup(form){
         alert("Please fill in the indicated field");
         return;
     }
-    
-    var name = $('[name="group_name"]').val();
-    console.log($('[name="group_name"]').val());
+    var group_id = $('.groupSelect option:selected').val();
+    //var label = $('.groupSelect option:selected').text();
+    console.log($('.groupSelect option:selected').val());
     $('.content').html('Working...');
     $.ajax({
         type: "POST",
         url: "ajax/deleteLightGroup.ajax.php",
         data: {
             AJAX : (true),
-            name : (name)            
+            name : (group_id)            
         },
         success: function(data){
             console.log("Success! " + data);

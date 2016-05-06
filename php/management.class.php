@@ -97,8 +97,12 @@ class Management {
     
     public static function deleteLightGroup(){
         $form = "<h3>Delete a Light Group</h3><form id='deleteGroup' onsubmit='return false;'>";
-        $form .= "<div class='userInput'><label for='group_name'>Group id: </label><input type='number' name='group_name'></input></div>";
-        $form .= "<button onclick=\"deleteLightGroup($(this).parent())\">Delete Light Group</button>";
+        $form .= "Select a Light Group: <select class='groupSelect' name='delete_group'>";
+        $lightbulbs = (new LightGroup())->getAllRecords();
+        foreach($lightbulbs as $bulb){
+            $form .= "<option value='".$bulb['id']."'>".$bulb['name']."</option>";
+        }
+        $form .= "</select><br><button onclick=\"deleteLightGroup($(this).parent())\">Delete Light Group</button>";
         return $form;
     }
     

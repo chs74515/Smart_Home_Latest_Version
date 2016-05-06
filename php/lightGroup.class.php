@@ -92,7 +92,7 @@ class LightGroup extends Database{
     }
     
     public static function deleteGroupFromDb($groupId){
-        $sql = "DELETE FROM group_relationships WHERE id = $groupId;";
+        $sql = "DELETE FROM light_group WHERE id = $groupId;";
         $result = mysqli_query(Database::getConnect(), $sql);
         return $result;
     }
