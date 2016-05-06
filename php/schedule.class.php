@@ -60,7 +60,11 @@ class Schedule extends Database{
         foreach($state as $title => $property){
             var_dump($title);
             $table .= "<tr><th>$title</th>";
-            $table .= self::getCellsFromObject($property);
+            if(is_object($property)){
+                $table .= self::getCellsFromObject($property);
+            }else{
+                $table .= "<td>$property</td>";
+            }
             $table .= "</tr>";
         }
         $table .= "</table>";

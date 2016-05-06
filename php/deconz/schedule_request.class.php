@@ -14,10 +14,10 @@ class Schedule_Request extends DeCONZ_API{
         $groupId = 8;
         $body = ["on" => true];
         $command = [
-            "address" => "/api/$apiKey/groups/$groupId/action", 
+            "address" => "/api$apiKey/groups/$groupId/action", 
             "method" => "PUT",
             "body" => $body];
-        $time = "2013-07-29T09:30:00";
+        $time = "2016-07-29T09:30:00";
         $fields = ['name' => $name,'description' => $description,'command' => $command,'time' => $time];
         return $this->curlRequest("POST","",$fields);
     }
