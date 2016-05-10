@@ -135,19 +135,23 @@ class Management {
     
     protected static function getCellsFromObject($object){
         //$cells = "";
+        if(is_array($object)){
+            echo " Array!";
+        }
+        
         foreach($object as $name => $value){
             echo "<br>value:";var_dump($value);
             if(is_object($value)){
                 return "<td>$name</td>" . self::getCellsFromObject($value);
             }else{
                 if(is_array($value)){
-                    $cells = "";
+                    $cells = "$name : ";
                     foreach($value as $item){
                         $cells .= $item . "<br>";
                     }
                     return "<td>$cells</td>";
                 }else{
-                    return "<td>$name</td><td>$value</td>";
+                    return "<td>$name : $value</td>";
                 }
             }
         }
