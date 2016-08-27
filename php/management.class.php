@@ -120,11 +120,14 @@ class Management {
     public static function getAllDeviceTable(){
         $state = (new DeCONZ_API())->curlRequest("GET");
         echo "Work in progress<br><br>";
-        $table = "<h2>Hub State</h2><table>";
-        var_dump($state);
+        $table = "<h2>Hub State</h2><table class='state_table' border='3' cellspacing='0' cellpadding='10'>";
+        //var_dump($state);
         foreach($state as $title => $property){
-            var_dump($title);
-            $table .= "<tr><th>$title</th>";
+//            echo "<hr>";
+//            var_dump($title);
+            $table .= "<tr><th rowspan='".self::countChildObjects($property)."'>$title</th>";
+//            echo "<br>";
+//            var_dump($property);
             $table .= self::getCellsFromObject($property);
             $table .= "</tr>";
             
@@ -134,27 +137,35 @@ class Management {
     }
     
     protected static function getCellsFromObject($object){
-        //$cells = "";
-        if(is_array($object)){
-            echo " Array!";
-        }
+        $totalCells = "";
         
         foreach($object as $name => $value){
-            echo "<br>value:";var_dump($value);
+            //echo "<br><br>value:";var_dump($value);
             if(is_object($value)){
-                return "<td>$name</td>" . self::getCellsFromObject($value);
+                $totalCells.= "<tr><td>$name</td>" . self::getCellsFromObject($value)."</tr>";
             }else{
                 if(is_array($value)){
                     $cells = "$name : ";
                     foreach($value as $item){
                         $cells .= $item . "<br>";
                     }
-                    return "<td>$cells</td>";
+                    $totalCells .= "<td>$cells</td>";
                 }else{
-                    return "<td>$name : $value</td>";
+                    $totalCells .= "<td>$name : $value</td>";
                 }
             }
         }
+        return $totalCells;
     }
     
+    protected static function countChildObjects($object){
+        $count =0;
+        foreach($object as $child){
+            if (is_object($child)) {
+                $count++;
+                $count += self::countChildObjects($child);
+            }
+        }
+        return $count;
+    }
 }
