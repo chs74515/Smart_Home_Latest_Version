@@ -1,12 +1,16 @@
 <?php
 
-class DeCONZ_API {
-    protected $address = "192.168.1.131:8080";
+class DeCONZ_API extends Curl_API{
+    protected $address = "192.168.1.131";
+    protected $port = "8080";
     protected $key = "/B22BF6B6E7";
     protected $reAuthorize = FALSE;
     protected $endpoint = "";
     
-    
+    public function buildRequestUrl() {
+        return $this->address . ":" . $this->port . "/api". $this->key. $this->endpoint;
+    }
+
     //<editor-fold desc="Public General API Methods" defaultstate="collapsed">
     public function shouldAuthorize($choice = false){
         $this->reAuthorize = $choice;
@@ -31,21 +35,5 @@ class DeCONZ_API {
     }
     //</editor-fold>
     
-    //<editor-fold desc="Curl Methods" defaultstate="collapsed">
-    public function curlRequest($method, $url_addons = "", $request_body = [], $additionalHeaders = []){
-        $url = $this->address . "/api". $this->key. $this->endpoint . $url_addons;
-        $ch = curl_init($url);
-        if(!empty($request_body)){
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($request_body));
-        }
-        if(!empty($additionalHeaders)){
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $additionalHeaders);
-        }
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-        return json_decode(curl_exec($ch));
-    }
-    //</editor-fold>  
+    
 }

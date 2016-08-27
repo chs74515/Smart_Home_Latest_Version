@@ -28,6 +28,8 @@ function getIncludes(){
     include_once("php/lightGroup.class.php");
     include_once("php/group_relationships.class.php");
     include_once("php/schedule.class.php");
+    include_once("php/curl_api.class.php");
+    include_once("php/z_way/z_way_api.class.php");
     include_once("php/deconz/deconz_api.class.php");
     include_once("php/deconz/touchlink_request.class.php");
     include_once("php/deconz/lights_request.class.php");
