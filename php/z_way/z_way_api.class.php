@@ -19,10 +19,11 @@ class Z_Way_API extends Curl_API{
     
     protected $address = "192.168.1.138";
 
-    protected $port = '8080';
+    protected $port = '8083';
     
     public function buildRequestUrl() {
-         return $this->address . ":" . $this->port . "/";
+        echo $this->port . "<br>"; 
+        return $this->address . ":" . $this->port . "/";
     }
 
 }

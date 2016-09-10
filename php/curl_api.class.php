@@ -24,6 +24,7 @@ abstract class Curl_API {
     
     public function curlRequest($method, $url_addons = "", $request_body = [], $additionalHeaders = []){
         $url = $this->buildRequestUrl() . $url_addons;
+        echo $url . "<br>";
         $ch = curl_init($url);
         if(!empty($request_body)){
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($request_body));

@@ -16,7 +16,9 @@
     <body>
         <?php
             require_once('shell.php');
-            echo json_encode((new Z_Way_API())->curlRequest("POST"));
+            //echo json_encode((new Z_Way_vDev_API())->authenticate());
+            echo "<hr>";
+            echo json_encode((new Z_Way_zDev_API())->retrieveSystemData());
         ?>
     </body>
 </html>
