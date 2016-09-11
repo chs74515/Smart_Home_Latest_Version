@@ -30,6 +30,7 @@ class Z_Way_vDev_API extends Z_Way_API{
     public function authenticate(){
         $credentials = ['login'=>'admin','password'=>'chisom'];
         return $this->curlRequest("POST", "login", $credentials);
+        //will need to obtain 'session' and send it via header or cookie for all requests
     }
     
 }

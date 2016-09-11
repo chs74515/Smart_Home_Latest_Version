@@ -19,6 +19,8 @@ abstract class Curl_API {
     
     protected $address = "192.168.1.131";   
     
+    public $debug = FALSE;
+    
     //<editor-fold desc="Curl Methods" defaultstate="collapsed">
     public abstract function buildRequestUrl();    
     
@@ -36,6 +38,9 @@ abstract class Curl_API {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        if($this->debug){
+            echo "<hr><b>curl request for </b>$url:<br>" . json_encode(curl_getinfo($ch)) . "<hr>";
+        }
         return json_decode(curl_exec($ch));
     }
     //</editor-fold>  
