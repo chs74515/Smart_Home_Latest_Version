@@ -24,6 +24,10 @@ class Z_Way_zDev_API extends Z_Way_API {
         return parent::buildRequestUrl() . "ZWaveAPI/";
     }
     
+    /**
+     * not functional, creates timeout
+     * @return object
+     */
     public function retrieveSystemData(){
         return $this->curlRequest("POST", "Data/");
     }

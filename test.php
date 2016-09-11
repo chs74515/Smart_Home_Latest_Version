@@ -16,9 +16,9 @@
     <body>
         <?php
             require_once('shell.php');
-            //echo json_encode((new Z_Way_vDev_API())->authenticate());
+            echo json_encode((new Z_Way_vDev_API())->authenticate());
             echo "<hr>";
-            echo json_encode((new Z_Way_zDev_API())->retrieveSystemData());
+            //echo json_encode((new Z_Way_zDev_API())->retrieveSystemData()); //timing out
         ?>
     </body>
 </html>
