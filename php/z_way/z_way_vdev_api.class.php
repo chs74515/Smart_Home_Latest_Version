@@ -23,8 +23,12 @@ class Z_Way_vDev_API extends Z_Way_API{
         return parent::buildRequestUrl() . "ZAutomation/api/v1/";
     }
     
+    public function getPlatformStatus(){
+        return $this->curlRequest("GET", "status");
+    }
+    
     public function authenticate(){
-        $credentials = json_encode(['login'=>'admin','password'=>'chisom']);
+        $credentials = ['login'=>'admin','password'=>'chisom'];
         return $this->curlRequest("POST", "login", $credentials);
     }
     
