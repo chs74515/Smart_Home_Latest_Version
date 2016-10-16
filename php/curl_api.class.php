@@ -26,7 +26,6 @@ abstract class Curl_API {
     
     public function curlRequest($method, $url_addons = "", $request_body = [], $additionalHeaders = []){
         $url = $this->buildRequestUrl() . $url_addons;
-        //echo $url . "<br>";
         $ch = curl_init($url);
         if(!empty($request_body)){
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($request_body));
@@ -39,7 +38,7 @@ abstract class Curl_API {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         if($this->debug){
-            echo "<hr><b>curl request for </b>$url:<br>" . json_encode(curl_getinfo($ch)) . "<hr>";
+            echo "<hr><b>curl request for </b>$url:<br>" . json_encode(curl_getinfo($ch)) . "<br><br><b>Response:</b>";
         }
         return json_decode(curl_exec($ch));
     }

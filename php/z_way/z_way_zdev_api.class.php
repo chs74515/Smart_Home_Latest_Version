@@ -26,10 +26,13 @@ class Z_Way_zDev_API extends Z_Way_API {
     
     /**
      * not functional, creates timeout
+     * --note: this should have a timestamp on the request, look at pg 31 in zwayDev API guide
      * @return object
      */
-    public function retrieveSystemData(){
-        return $this->curlRequest("POST", "Data/");
+    public function retrieveSystemData($num_days = 1){
+        $current_timestamp = time();
+        $since_timestamp = $current_timestamp - (86400 * $num_days);
+        return $this->curlRequest("POST", "Data/{$since_timestamp}");
     }
     
 }

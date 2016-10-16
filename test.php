@@ -16,10 +16,10 @@
     <body>
         <?php
             require_once('shell.php');
-            echo json_encode((new Z_Way_vDev_API())->getPlatformStatus());
-            echo "<hr>";
-            echo json_encode((new Z_Way_vDev_API())->authenticate());
-            echo "<hr>";
+            ///*
+            echo json_encode((new Z_Way_vDev_API())->getDevices());
+            echo "<hr>";//*/
+            //echo json_encode((new zDev_Device_Request("0"))->curlRequest("POST"));
             //echo json_encode((new Z_Way_zDev_API())->retrieveSystemData()); //timing out
         ?>
     </body>
