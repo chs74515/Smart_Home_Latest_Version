@@ -17,6 +17,8 @@ if(!isset($_POST['AJAX'])){
     //displayHeader();
 }
 
+session_start();    //start $_SESSION
+
 //php includes
 function getIncludes(){
     include_once("php/database.class.php");

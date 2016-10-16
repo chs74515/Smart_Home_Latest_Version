@@ -13,7 +13,6 @@ and open the template in the editor.
     <body>
         <?php
             include_once("shell.php");
-            session_start();    //start $_SESSION
             Authentication::processLogin();     //process login form if submitted
             if(Authentication::isAuthenticated()){
                 $nav = new Navigation_Menu();
