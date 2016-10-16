@@ -21,7 +21,7 @@ class Z_Way_API extends Curl_API{
 
     protected $port = '8083';
     
-    public $debug = TRUE;
+    public $debug = FALSE;
     
     public function buildRequestUrl() {
         return $this->address . ":" . $this->port . "/";
