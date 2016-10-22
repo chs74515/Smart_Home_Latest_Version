@@ -186,9 +186,9 @@ class Database {
         }
         $sql .= " " . implode(", ", $values) . ";";
         $result = mysqli_query($this->connect, $sql);
-        if($result){
+        if($result && !isset($this->id)){
             $this->id = mysqli_insert_id($this->connect);
-            $this->fields['id'] = $this->id;
+            //$this->fields['id'] = $this->id;//not valid
         }
     }
     
