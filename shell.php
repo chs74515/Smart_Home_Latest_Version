@@ -35,6 +35,7 @@ function getIncludes(){
     include_once("php/z_way/z_way_zdev_api.class.php");
     include_once("php/z_way/z_way_vdev_api.class.php");
     include_once("php/z_way/zdev_device_request.class.php");
+    include_once("php/z_way/vdev_lock_request.class.php");
     include_once("php/deconz/deconz_api.class.php");
     include_once("php/deconz/touchlink_request.class.php");
     include_once("php/deconz/lights_request.class.php");

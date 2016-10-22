@@ -37,8 +37,16 @@ class Z_Way_vDev_API extends Z_Way_API{
         return $this->curlRequest("GET", "status");
     }
     
+    /**
+     * @deprecated should use getDeviceNamespace instead, result is alot cleaner
+     * @return type
+     */
     public function getDevices(){
         return $this->curlRequest("GET","devices");
+    }
+    
+    public function getDeviceNamespace(){
+        return $this->curlRequest("GET","namespaces/devices_all");
     }
     
     public function authenticate(){
