@@ -21,4 +21,12 @@ class VDev_Lock_Request extends Z_Way_vDev_API{
         return $this->curlRequest("GET","namespaces/devices_doorlock");
     }
     
+    public function closeDoorLock($id){
+        return $this->sendCommand($id, "close");
+    }
+    
+    public function openDoorLock($id){
+        return $this->sendCommand($id, "open");
+    }
+    
 }

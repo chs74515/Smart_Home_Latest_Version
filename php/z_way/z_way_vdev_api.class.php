@@ -49,6 +49,24 @@ class Z_Way_vDev_API extends Z_Way_API{
         return $this->curlRequest("GET","namespaces/devices_all");
     }
     
+    public function getDeviceById($id){
+        return $this->curlRequest("GET","devices/{$id}");
+    }
+    
+    public function getDeviceMetrics($id){
+        $result = $this->getDeviceById($id);
+        if(isset($result->data->metrics)){
+            return $result->data->metrics;
+        }else{
+            echo "<hr>Could not get metrics for device: '{$id}'<hr>";
+            return []; //metrics object didn't exist return empty array
+        }
+    }
+    
+    public function sendCommand($id, $command){
+        return $this->curlRequest("POST","devices/{$id}/command/{$command}");
+    }
+    
     public function authenticate(){
         $credentials = ['form'=>true,'keepme'=>false,'login'=>'admin','password'=>'chisom','default_ui'=>1];
         //CURLOPT_COOKIEFILE or http header ZWAYSession=sid from authenticate
