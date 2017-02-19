@@ -8,6 +8,8 @@
 error_reporting(E_ALL); 
 ini_set('display_errors', '1');
 
+//phpinfo();
+
 getIncludes();
 
 //dont echo if an ajax call

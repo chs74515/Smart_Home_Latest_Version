@@ -64,7 +64,8 @@ class Z_Way_vDev_API extends Z_Way_API{
     }
     
     public function sendCommand($id, $command){
-        return $this->curlRequest("POST","devices/{$id}/command/{$command}");
+        //note: commands have to be sent by GET
+        return $this->curlRequest("GET","devices/{$id}/command/{$command}");
     }
     
     public function authenticate(){
